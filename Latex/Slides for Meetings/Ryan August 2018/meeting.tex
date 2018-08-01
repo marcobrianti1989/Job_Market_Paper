@@ -1,0 +1,200 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\usepackage{graphicx,lmodern,subfigure,ulem,color,graphicx,tikz,booktabs,natbib}
+\usepackage{mathrsfs}
+\usetheme{Warsaw}
+%\definecolor{beamer@blendedblue}{rgb}{0.1,0.5,0.1}
+%\definecolor{ForestGreen}{RGB}{60, 140, 60}
+%\setbeamercolor{structure}{fg=beamer@blendedblue}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\bibliographystyle{chicago}
+\newcommand{\spitem}{\vspace{.3cm}\item}
+\newcommand{\elas}{$E_{labor}$}
+\def \ourFigPath {../../} 
+
+
+\title{Noise Shocks and Heterogeneous Agents}
+\author{Marco Brianti}
+\institute{Boston College}
+\date{2017}
+
+
+\begin{document}
+	
+	\frame{\titlepage \begin{center} Dissertation Workshop \end{center} }
+	
+	\frame{\frametitle{Research Question (Preliminary)}
+		
+		The key empirical question is how \textbf{information dispersion} across agents affect economic fluctuations.
+		
+		\
+		
+		\
+		
+		\
+		
+		\
+		
+		Two possible analysis
+		
+		\
+		
+		\begin{enumerate}
+			\item Identifying an \textbf{information-dispersion shock}
+			
+			\
+			\item Analyzing the effect of fundamental shocks conditioning on different level of information dispersion
+		\end{enumerate}
+		
+		
+		
+	}
+	
+	
+	
+	\frame{\frametitle{Background (I)}
+		
+		A standard \textbf{noise shock} is defined as a noisy public signal regarding aggregate future fundamentals.
+		
+		\
+		
+		\
+		
+		\
+		
+		In this case agents \textbf{coordinate} their choices with respect to an aggregate biased signal.
+		
+		\
+		
+		\
+		
+		\
+		
+		Underlying assumption is that the \textbf{quality} of the signal is low.
+		
+	}
+	
+	
+	\frame{\frametitle{Background (II)}
+		
+		An \textbf{information-dispersion shock} is defined as a signal which spread out expectations regarding aggregate future fundamentals.
+		
+		\
+		
+		\
+		
+		\
+		
+		In this case agents \textbf{fail to coordinate} their choices with respect to expected future fundamentals.
+		
+		\
+		
+		\
+		
+		\
+		
+		Underlying assumption is that the \textbf{quantity} of the signal is low.
+		
+	}
+	
+	
+	\frame{\frametitle{Formalization}
+		
+		Consider a simple economy populated by $I$ agents where each agent $i$ attempt to forecast fundamental variable $x_{t+1}$ given the information set at time $t$.
+		
+		\
+		
+		Define the mean squared forecast error across agents as follows,
+		
+\begin{eqnarray}\label{eq:FE_shock}
+\phi_t = I^{-1} \sum_{i=1}^I \big\{ E_t^i [ x_{t+1} ] - x_{t+1} \big\}^2 
+\end{eqnarray}
+
+
+where
+
+\begin{itemize}
+	\item $E^i_t [ x_{t+1} ]$ is the expectation of agent $i$ on $x_{t+1}$
+	\item $E^i_t [ x_{t+1} ] - x_{t+1}$ is the forecast error of agent $i$ on $x_{t+1}$
+\end{itemize}   
+
+\
+
+\textbf{Intuition.} $\phi_t$ represents the precision of agents' expectations in the whole economy.
+				
+	}
+
+
+
+\frame{\frametitle{Decomposition}
+	
+	
+	Now, the interesting part of Equation \ref{eq:FE_shock} is that can be decomposed as follows,
+	\begin{eqnarray}
+	\begin{aligned}
+	\phi_t &= I^{-1} \sum_{i=1}^I \big\{ E_t^i ( x_{t+1} ) - x_{t+1} \big\}^2 \\
+	&= I^{-1} \sum_{i=1}^I \big\{  E_t^i ( x_{t+1} )^2 - 2E_t^i ( x_{t+1} )x_{t+1} + x_{t+1}^2  \big\} \\
+	&= I^{-1} \sum_{i=1}^I E_t^i ( x_{t+1} )^2 - 2\bar{x}_{t,t+1}^i x_{t+1} + x_{t+1}^2 \\
+	&= I^{-1} \sum_{i=1}^I E_t^i ( x_{t+1} )^2 - (\bar{x}_{t,t+1}^i)^2 + (\bar{x}_{t,t+1}^i)^2 - 2\bar{x}_{t,t+1}^i x_{t+1} + x_{t+1}^2 \\
+	&= Var^i_t(x_{t+1}) + (\bar{x}_{t,t+1}^i - x_{t+1})^2, \\
+	\end{aligned}
+	\end{eqnarray}
+	
+where $\bar{x}_{t,t+1}^i = I^{-1} \sum_{i=1}^I E_t^i ( x_{t+1} )$ is the average expectation across agents of $x_{t+1}$ given the information set at time $t$.
+	
+	
+}
+
+\frame{\frametitle{Intuition}
+	
+	From previous slide,
+	\begin{eqnarray}\label{eq:decomposition}
+	\phi_t = Var^i_t(x_{t+1}) + (\bar{x}_{t,t+1}^i - x_{t+1})^2
+	\end{eqnarray}
+	
+	\
+	
+	
+	Equation \ref{eq:decomposition} is divided into two parts: 
+	
+	\
+	
+	
+	\begin{enumerate}
+		\item $Var^i_t(x_{t+1})$, which is the variance across agents of expectations of $x_{t+1}$ given information set at time $t$,
+		
+		\
+		
+		\item $(\bar{x}_{t,t+1}^i - x_{t+1})^2$, which is the square of difference between the average expectation across agents of $x_{t+1}$ at time $t$ and its actual realization.
+	\end{enumerate}
+
+}
+
+\frame{\frametitle{Econometrics}
+	
+	
+An \textbf{information-dispersion shock} can be identified as
+\begin{eqnarray}\label{eq:idio_shock}
+\iota_t = Var^i_t(x_{t+1})
+\end{eqnarray}
+and a standard \textbf{noise shock} as
+\begin{eqnarray}\label{eq:aggre_shock}
+\eta_t = \bar{x}_{t,t+1}^i - x_{t+1}
+\end{eqnarray}
+Thus, $\phi_t$ can be represented as the sum of two shocks
+\begin{eqnarray}\label{eq:bias_var_dec}
+\phi_t = \iota_t + \eta_t^2
+\end{eqnarray}
+which is simply the Variance-Bias decomposition.
+
+\
+
+\textbf{Intuition.} \textbf{Information-dispersion shocks} can be interpreted as situations where aggregate information is weak across agents while \textbf{noise shocks} as situation where aggregate information is biased.
+
+
+
+
+}
+	
+
+\end{document}
