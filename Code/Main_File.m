@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:N274';
+range                       = 'B1:P274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 dataset                     = real(dataset(1:end-1,:));
@@ -23,12 +23,17 @@ for i = 1:size(dataset,2)
 end
 
 % Proper Transformations
-Hours       = (Hours.*Employment./Population); %Average weekly hours over population
-Consumption = (Consumption./Population);
-Investment  = (Investment./Population);
-GDP         = (GDP./Population);
+percapita = 1;
+if percapita == 1
+      Hours       = (Hours.*Employment./Population); %Average weekly hours over population
+      Consumption = (Consumption./Population);
+      Investment  = (Investment./Population);
+      GDP         = (GDP./Population);
+      SP5001      = (SP5001./Population./GDPDef);
+      SP5002      = (SP5002./Population./GDPDef);
+end
 
-% Obtaining Principal Components
+% Obtaine Principal Components
 filename                    = 'DatasetPC';
 sheet                       = 'Quarterly';
 range                       = 'C163:DD288';
@@ -42,51 +47,82 @@ pc3                         = pc(:,3);
 pc4                         = pc(:,4);
 
 % Define the system
-%system = [TFP VXO GDP Consumption Investment Hours GDP_Def FFR M2];
-system = [TFP VXO pc1 pc2 pc3 pc4];
-system_names = {'TFP','VXO','PC1','PC2','PC3','PC4'};
-%system_names = {'TFP','VXO','GDP','Consumption','Investment','Hours','GDP Deflator','FFR','M2'};
+system_names  = {'TFP','VXO','GDP','Consumption','Investment','Hours','SP5002'};
+for i = 1:length(system_names)
+      system(:,i) = eval(system_names{i});
+end
+TFPposition = find(strcmp('TFP', system_names));
+VXOposition = find(strcmp('VXO', system_names));
 
 % Choose the correct number of lags
 max_lags     = 4;
 [AIC,BIC,HQ] = aic_bic_hq(system,max_lags);
 
 % Cholesky decomposition
-nlags           = 4;
-[A,B,res,sigma] = sr_var(system, nlags);
+nlags                    = 3;
+[A,B,res,sigma]          = sr_var(system, nlags);
 
-%Checking if the VAR is stationary
+% Check if the VAR is stationary
 test_stationarity(B');
+
+% Sequential Identification - 3 steps
+horizon                  = 24;
+[impact, gam]            = three_steps_brio_ID(A,B,horizon,TFPposition,VXOposition);
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 1000;
-which_correction  = 'blocks';
-blocksize         = 3;
+nsimul            = 300;
+which_correction  = 'none';
+blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
       = bootstrap_with_kilian(B,nburn,res,nsimul,which_correction,blocksize);
 
 % Get "bootstrapped A" nsimul times
 for i_simul=1:nsimul
-      [A_boot(:,:,i_simul),B_boot(:,:,i_simul),~,~] = sr_var(data_boot2(:,:,i_simul), nlags);
+      % Cholesky decomposition
+      [A_boot,B_boot(:,:,i_simul),~,~] = sr_var(data_boot2(:,:,i_simul), nlags);
+      
+      % Sequential Identification - 3 steps
+      [impact_boot(:,:,i_simul), gam_boot(:,:,i_simul)] = three_steps_brio_ID(A_boot,...
+            B_boot(:,:,i_simul),horizon,TFPposition,VXOposition);
+      
+      i_simul
+      
 end
 
 sig1                       = 0.1;
 sig2                       = 0.05;
-H                          = 40;
-[IRFs, ub1, lb1, ub2, lb2] = genIRFs(A,A_boot,B,B_boot,H,sig1,sig2);
+H                          = horizon;
+[IRFs, ub1, lb1, ub2, lb2] = genIRFs(impact,impact_boot,B,B_boot,H,sig1,sig2);
 
-%Creating and Printing figures
-which_ID          = 'chol';
-comment           = [which_ID '_'];
+% Create and Printing figures
+base_path         = pwd;
+which_ID          = 'three_steps_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [1 2];
-%which_shocks      = 1;
-%shocknames        = {'Uncertainty Shock'};
-shocknames        = {'Technology Shock','Uncertainty Shock'};
+which_shocks      = [1 2 3];
+shocknames        = {'News Shock','Technology Shock','Uncertainty Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
-      system_names, '_', print_figs, use_current_time)
+      system_names, which_ID, print_figs, use_current_time,base_path)
+
+% Get Structural Shocks
+structural_shocks = get_structural_shocks_general(A,gam,res,which_shocks);
+
+% Create Figure for Structural Shocks
+figure
+hold on
+plot(Time(nlags+1:end),structural_shocks(:,1),'LineWidth',1.5)
+plot(Time(nlags+1:end),structural_shocks(:,2),'LineWidth',1.5)
+plot(Time(nlags+1:end),structural_shocks(:,3),'LineWidth',1.5)
+legend('News Shocks','Surprise TFP Shocks','Uncertainty Shocks')
+legend boxoff
+grid on
+
+% Get variance Decomposition
+m = [1 4 8 16 24];
+for im = 1:length(m)
+      vardec(:,:,im) = gen_vardecomp(IRFs,m(im),H);
+end
 
 
 
