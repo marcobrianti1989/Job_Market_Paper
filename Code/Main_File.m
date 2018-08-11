@@ -71,7 +71,7 @@ horizon                  = 24;
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 300;
+nsimul            = 2000;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
@@ -98,7 +98,7 @@ H                          = horizon;
 % Create and Printing figures
 base_path         = pwd;
 which_ID          = 'three_steps_';
-print_figs        = 'no';
+print_figs        = 'yes';
 use_current_time  = 1; % don't save the time
 which_shocks      = [1 2 3];
 shocknames        = {'News Shock','Technology Shock','Uncertainty Shock'};
@@ -119,10 +119,16 @@ legend boxoff
 grid on
 
 % Get variance Decomposition
+N = null(gam');
+D_null = [N gam];
+impact_vardec = A*D_null; % where A is the chol.
+[IRF_vardec, ~, ~, ~, ~] = genIRFs(impact_vardec,0,B,0,H, sig1, sig2);
 m = [1 4 8 16 24];
 for im = 1:length(m)
-      vardec(:,:,im) = gen_vardecomp(IRFs,m(im),H);
+      vardec(:,:,im) = gen_vardecomp(IRF_vardec,m(im),H);
 end
+vardec = vardec(:,end-2:end,:);
+
 
 
 
