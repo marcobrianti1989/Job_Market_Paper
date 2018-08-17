@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:P274';
+range                       = 'B1:AJ274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 dataset                     = real(dataset(1:end-1,:));
@@ -21,7 +21,7 @@ dataset                     = real(dataset(1:end-1,:));
 for i = 1:size(dataset,2)
       eval([var_names{i} ' = dataset(:,i);']);
 end
-
+dfvbnmk
 % Proper Transformations
 percapita = 1;
 if percapita == 1
