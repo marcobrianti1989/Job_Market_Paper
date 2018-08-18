@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:T274';
+range                       = 'B1:AJ274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 dataset                     = real(dataset(1:end-1,:));
@@ -47,7 +47,8 @@ pc3                         = pc(:,3);
 pc4                         = pc(:,4);
 
 % Define the system
-system_names  = {'TFPUtil','FFR','VXO','GDP','Consumption','Investment','Hours'};
+system_names  = {'GDP','Consumption','Investment','Hours','TFPUtil','FFR','SP5001','VXO'};
+%system_names  = {'VXO','GDP'};
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
@@ -61,7 +62,7 @@ max_lags     = 4;
 % Cholesky decomposition
 nlags                    = 3;
 [A,B,res,sigma]          = sr_var(system, nlags);
-
+asd
 % Check if the VAR is stationary
 test_stationarity(B');
 
@@ -96,7 +97,7 @@ plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names, which_ID, print_figs, use_current_time,base_path)
 
 % Get Structural Shocks
-structural_shocks = (inv(A)*res')';
+ss = (inv(A)*res')';
 
 % Create Figure for Structural Shocks
 figure
