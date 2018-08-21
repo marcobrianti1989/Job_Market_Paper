@@ -11,7 +11,7 @@ function pvalue = f_test(res_r,res_ur,q,n,k)
 SSR_R  = sum(res_r.^2);
 SSR_UR = sum(res_ur.^2);
 
-numerator   = (SSR_UR - SSR_R)/q;
+numerator   = (SSR_R - SSR_UR)/q;
 denominator = SSR_UR / (n-k-1);
 
 F = numerator / denominator;

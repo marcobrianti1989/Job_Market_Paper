@@ -12,10 +12,41 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AK274';
+range                       = 'B1:AM274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
-dataset                     = real(dataset(1:end-1,:));
+dataset                     = real(dataset);
+time_start                  = dataset(1,1);
+time_end                    = dataset(end,1);
+
+% Obtain Principal Components
+filename                    = 'DatasetPC';
+sheet                       = 'Quarterly';
+range                       = 'B2:DD288';
+do_truncation_PC            = 1; %Do not truncate data. You will have many NaN
+dataPC                      = read_data(filename,sheet,range,do_truncation_PC);
+dataPC                      = real(dataPC);
+time_start_PC               = dataPC(1,1);
+time_end_PC                 = dataPC(end,1);
+
+% Align the two datasets
+align_datasets = 1;
+if align_datasets == 1
+      if time_start < time_start_PC
+            loc_start = find(dataset(:,1) == time_start_PC);
+            dataset = dataset(loc_start:end,:);
+      elseif time_start > time_start_PC
+            loc_start = find(dataPC(:,1) == time_start);
+            dataPC = dataPC(loc_start:end,:);
+      end
+      if time_end < time_end_PC
+            loc_end = find(dataPC(:,1) == time_end);
+            dataPC = dataPC(1:loc_end,:);
+      elseif time_end > time_end_PC
+            loc_end = find(dataset(:,1) == time_end);
+            dataset = dataset(1:loc_end,:);
+      end
+end
 
 % Assess names to each variable as an array
 for i = 1:size(dataset,2)
@@ -34,86 +65,59 @@ if percapita == 1
 end
 
 % Obtaine Principal Components
-filename                    = 'DatasetPC';
-sheet                       = 'Quarterly';
-range                       = 'C163:DD288';
-dataPC                      = xlsread(filename, sheet, range);
-dataPC                      = real(dataPC(1:end-1,:));
 Zscore                      = 1; %remove mean and divide over the variance each series
-pc                          = get_principal_components(dataPC,Zscore);
+pc                          = get_principal_components(dataPC(:,2:end),Zscore);
 pc1                         = pc(:,1);
 pc2                         = pc(:,2);
 pc3                         = pc(:,3);
 pc4                         = pc(:,4);
 
 % Define the system1
-system_names1  = {'VXO','GDP','Consumption','Investment','Hours','TFPUtil','FFR','GovSpending','pc1','pc2','pc3','pc4'};
+system_names  = {'VXO','GDP','Consumption','Investment','Hours','TFPUtil','FFR',...
+      'GovSpending','Mich5Y','Mich1Y','SP5001','GZSpread',...
+      'pc1','pc2','pc3','pc4'};
 
-for i = 1:length(system_names1)
-      system1(:,i) = eval(system_names1{i});
+for i = 1:length(system_names)
+      system(:,i) = eval(system_names{i});
 end
-TFPposition1 = find(strcmp('TFP', system_names1));
-VXOposition1 = find(strcmp('VXO', system_names1));
+TFPposition = find(strcmp('TFP', system_names));
+VXOposition = find(strcmp('VXO', system_names));
 
-% Choose the correct number of lags
-max_lags     = 4;
-[AIC,BIC,HQ] = aic_bic_hq(system1,max_lags);
+% Tests for lags
+max_lags = 4;
+[AIC,BIC,HQ] = aic_bic_hq(system,max_lags);
 
 % Cholesky decomposition
-nlags                        = 3;
-[A1,B1,res1,sigma1]          = sr_var(system1, nlags);
-
-% Check if the VAR is stationary
-test_stationarity(B1');
+nlags = 2;
+[A,B,res,sigma] = sr_var(system, nlags);
 
 % Get Structural Shocks
-ss1 = (inv(A1)*res1')';
+ss = (inv(A)*res')';
 
-% regreg = (res1(:,2)'*res1(:,1))/(res1(:,1)'*res1(:,1));
-% ss1_con = res1(:,2)/A1(2,2) - res1(:,1)*regreg/A1(2,2);
-% q = 7;
-% k = q;
-% n = length(ss1(:,1));
-% pvalue = f_test(ss1_con,ss1(:,1), q, n, k);
-
-% Define the system2
-system_names2  = {'GDP','Consumption','Investment','Hours','TFPUtil','FFR','GovSpending','VXO','pc1','pc2','pc3','pc4'};
-%system_names2  = {'GDP','VXO'};
-
-for i = 1:length(system_names2)
-      system2(:,i) = eval(system_names2{i});
-end
-TFPposition2 = find(strcmp('TFP', system_names2));
-VXOposition2 = find(strcmp('VXO', system_names2));
-
-% Cholesky decomposition
-[A2,B2,res2,sigma2] = sr_var(system2, nlags);
-
-% Get Structural Shocks
-ss2 = (inv(A2)*res2')';
-
-y = res2(:,end);
-x = res2(:,1:end-1);
-
+y = res(:,end);
+x = res(:,1:end-1);
 b = (x'*y)'*(x'*x)^(-1);
-
 sh = y - x*b';
 
-corr(ss2(:,end-4),res1(:,1))
+corr(ss(:,VXOposition),res(:,VXOposition))
 
 % Correlation between the two identifications
-corr(res1(:,1),ss2(:,end))
-plot(Time(4:end),res1(:,1)/A1(1,1),'linewidth',2)
+set(gcf,'color','white')
+%area(Time(nlags+1:end),NBERDates(nlags+1:end)/10,'FaceColor',[0.75 0.75 0.75],'EdgeColor','none')
 hold on
-plot(Time(4:end),ss2(:,end-4),'linewidth',2)
-legend('VXO first','VXO last')
-
+plot(Time(nlags+1:end),ss(:,VXOposition)*A(VXOposition,VXOposition),'--','linewidth',2)
+plot(Time(nlags+1:end),res(:,VXOposition),'linewidth',2)
+LEG = legend('VXO innovations','Constrained VXO innovations');
+LEG.FontSize = 24;
+legend boxoff
+axis tight
+grid on
+hold off
+close
 q = 7;
 k = q;
-n = length(ss1(:,1));
-pvalue = f_test(y,sh,q,n,k);
-
-asdf
+n = length(ss(:,1));
+pvalue = f_test(res(:,VXOposition),ss(:,VXOposition),q,n,k);
 
 % Create dataset from bootstrap
 nburn             = 0;
@@ -140,11 +144,11 @@ base_path         = pwd;
 which_ID          = 'chol_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [1 2 3];
-shocknames        = {'Technology Shock','Monetary Policy Shock','Uncertainty Shock'};
+which_shocks      = [1];
+shocknames        = {'Uncertainty Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names, which_ID, print_figs, use_current_time,base_path)
-
+asd
 % Create Figure for Structural Shocks
 figure
 hold on
