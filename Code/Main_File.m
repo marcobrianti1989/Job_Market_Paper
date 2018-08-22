@@ -21,7 +21,7 @@ dataset                     = real(dataset(1:end-1,:));
 for i = 1:size(dataset,2)
       eval([var_names{i} ' = dataset(:,i);']);
 end
-dfvbnmk
+
 % Proper Transformations
 percapita = 1;
 if percapita == 1
@@ -47,7 +47,7 @@ pc3                         = pc(:,3);
 pc4                         = pc(:,4);
 
 % Define the system
-system_names  = {'TFP','VXO','GDP','Consumption','Investment','Hours','SP5002'};
+system_names  = {'TFP','VXO','GDP','Consumption','Investment','Hours','SP5002','Inventories'};
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
@@ -71,7 +71,7 @@ horizon                  = 24;
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 2000;
+nsimul            = 100;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...

@@ -12,9 +12,13 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AM274';
+range                       = 'B1:AH274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
+tf                          = isreal(dataset);
+if tf == 0
+      warning('Dataset has complex variables in it.')
+end
 dataset                     = real(dataset);
 time_start                  = dataset(1,1);
 time_end                    = dataset(end,1);
@@ -22,9 +26,13 @@ time_end                    = dataset(end,1);
 % Obtain Principal Components
 filename                    = 'DatasetPC';
 sheet                       = 'Quarterly';
-range                       = 'B2:DD288';
+range                       = 'B2:DA288';
 do_truncation_PC            = 1; %Do not truncate data. You will have many NaN
 dataPC                      = read_data(filename,sheet,range,do_truncation_PC);
+tfPC                          = isreal(dataset);
+if tfPC == 0
+      warning('DatasetPC has complex variables in it.')
+end
 dataPC                      = real(dataPC);
 time_start_PC               = dataPC(1,1);
 time_end_PC                 = dataPC(end,1);
@@ -73,9 +81,8 @@ pc3                         = pc(:,3);
 pc4                         = pc(:,4);
 
 % Define the system1
-system_names  = {'VXO','GDP','Consumption','Investment','Hours','TFPUtil','FFR',...
-      'GovSpending','Mich5Y','Mich1Y','SP5001','GZSpread',...
-      'pc1','pc2','pc3','pc4'};
+system_names  = {'MacroUncertH1','GDP','Consumption','Investment','Hours','YearInflation',...
+      'TFPUtil','FFR','GovSpending','CapUtilization','Inventories'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
@@ -84,40 +91,25 @@ TFPposition = find(strcmp('TFP', system_names));
 VXOposition = find(strcmp('VXO', system_names));
 
 % Tests for lags
-max_lags = 4;
+max_lags     = 4;
 [AIC,BIC,HQ] = aic_bic_hq(system,max_lags);
 
 % Cholesky decomposition
-nlags = 2;
+nlags           = 3;
 [A,B,res,sigma] = sr_var(system, nlags);
 
 % Get Structural Shocks
 ss = (inv(A)*res')';
 
-y = res(:,end);
-x = res(:,1:end-1);
-b = (x'*y)'*(x'*x)^(-1);
-sh = y - x*b';
-
-corr(ss(:,VXOposition),res(:,VXOposition))
-
-% Correlation between the two identifications
-set(gcf,'color','white')
-%area(Time(nlags+1:end),NBERDates(nlags+1:end)/10,'FaceColor',[0.75 0.75 0.75],'EdgeColor','none')
-hold on
-plot(Time(nlags+1:end),ss(:,VXOposition)*A(VXOposition,VXOposition),'--','linewidth',2)
-plot(Time(nlags+1:end),res(:,VXOposition),'linewidth',2)
-LEG = legend('VXO innovations','Constrained VXO innovations');
-LEG.FontSize = 24;
-legend boxoff
-axis tight
-grid on
-hold off
-close
-q = 7;
-k = q;
-n = length(ss(:,1));
-pvalue = f_test(res(:,VXOposition),ss(:,VXOposition),q,n,k);
+% Test for sufficient information - H0: regressors on PC are equal to zero.
+reg_PC                     = [pc1 pc2 pc3 pc4];
+reg_PC                     = reg_PC(1+nlags:end,:);
+ushock_restricted          = ss(:,1);
+k                          = size(reg_PC,2);
+q                          = size(reg_PC,2);
+[~,~,ushock_unrestricted]  = quick_ols(ushock_restricted,reg_PC);
+TT                         = size(reg_PC,1);
+pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k);
 
 % Create dataset from bootstrap
 nburn             = 0;
