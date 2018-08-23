@@ -7,6 +7,7 @@ function pvalue = f_test(res_r,res_ur,q,n,k)
 % n      = length of dataset (e.g time dimension)
 % Outputs
 % sig_level = the significance at which the null would be rejected
+% H0 : all regressors are not significant
 
 SSR_R  = sum(res_r.^2);
 SSR_UR = sum(res_ur.^2);
