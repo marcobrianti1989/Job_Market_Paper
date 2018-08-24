@@ -3,7 +3,7 @@ close all
 
 filename = 'SP500_Daily';
 sheet    = 'SP500';
-range    = 'A1:I17273';
+range    = 'A1:J17273';
 [data, variables] = xlsread(filename,sheet,range);
 
 % Assess names to each variable as an array
@@ -18,10 +18,10 @@ y = 1950;
 while i <= size(data,1)
       SqReturn_sum = 0;
       while Day(i) - Day(i-1) >= 0 && i < size(data,1)
-            SqReturn_sum = SqReturn_sum + SqReturn(i);
+            SqReturn_sum = SqReturn_sum + DailyRV(i);
             i = i + 1;
       end
-      RealizedVolatility(j) = SqReturn_sum;
+      MonthlyRV(j) = SqReturn_sum;
       monthly(j)            = m; 
       j = j + 1; 
       i = i + 1;
@@ -32,20 +32,20 @@ while i <= size(data,1)
             y = y + 1;
       end
 end
-Monthly = monthly';
-Datamonthly = [Monthly RealizedVolatility'];
+Months = monthly';
+Datamonthly = [Months MonthlyRV'];
 
 j = 1;
 for i = 1:length(Datamonthly)
       if floor(((i - 1)/3)) == (i - 1)/3 && length(Datamonthly) - i > 3
-            RealizedVolatility_quarterly(j) = mean(RealizedVolatility(i+2:i+2+2));
+            QuarterlyRV(j) = mean(MonthlyRV(i+2:i+2+2));
             j = j + 1;
       end
 end
-RVq = RealizedVolatility_quarterly';
+RVq = QuarterlyRV';
 
-filename = 'RVq.xlsx';
-xlswrite(filename,RVq)
+% filename = 'RVq.xlsx';
+% xlswrite(filename,RVq)
 
 
 

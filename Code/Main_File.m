@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AJ274';
+range                       = 'B1:AI274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 dataset                     = real(dataset(1:end-1,:));
@@ -47,12 +47,13 @@ pc3                         = pc(:,3);
 pc4                         = pc(:,4);
 
 % Define the system
-system_names  = {'TFP','VXO','GDP','Consumption','Investment','Hours','SP5002','Inventories'};
+system_names  = {'TFP','SP5001','MacroUncertH1','GDP','Consumption',...
+      'Investment','Hours'};
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
 TFPposition = find(strcmp('TFP', system_names));
-VXOposition = find(strcmp('VXO', system_names));
+UNCposition = find(strcmp('MacroUncertH1', system_names));
 
 % Choose the correct number of lags
 max_lags     = 4;
@@ -66,8 +67,8 @@ nlags                    = 3;
 test_stationarity(B');
 
 % Sequential Identification - 3 steps
-horizon                  = 24;
-[impact, gam]            = three_steps_brio_ID(A,B,horizon,TFPposition,VXOposition);
+horizon                  = 40;
+[impact, gam]            = three_steps_brio_ID(A,B,horizon,TFPposition,UNCposition);
 
 % Create dataset from bootstrap
 nburn             = 0;
@@ -84,7 +85,7 @@ for i_simul=1:nsimul
       
       % Sequential Identification - 3 steps
       [impact_boot(:,:,i_simul), gam_boot(:,:,i_simul)] = three_steps_brio_ID(A_boot,...
-            B_boot(:,:,i_simul),horizon,TFPposition,VXOposition);
+            B_boot(:,:,i_simul),horizon,TFPposition,UNCposition);
       
       i_simul
       
@@ -98,7 +99,7 @@ H                          = horizon;
 % Create and Printing figures
 base_path         = pwd;
 which_ID          = 'three_steps_';
-print_figs        = 'yes';
+print_figs        = 'no';
 use_current_time  = 1; % don't save the time
 which_shocks      = [1 2 3];
 shocknames        = {'News Shock','Technology Shock','Uncertainty Shock'};
@@ -107,7 +108,7 @@ plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
 
 % Get Structural Shocks
 structural_shocks = get_structural_shocks_general(A,gam,res,which_shocks);
-
+asd
 % Create Figure for Structural Shocks
 figure
 hold on

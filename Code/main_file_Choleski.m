@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AI274';
+range                       = 'B1:AJ274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -83,8 +83,8 @@ pc4                         = pc(:,4);
 % Define the system1
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption','YearInflation',...
-      'Investment','Hours'};
+system_names  = {'TFPUtil','SP5001','MacroUncertH1','GDP','Consumption',...
+      'Investment','Hours','FFR'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
@@ -112,7 +112,7 @@ q                          = size(reg_PC,2);
 [~,~,ushock_unrestricted]  = quick_ols(ushock_restricted,reg_PC);
 TT                         = size(reg_PC,1);
 pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k);
-asd
+
 % Create dataset from bootstrap
 nburn             = 0;
 nsimul            = 2000;
@@ -128,8 +128,8 @@ for i_simul=1:nsimul
 end
 
 % Generate IRFs with upper and lower bounds
-sig1                       = 0.1;
-sig2                       = 0.05;
+sig1                       = 0.05;
+sig2                       = 0.025;
 H                          = 40;
 [IRFs, ub1, lb1, ub2, lb2] = genIRFs(A,A_boot,B,B_boot,H,sig1,sig2);
 
@@ -138,7 +138,7 @@ base_path         = pwd;
 which_ID          = 'chol_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [1 2];
+which_shocks      = [2 3];
 shocknames        = {'News Shock','Uncertainty Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names, which_ID, print_figs, use_current_time,base_path)
@@ -158,7 +158,7 @@ m = [1 4 8 16 20];
 for im = 1:length(m)
       vardec(:,:,im) = gen_vardecomp(IRF_vardec,m(im),H);
 end
-vardec = vardec(:,1:length(which_shocks),:);
+vardec = vardec(:,[1:length(which_shocks)],:);
 
 
 
