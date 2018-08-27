@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AJ274';
+range                       = 'B1:AK274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -64,12 +64,13 @@ end
 % Proper Transformations - All the variables should be in logs
 percapita = 1;
 if percapita == 1
-      Hours       = Hours + Employment - Population; %Average weekly hours over population
-      Consumption = Consumption - Population;
-      Investment  = Investment - Population;
-      GDP         = GDP - Population;
-      SP5001      = SP5001 - Population - GDPDef;
-      SP5002      = SP5002 - Population - GDPDef;
+      Hours         = Hours + Employment - Population; %Average weekly hours over population
+      Consumption   = Consumption - Population;
+      Investment    = Investment - Population;
+      GDP           = GDP - Population;
+      SP5001        = SP5001 - Population - GDPDef;
+      SP5002        = SP5002 - Population - GDPDef;
+      GovPurchases  = GovPurchases - Population;
 end
 
 % Obtaine Principal Components
@@ -83,8 +84,8 @@ pc4                         = pc(:,4);
 % Define the system1
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'TFPUtil','SP5001','MacroUncertH1','GDP','Consumption',...
-      'Investment','Hours','FFR'};
+system_names  = {'TFPUtil','SP5001','GDP','Consumption','Investment','FFR',...
+      'GovPurchases','MacroUncertH1'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
@@ -115,7 +116,7 @@ pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 2000;
+nsimul            = 500;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
@@ -130,7 +131,7 @@ end
 % Generate IRFs with upper and lower bounds
 sig1                       = 0.05;
 sig2                       = 0.025;
-H                          = 40;
+H                          = 20;
 [IRFs, ub1, lb1, ub2, lb2] = genIRFs(A,A_boot,B,B_boot,H,sig1,sig2);
 
 % Create and Printing figures
@@ -138,27 +139,21 @@ base_path         = pwd;
 which_ID          = 'chol_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [2 3];
-shocknames        = {'News Shock','Uncertainty Shock'};
+which_shocks      = [8];
+shocknames        = {'Uncertainty Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
-      system_names, which_ID, print_figs, use_current_time,base_path)
-asd
-% Create Figure for Structural Shocks
-figure
-hold on
-plot(Time(nlags+1:end),ss(:,2)/A(2,2),'LineWidth',1.5)
-plot(Time(nlags+1:end),res(:,2)/sigma(2,2),'LineWidth',1.5)
-legend('Uncertainty Shocks Constrained','Uncertainty Shocks Unconstrained')
-legend boxoff
-grid on
+      system_names,which_ID,print_figs,use_current_time,base_path)
 
 % Get variance Decomposition
 [IRF_vardec, ~, ~, ~, ~] = genIRFs(A,0,B,0,H,sig1,sig2);
-m = [1 4 8 16 20];
+m = linspace(1,H,H);
 for im = 1:length(m)
       vardec(:,:,im) = gen_vardecomp(IRF_vardec,m(im),H);
 end
-vardec = vardec(:,[1:length(which_shocks)],:);
+%vardec = vardec(:,end,:);
+
+
+
 
 
 

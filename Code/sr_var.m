@@ -1,5 +1,4 @@
-function [A,B,res,sigma] = sr_var(dataset, nlags)
-
+function [A,B,res,sigma] = sr_var(dataset,nlags)
 % Rearrange data to run a VAR, outputting A, the impact matrix identified using Cholesky SR restriction.
 % res = residuals from VAR estimation
 
@@ -36,13 +35,14 @@ if nvar == 1
 else
       %Static rotation matrix
       A = chol(sigma)';
-      
+         
       % Proving that A is what we are looking for A'u'uA = res*res where u'u = I
       zero1 = A*A' - sigma;
       zero2 = sum(sum(zero1.^2));
       if zero2 > 10^(-16)
             error('The rotation matrix is not correct. Check the code')
       end
+      
 end
 
 %---------------------------------------------------------------------------------------
