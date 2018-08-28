@@ -31,11 +31,13 @@ for i_shock=1:nshocks
         % The bigger CI
         inBetween = [lb2(i_var,1:h,which_shock(i_shock)), ...
             fliplr(ub2(i_var,1:h,which_shock(i_shock)))];
-        fill(x2, inBetween, [0.75 0.75 0.75],'LineStyle','none');
+        hh1 = fill(x2, inBetween, [0.75 0.75 0.75],'LineStyle','none');
+        set(hh1,'facealpha',.5)        
         % The smaller CI
         inBetween = [lb1(i_var,1:h,which_shock(i_shock)), ...
         fliplr(ub1(i_var,1:h,which_shock(i_shock)))];
-        fill(x2, inBetween, [0.5 0.5 0.5],'LineStyle','none');
+        hh2 = fill(x2, inBetween, [0.5 0.5 0.5],'LineStyle','none');
+        set(hh2,'facealpha',.5)
         plot(zeros(1,h), 'Color','b')
         plot(periods,IRFs(i_var,1:h,which_shock(i_shock)),'linewidth',1,'Color','r')
         xt = get(gca, 'XTick');
