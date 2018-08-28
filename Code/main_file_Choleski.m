@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AK274';
+range                       = 'B1:AM274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -85,7 +85,7 @@ pc4                         = pc(:,4);
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
 system_names  = {'TFPUtil','SP5001','GDP','Consumption','Investment','FFR',...
-      'GovPurchases','MacroUncertH1'};
+      'GovPurchases','GZSpread','MacroUncertH1'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
@@ -139,7 +139,7 @@ base_path         = pwd;
 which_ID          = 'chol_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [8];
+which_shocks      = [9];
 shocknames        = {'Uncertainty Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
@@ -150,7 +150,7 @@ m = linspace(1,H,H);
 for im = 1:length(m)
       vardec(:,:,im) = gen_vardecomp(IRF_vardec,m(im),H);
 end
-%vardec = vardec(:,end,:);
+vardec = vardec(:,end,:);
 
 
 
