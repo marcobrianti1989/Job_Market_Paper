@@ -9,7 +9,7 @@ clear; clc;
 mc=1;
 [mdata,mtxt] = xlsread('jlnrawdata.xlsx',1);
 [fdata,ftxt] = xlsread('jlnrawdata.xlsx',2);
-
+return
 %%% windows users
 windows=0; mac=1;
 if windows==1;

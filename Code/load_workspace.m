@@ -30,7 +30,11 @@ ss_Ulast      = ss(:,end);
 plot_single_IRFs_2CIs_2specifications(IRFsA,ubA,lbA,IRFs,ub2,lb2,H,...
       which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
-asd
+
+close all
+
+return
+
 %Define Forecast Horizon
 horz = linspace(0,20,20);
 

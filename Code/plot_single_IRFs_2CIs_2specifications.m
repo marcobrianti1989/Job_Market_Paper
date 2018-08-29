@@ -32,16 +32,16 @@ for i_shock=1:nshocks
             inBetweenA = [lb1A(i_var,1:h,which_shock(i_shock)), ...
                   fliplr(ub1A(i_var,1:h,which_shock(i_shock)))];
             hh2 = fill(x2, inBetweenA, [1 0 0],'LineStyle','none');
-            set(hh2,'facealpha',.5)
+            set(hh2,'facealpha',.25)
             plot(zeros(1,h), 'Color','b')
-            plot(periods,IRFsA(i_var,1:h,which_shock(i_shock)),'linewidth',1,'Color','r')            
+            plot(periods,IRFsA(i_var,1:h,which_shock(i_shock)),'linewidth',2,'Color','r')            
             % Second IRFs
             inBetweenB = [lb1B(i_var,1:h,which_shock(i_shock)), ...
                   fliplr(ub1B(i_var,1:h,which_shock(i_shock)))];
             hhB = fill(x2, inBetweenB, [0 0 1],'LineStyle','none');
-            set(hhB,'facealpha',.5)
+            set(hhB,'facealpha',.25)
             plot(zeros(1,h), 'Color','b')
-            plot(periods,IRFsB(i_var,1:h,which_shock(i_shock)),'linewidth',1,'Color','r')    
+            plot(periods,IRFsB(i_var,1:h,which_shock(i_shock)),'linewidth',2,'Color','b')    
             % Common part
             xt = get(gca, 'XTick');
             set(gca, 'FontSize', 28)
