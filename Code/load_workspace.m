@@ -1,7 +1,7 @@
 clear
 close all
 
-load workspace_chol_Ufirst_GZSpread
+load workspace_stablespecification_Uncertaintyfirst
 vardec_Ufirst = vardec; 
 ss_Ufirst     = ss(:,1);
 
@@ -23,7 +23,7 @@ lbA111 = [lbA11(2:end,:); lbA11(1,:)];
 lbA = zeros(size(IRFs,1),size(IRFs,2),size(IRFs,3));
 lbA(:,:,end) = lbA111;
 
-load workspace_chol_Ulast_GZSpread
+load workspace_stablespecification_Uncertaintylast
 vardec_Ulast  = vardec;
 ss_Ulast      = ss(:,end);
 
@@ -31,17 +31,18 @@ plot_single_IRFs_2CIs_2specifications(IRFsA,ubA,lbA,IRFs,ub2,lb2,H,...
       which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
 
-close all
 
-return
+
+
 
 %Define Forecast Horizon
-horz = linspace(0,20,20);
+HH = 12;
+horz = linspace(0,HH,HH);
 
 figure(1)
-plot(horz,vardec_Ufirst(4,:),'linewidth',2)
+plot(horz,vardec_Ufirst(2,1:HH),'linewidth',2)
 hold on
-plot(horz,vardec_Ulast(3,:),'linewidth',2)
+plot(horz,vardec_Ulast(1,1:HH),'linewidth',2)
 lgd = legend('Unconstrained Uncertainty Shock','Constrained Uncertainty Shock');
 lgd.FontSize = 24;
 lgd.Location = 'northwest';
@@ -52,9 +53,9 @@ ylabel('Variance Explained')
 title('Variance Explained Of Real GDP')
 
 figure(2)
-plot(horz,vardec_Ufirst(6,:),'linewidth',2)
+plot(horz,vardec_Ufirst(4,1:HH),'linewidth',2)
 hold on
-plot(horz,vardec_Ulast(5,:),'linewidth',2)
+plot(horz,vardec_Ulast(3,1:HH),'linewidth',2)
 lgd = legend('Unconstrained Uncertainty Shock','Constrained Uncertainty Shock');
 lgd.FontSize = 24;
 lgd.Location = 'northwest';
@@ -65,9 +66,9 @@ ylabel('Variance Explained')
 title('Variance Explained Of Real Investment')
 
 figure(3)
-plot(horz,vardec_Ufirst(5,:),'linewidth',2)
+plot(horz,vardec_Ufirst(3,1:HH),'linewidth',2)
 hold on
-plot(horz,vardec_Ulast(4,:),'linewidth',2)
+plot(horz,vardec_Ulast(2,1:HH),'linewidth',2)
 lgd = legend('Unconstrained Uncertainty Shock','Constrained Uncertainty Shock');
 lgd.FontSize = 24;
 lgd.Location = 'northwest';
