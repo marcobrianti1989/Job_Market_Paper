@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AO274';
+range                       = 'B1:AQ274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -22,6 +22,7 @@ end
 dataset                     = real(dataset);
 time_start                  = dataset(1,1);
 time_end                    = dataset(end,1);
+[~, DatasetHP]              = hpfilter(dataset,1600);
 
 % Obtain Principal Components
 filename                    = 'DatasetPC';
@@ -61,12 +62,17 @@ for i = 1:size(dataset,2)
       eval([var_names{i} ' = dataset(:,i);']);
 end
 
+% Assess names to each variable as an array
+for i = 1:size(dataset,2)
+      eval([var_names{i} 'HP = DatasetHP(:,i);']);
+end
+
 % Proper Transformations - All the variables should be in logs
 percapita = 1;
 if percapita == 1
       Hours         = Hours + Employment - Population; %Average weekly hours over population
-      Consumption   = Consumption - Population;
-      Investment    = Investment - Population;
+      Consumption   = NonDurableCons + ServiceCons - Population;
+      Investment    = Investment + DurableCons - Population;
       GDP           = GDP - Population;
       SP5001        = SP5001 - Population - GDPDef;
       SP5002        = SP5002 - Population - GDPDef;
@@ -85,21 +91,22 @@ pc4                         = pc(:,4);
 % Define the system1
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'MacroUncertH1','GDP','Consumption','Investment','TFP',...
-      'GZSpread','CashFlow','SP5001'};
+system_names  = {'GDP','Consumption','Investment',...
+      'Hours','GZSpread','CashFlow','MacroUncertH1'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
 TFPposition = find(strcmp('TFP', system_names));
 VXOposition = find(strcmp('VXO', system_names));
+Uposition   = find(strcmp('MacroUncertH1', system_names));
 
 % Tests for lags
 max_lags     = 4;
 [AIC,BIC,HQ] = aic_bic_hq(system,max_lags);
 
 % Cholesky decomposition
-nlags           = 3;
+nlags           = 4;
 [A,B,res,sigma] = sr_var(system, nlags);
 
 % Get Structural Shocks
@@ -117,7 +124,7 @@ pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 500;
+nsimul            = 100;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
@@ -140,7 +147,7 @@ base_path         = pwd;
 which_ID          = 'chol_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [1];
+which_shocks      = [Uposition];
 shocknames        = {'Uncertainty Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
@@ -162,7 +169,7 @@ xlabel('Horizon')
 ylabel('Variance Explained')
 title('Variance Explained Of Real GDP')
 
-
+%save workspace_nicespecification_cons_inv_adjusted_Ulast
 
 
 

@@ -14,6 +14,33 @@ end
 j = 1;
 i = 2;
 m = 1;
+while i <= size(data,1)
+      SP500_sum = 0;
+      while Day(i) - Day(i-1) >= 0 && i < size(data,1)
+            SP500_sum = SP500_sum + Close(i);
+            i = i + 1;
+      end
+      SP500(j) = SP500_sum;
+      monthly(j)            = m; 
+      j = j + 1; 
+      i = i + 1;
+      if m < 12
+            m = m + 1;
+      else
+            m = 1;
+      end
+end
+SP500 = SP500';
+
+xlswrite('SP_monthly',[monthly' SP500])
+
+asdfg
+
+
+
+j = 1;
+i = 2;
+m = 1;
 y = 1950;
 while i <= size(data,1)
       SqReturn_sum = 0;
@@ -35,10 +62,14 @@ end
 Monthly = monthly';
 Datamonthly = [Monthly RealizedVolatility'];
 
+xlswrite('RV_monthly',[Datamonthly])
+
+asd
+
 j = 1;
 for i = 1:length(Datamonthly)
       if floor(((i - 1)/3)) == (i - 1)/3 && length(Datamonthly) - i > 3
-            RealizedVolatility_quarterly(j) = mean(RealizedVolatility(i+2:i+2+2));
+            RealizedVolatility_quarterly(j) = mean(RealizedVolatility(i:i+3));
             j = j + 1;
       end
 end
@@ -56,9 +87,11 @@ return
 load aggu
 
 uncertainty = squeeze(mean(ut,2));
+
+xlswrite('uncertainty_monthly',[dates uncertainty])
 %plot(dates,uncertainty(:,1))
 
-dates(1,1)
+dates(1:13)
 
 j = 1;
 for i = 1:length(uncertainty)
@@ -73,7 +106,7 @@ time = [1960.25:0.25:2011.5]';
 hold on
 plot(u_quarterly(:,1))
 
-%xlswrite('uncertainty',[time u_quarterly])
+xlswrite('uncertainty',[time u_quarterly])
 
 Inflation = [23.943
       23.917
@@ -361,9 +394,32 @@ yearInflation = [NaN; NaN; NaN; NaN; yearInflation'];
 
 %plot(yearInflation)
 
+filename = 'Monthly';
+sheet    = 'Monthly';
+range    = 'C282:C805';
+[data, variables] = xlsread(filename,sheet,range);
 
 
+% % Assess names to each variable as an array
+% for i = 1:size(data,2)
+%       eval([variables{i} ' = data(:,i);']);
+% end
 
+j = 1;
+for i = 1:length(data)
+      if floor(((i - 1)/3)) == (i - 1)/3 && length(data) - i > 3
+            EBP_Q(j,1) = mean(data(i:i+3));
+%             RealNonDurableCons_quarterly(j,1) = mean(data(i:i+3,1));
+%             RealServicesCons_quarterly(j,1) = mean(data(i:i+3,2));
+            j = j + 1;
+      end
+end
+
+filename = 'EBP_quarterly.xlsx';
+
+% filename = 'Cons_Decomposed.xlsx';
+% xlswrite(filename,[RealServicesCons_quarterly RealNonDurableCons_quarterly RealDurableCons_quarterly])
+xlswrite(filename,[EBP_Q])
 
 
 
