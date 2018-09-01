@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AQ274';
+range                       = 'B1:AR274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -91,8 +91,8 @@ pc4                         = pc(:,4);
 % Define the system1
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'GDP','Consumption','Investment',...
-      'Hours','GZSpread','CashFlow','MacroUncertH1'};
+system_names  = {'MacroUncertH1','GDP','Consumption','Investment',...
+      'Hours','EBP','SP5002'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
@@ -124,7 +124,7 @@ pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 100;
+nsimul            = 500;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
