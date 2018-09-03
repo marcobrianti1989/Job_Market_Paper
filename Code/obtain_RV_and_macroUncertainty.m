@@ -1,6 +1,55 @@
 clear
 close all
 
+filename                    = 'Monthly';
+sheet                       = 'Monthly';
+range                       = 'B1:AG822';
+do_truncation               = 1; %Do not truncate data. You will have many NaN
+[dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
+tf                          = isreal(dataset);
+if tf == 0
+      warning('Dataset has complex variables in it.')
+end
+dataset                     = real(dataset);
+time_start                  = dataset(1,1);
+time_end                    = dataset(end,1);
+
+% Assess names to each variable as an array
+for i = 1:size(dataset,2)
+      eval([var_names{i} ' = dataset(:,i);']);
+end
+
+figure
+set(gcf,'color','w');
+plot(Time,zscore(VXO),'linewidth',1.5)
+hold on
+plot(Time,zscore(JLNUncertH1),'linewidth',2)
+plot(Time,zscore(RealizedVolatility),'linewidth',1)
+LEG = legend('Implied Volatility (VXO)','JLN Macro Uncertainty','Realized Volatility BDG','location','northwest');
+LEG.FontSize = 24;
+legend boxoff
+xlabel('Years','FontSize',20)
+ylabel('Standard Deviation','FontSize',20)
+xt = get(gca, 'XTick');
+set(gca, 'FontSize', 16)
+yt = get(gca, 'YTick');
+set(gca, 'FontSize', 16)
+grid on
+hold off
+
+%invoke_export_fig('Uncertainty',[],[], cd)
+
+cr = corr([diff(IndustrialProduction) VXO(2:end) JLNUncertH1(2:end) RealizedVolatility(2:end)]);
+cr = tril(cr)
+asd
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 filename = 'SP500_Daily';
 sheet    = 'SP500';
 range    = 'A1:I17273';
@@ -36,33 +85,28 @@ xlswrite('SP_monthly',[monthly' SP500])
 
 asdfg
 
-
-
+clear
+filename = 'SP500_Daily';
+sheet    = 'SP500';
+range    = 'B4:j17273';
+[data, variables] = xlsread(filename,sheet,range);
+day = [data(:,1)];
+RVday = [data(:,end)];
 j = 1;
-i = 2;
-m = 1;
-y = 1950;
-while i <= size(data,1)
-      SqReturn_sum = 0;
-      while Day(i) - Day(i-1) >= 0 && i < size(data,1)
-            SqReturn_sum = SqReturn_sum + SqReturn(i);
-            i = i + 1;
-      end
-      RealizedVolatility(j) = SqReturn_sum;
-      monthly(j)            = m; 
-      j = j + 1; 
-      i = i + 1;
-      if m < 12
-            m = m + 1;
-      else
-            m = 1;
-            y = y + 1;
+RV = 0;
+for  i = 2:length(data)
+      if day(i) - day(i-1) >= 0 || i >= length(data)
+            RV = RV + RVday(i);
+      else           
+            RVstore(j,1) = RV;
+            RV = 0;
+            j = j + 1;
       end
 end
 Monthly = monthly';
 Datamonthly = [Monthly RealizedVolatility'];
 
-xlswrite('RV_monthly',[Datamonthly])
+xlswrite('RV_monthly2',[RVstore])
 
 asd
 
@@ -83,12 +127,27 @@ xlswrite(filename,RVq)
 return
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+clear
+close all
 load aggu
 
+uh1 = squeeze(ut(:,:,1));
+n = size(corr(uh1),1);
 uncertainty = squeeze(mean(ut,2));
+average_correlation = (sum(sum(abs(tril(corr(uh1))))) - n)/(n*(n-1)/2)
+corr = tril(abs(corr([uncertainty uh1])));
+veccorr = corr(:,1);
+sorted_veccott = sort(veccorr);
+Zscore = 1;
+pc = get_principal_components(uh1,Zscore);
 
-xlswrite('uncertainty_monthly',[dates uncertainty])
+datazs = zscore(uh1);
+for i = 1:size(datazs,2)
+      hold on
+      plot(datazs(:,i))
+end
+
+%xlswrite('uncertainty_monthly',[dates uncertainty])
 %plot(dates,uncertainty(:,1))
 
 dates(1:13)
