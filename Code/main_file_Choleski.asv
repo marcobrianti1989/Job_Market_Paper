@@ -91,8 +91,8 @@ pc4                         = pc(:,4);
 % Define the system1
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'MacroUncertH1','GDP','TFP','Consumption','Investment',...
-      'Hours','SP5002','pc1','pc2','pc3','EBP'};
+system_names  = {'MacroUncertH1ciccio = l','GDP','Consumption','Investment',...
+      'Hours','EBP','SP5002'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
