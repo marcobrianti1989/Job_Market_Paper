@@ -188,7 +188,7 @@ To identify uncertainty and financial shocks, they employ the penalty function a
 
 
 
-\section*{Gilchrist and Zakrajsek (2016) - AER}
+\section*{Gilchrist and Zakrajsek (2012) - AER}
 
 Between the summer of 2007 and the spring of 2009, the US economy was gripped by an acute liquidity and credit crunch, by all accounts the most severe financial crisis since the Great Depression. Throughout this period of extreme financial turmoil, credit spreads - the difference in yields between various private debt instruments and government securities of comparable maturity - served as a crucial gauge of the degree of strains of the financial system. Fluctuations in credit spreads may also reflect shifts in the effective supply of funds offered by financial intermediaries, which, in the presence of financial market frictions, have important implications for the usefulness of credit spreads as predictors of economic activity. In the latter case, a deterioration in the capital position of financial intermediaries leads to a reduction in the supply of credit, causing an increase in the cost of debt finance and a subsequent reduction in spending and production. 
 
@@ -209,7 +209,61 @@ How uncertainty fluctuations influence business cycle dynamics has traditionally
 
 \textbf{Model.} I did not read the model. If it is important get the paper and read it. My feeling is that it might be a good foundation to build your own model at an advanced stage. 
 
+\section*{Nimark (2014) - AER}
 
-}
+Unusual events are more likely to be considered newsworthy than events that are commonplace. When the availability of a signal depends on the realized value of the variable of interest, the availability of the signal is itself informative. The man-bites-dog mechanism provides a story for how economic agents come to understand that conditional uncertainty has increased. In the model presented here, a large shock in levels is more likely to generate a man-bites-dog signal and thus more likely to lead to an increase in the conditional uncertainty. In this case the causality runs from realizations of first moment shocks to conditional uncertainty. The same parameter restrictions that ensure that the posterior variance increases after a man-bites-dog signal also imply that the cross-sectional dispersion of expectations increases. In the data, we observe a positive correlation between the cross-sectional dispersion of forecasts and the absolute magnitudes of changes in macro-aggregates. Interpreted through the lens of the model, this suggests that the empirically relevant specification of the model may be one where the increase in uncertainty from conditioning on the availability of a man-bites-dog signal is dominating the increased in precision due to the content of the signal.
+
+A signal $y$ about a latent variable $x$ will be called a man-bites-dog signal if it is more likely to be available when the realization of $x$ is more unusual in the sense of having a lower unconditional probability of occurring. When the availability of the signal $y$ depends on the realized value of $x$, the availability of $y$ by itself carries information about $x$ independently of the particular realized value of the signal $y$. In particular, conditional on the signal $y$ being available, the relative probability of unusual events increases. Denote the unconditional probability density function of the latent variable of interest $x$ as $p(x)$. An unusual realization of $x$ is thus a realization for which $p(x)$ is small. To help distinguish between a particular realization of the signal $y$ and the event that the signal $y$ is available, the indicator variable $S$ is defined to take the value $1$ when the signal $y$ about $x$ is available and $0$ otherwise. 
+
+The signal is said to be a man-bites-dog signal if for any two realizations of $x$ denoted $x'$ and $x''$ such that
+$$
+p(x') < p(x'') \ \ \iff \ \ p(S = 1| x') > p(S = 1 | x'').
+$$
+which implies
+$$
+\frac{p(x'|S=1)}{p(x''|S=1)} > \frac{p(x')}{p(x'')} 
+$$
+The first inequality establishes that $x'$ is more unusual than $x''$. The second inequality formalizes the notion that a more unusual realization of $x$ is considered more newsworthy (entailing $y$) than a more common common realization. The third inequality implies that the availability of a man-bites-dog signal thus implies that probability mass should be redistributed away from unconditionally more likely outcomes toward relatively less likely outcomes. A man-bites-dog information structure thus introduces a form of conditional heteroscedasticity in the distribution of $x$. From the agents' perspective, it is as if the latent variable $x$ is drawn from a more dispersed distribution when the signal $y$ is available compared to when it is not. It is important to note that this is true even when the signal content of $y$ is not specifically about the variance, or second moment of, $x$.
+
+There are two types of signals. Agent $j$ can always observe the private signal $x_j$ which is the sum of the true $x$ an idiosyncratic noise term
+	$$
+x_j = x + \varepsilon_j, \ \ \ \varepsilon \sim N(0, \sigma^2_{\varepsilon})
+$$
+where the variance of the idiosyncratic noise term $\varepsilon_j$ is common across agents. there also exists a public signal $y$
+$$
+y = x + \eta, \ \ \ \eta \sim N(0, \sigma^2_{\eta})
+$$
+Moreover, assume that
+	$$
+	p(x|S=0) = N(0,\sigma^2) \ \ \ \text{and} \ \ \ p(x|S=1) = N(0, \gamma \sigma^2)
+	$$
+Imposing the restriction $\gamma > 1$ ensures that the conditional probability $p(S=1|x)$ of observing the signal $y$ is increasing in the absolute value of $x$.
+
+Agent $j$ conditional expectations of $x$ are then given by
+$$
+E[x|\Omega^{S=0}_j] = \frac{\frac{1}{\sigma^2_{\varepsilon}}}{\frac{1}{\sigma^2_{\varepsilon}} + \frac{1}{\sigma^2}}x_j
+$$ 
+and
+$$
+E[x|\Omega^{S=1}_j] = \frac{\frac{1}{\sigma^2_{\varepsilon}}}{\frac{1}{\sigma^2_{\varepsilon}} + \frac{1}{\sigma_{\eta}^2} + \frac{1}{\gamma \sigma^2}}x_j + \frac{\frac{1}{\sigma^2_{\eta}}}{\frac{1}{\sigma^2_{\varepsilon}} + \frac{1}{\sigma_{\eta}^2} + \frac{1}{\gamma \sigma^2}}y
+$$
+
+The posterior variances are also given by
+$$
+E \big[x - E[x|\Omega^{S=0}_j] \big]^2 = \bigg( \frac{1}{\sigma^2_{\varepsilon}} + \frac{1}{\sigma^2}  \bigg)^{-1}
+$$
+and
+$$
+E \big[x - E[x|\Omega^{S=1}_j] \big]^2 = \bigg( \frac{1}{\sigma^2_{\varepsilon}} + \frac{1}{\sigma_{\eta}^2} + \frac{1}{\gamma \sigma^2}  \bigg)^{-1}
+$$
+He can prove that the cross-sectional average expectation of $x$ responds more strongly to $x$ when $y$ is available. Intuitively, agents are willing to update their expectations further when they know that a tail realization is more likely to have occurred. Moreover, the posterior uncertainty about $x$ is larger when the signal $y$ is observed if
+$$
+\sigma^2_{\eta} > \frac{\sigma^2}{1 - \sigma^{-1}}
+$$
+The event that the signal $y$ is available make agents redistribute probability mass toward the tails of the distribution. This increases uncertainty. But observing the contents of the signal $y$ is informative about the location of $x$ which decreases uncertainty. Clearly, this second effect will be weaker when the signal is very noisy. The same condition that deliver a higher posterior variance also delivers a larger cross-sectional dispersion of expectations about $x$.
+
+The paper applies this idea to the static model of Morris and Shin (2002) and the dynamic model of Lorenzoni (2009). If it is useful you need to get back to there. 
+
+
 \end{document}
 
