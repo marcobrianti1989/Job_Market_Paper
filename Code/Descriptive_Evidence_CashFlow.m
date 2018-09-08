@@ -89,104 +89,51 @@ if percapita == 1
       CashFlow      = CashFlow - Population - GDPDef;
 end
 
-% Obtaine Principal Components
-Zscore                      = 1; %remove mean and divide over the variance each series
-pc                          = get_principal_components(dataPC(:,2:end),Zscore);
-pc1                         = pc(:,1);
-pc2                         = pc(:,2);
-pc3                         = pc(:,3);
-pc4                         = pc(:,4);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Define the system1
-% system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
-%       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'EBP','GDP','Consumption','Investment','CashFlow',...
-      'Hours','SP5002'};
-
-for i = 1:length(system_names)
-      system(:,i) = eval(system_names{i});
-end
-TFPposition = find(strcmp('TFP', system_names));
-VXOposition = find(strcmp('VXO', system_names));
-%Uposition   = find(strcmp('MacroUncertH1', system_names));
-EBPposition = find(strcmp('EBP', system_names));
-
-% Tests for lags
-max_lags     = 4;
-[AIC,BIC,HQ] = aic_bic_hq(system,max_lags);
-
-% Cholesky decomposition
-nlags           = 3;
-[A,B,res,sigma] = sr_var(system, nlags);
-
-% Get Structural Shocks
-ss = (inv(A)*res')';
-
-% Linear Regression Model
+% HP1S w/o EBP
 Y         = CashFlowHP1S;
 X         = [MacroUncertH1HP1S GDPHP1S];
 LM        = fitlm(X,Y,'linear')
+% HP1S with EBP
+Y         = CashFlowHP1S;
+X         = [MacroUncertH1HP1S EBPHP1S GDPHP1S];
+LM        = fitlm(X,Y,'linear')
 
-% Test for sufficient information - H0: regressors on PC are equal to zero.
-reg_PC                     = [pc1 pc2 pc3 pc4];
-reg_PC                     = reg_PC(1+nlags:end,:);
-ushock_restricted          = res(:,2);
-k                          = size(reg_PC,2);
-q                          = size(reg_PC,2);
-[~,~,ushock_unrestricted]  = quick_ols(ushock_restricted,reg_PC);
-TT                         = size(reg_PC,1);
-pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Create dataset from bootstrap
-nburn             = 0;
-nsimul            = 500;
-which_correction  = 'none';
-blocksize         = 4;
-[beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
-      = bootstrap_with_kilian(B,nburn,res,nsimul,which_correction,blocksize);
+% HP w/o EBP
+Y         = CashFlowHP;
+X         = [MacroUncertH1HP GDPHP];
+LM        = fitlm(X,Y,'linear')
+% HP with EBP
+Y         = CashFlowHP;
+X         = [MacroUncertH1HP EBPHP GDPHP];
+LM        = fitlm(X,Y,'linear')
 
-% Get "bootstrapped A" nsimul times
-for i_simul=1:nsimul
-      % Cholesky decomposition
-      [A_boot(:,:,i_simul),B_boot(:,:,i_simul),~,~] = sr_var(data_boot2(:,:,i_simul), nlags);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+nlags = 6;
+% diff w/o EBP
+clear X
+Y = CashFlow(1+nlags:end);
+k = 1;
+for j = 1:nlags+1
+      X(:,k:k+1) = [MacroUncertH1(1+nlags-j+1:end-j+1)...
+            GDP(1+nlags-j+1:end-j+1)];
+      k = k + 2;
 end
-
-% Generate IRFs with upper and lower bounds
-sig1                       = 0.05;
-sig2                       = 0.025;
-H                          = 20;
-[IRFs, ub1, lb1, ub2, lb2] = genIRFs(A,A_boot,B,B_boot,H,sig1,sig2);
-
-% Create and Printing figures
-base_path         = pwd;
-which_ID          = 'chol_';
-print_figs        = 'no';
-use_current_time  = 1; % don't save the time
-which_shocks      = [EBPposition]; %[Uposition];
-shocknames        = {'EBP Shock'};%{'Uncertainty Shock'};
-plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
-      system_names,which_ID,print_figs,use_current_time,base_path)
-
-% Get variance Decomposition
-[IRF_vardec, ~, ~, ~, ~] = genIRFs(A,0,B,0,H,sig1,sig2);
-m = linspace(1,H,H);
-for im = 1:length(m)
-      vardec(:,:,im) = gen_vardecomp(IRF_vardec,m(im),H);
+LM        = fitlm(X,Y,'linear')
+% diff with EBP
+clear X
+Y = CashFlow(1+nlags:end);
+k = 1;
+for j = 1:nlags+1
+      X(:,k:k+2) = [MacroUncertH1(1+nlags-j+1:end-j+1)...
+            GDP(1+nlags-j+1:end-j+1) EBP(1+nlags-j+1:end-j+1)];
+      k = k + 3;
 end
-vardec = vardec(:,which_shocks,:);
-horz = linspace(0,H,H);
-figure
-hold on
-plot(horz,vardec(2,:),'linewidth',2)
-grid on
-legend boxoff
-xlabel('Horizon')
-ylabel('Variance Explained')
-title('Variance Explained Of Real GDP')
-
-%save workspace_nicespecification_cons_inv_adjusted_Ulast
-
-
+LM        = fitlm(X,Y,'linear')
 
 
 
