@@ -1,0 +1,162 @@
+\documentclass[14pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[letterpaper,top=3cm,bottom=3cm,left=3cm,right=3cm,bindingoffset=0mm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{natbib}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{thmtools,thm-restate}
+\usepackage{hyperref}
+%\usepackage{extsizes}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\declaretheorem{proposition}
+\linespread{1.2}
+\raggedbottom
+\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+
+\begin{document}
+
+\section*{Kalman Filter}
+
+\subsection*{Setup}
+
+Observable equation is described by
+\begin{eqnarray}
+y_t = x_t + \eta_t
+\end{eqnarray}
+where $y_t$ can be observed at time $t$ and $\eta_t \sim N(0,\sigma^2_{\eta})$ is a noise shock which prevent to correctly observe state $x_t$.
+
+
+State transition equation is described by
+\begin{eqnarray}
+x_{t} = x_{t-1} + \varepsilon_t
+\end{eqnarray}
+where $\varepsilon_t \sim N(0,\sigma^2_{\varepsilon})$ is a structural shock which affects the transition from $x_{t-1}$ to $x_t$.
+
+\subsection*{Procedure}
+
+Goal is to optimize the forecast of $x_{t+1}$ using available information at time $t$, i.e. $y_t$. Assume an initial value for $x_{1,0}$ and $Var(x_{1,0} - x_{0,0}) = P_{1,0}$. Procedure can be summarized as follows,
+\begin{enumerate}
+	\item Forecast $y_t$ using information at time $t-1$ and evaluate the error variance of this prediction.
+	\item Infer $x_t$ using information at time $t$ and evaluate the error variance of this inference.
+	\item Forecast $x_{t+1}$ using information at time $t$ and evaluate the error variance of this prediction.
+	\item Find the steady state variance $P_{t,t}$.
+\end{enumerate}
+
+\
+
+Given $x_{1,0}$ the three initial steps are
+\begin{enumerate}
+	\item $y_{1,0} =  x_{1,0}$ and the forecast error variance is $\Omega^y_{1,0} =\sigma^2_{\eta}$.
+	\item $x_{1,1} =  y_1$ and the forecast error variance is $P_{1,1} = \sigma^2_{\eta}$.
+	\item $x_{2,1} = x_{1,1}$ and the forecast error variance is $P_{2,1} = \sigma^2_{\eta} + \sigma^2_{\varepsilon}$.
+\end{enumerate}
+
+\ 
+
+As a generalization, the three steps are
+\begin{enumerate}
+	\item $y_{t,t-1} = x_{t,t-1}$ and the forecast error variance is $\Omega^y_{t,t-1} = Var(x_{t,t-1}) + \sigma^2_{\eta} = P_{t,t-1} + \sigma^2_{\eta}$.
+	\item We want to forecast $x_{t,t}$ using all the available information up to time $t$. As a simplification we try to forecast $x_{t} -  x_{t,t-1}$ using $y_t -  x_{t,t-1}$.
+	Coefficient $\beta^{PROJ}$ is derived as follows
+	\begin{eqnarray}
+	\begin{aligned}
+	\beta^{KG} &= \frac{Cov(x_t -  x_{t,t-1}, y_t - x_{t,t-1})}{Var(y_t -  x_{t,t-1})}  \\
+	             &= \frac{Cov(x_t - x_{t,t-1},  x_t + \eta_t -  x_{t,t-1})}{Var( x_t + \eta_t - x_{t,t-1})} \\
+	             &= \frac{ P_{t,t-1}}{A^2 ( P_{t,t-1} + \sigma^2_{\eta})} \\
+	             &= \frac{P_{t,t-1}}{P_{t,t-1} + \sigma^2_{\eta}} 
+	\end{aligned}
+	\end{eqnarray}
+	
+	This implies that
+	\begin{eqnarray}
+	x_{t,t} - x_{t,t-1} = \beta^{KG} (y_t - x_{t,t-1})
+	\end{eqnarray}
+	which is
+		\begin{eqnarray}
+			\begin{aligned}
+	x_{t,t} &= x_{t,t-1} +  \beta^{KG} (y_t - x_{t,t-1}) \\
+	&= (1 - \beta^{KG})  x_{t,t-1} +  \beta^{KG}  y_t
+		\end{aligned}
+	\end{eqnarray}
+	and this is the reason why $\beta^{KG}$ is called Kalman gain, i.e. it defines how much to weight new information at time $t$ to infer $x_{t,t}$.
+	
+	Now we need to figure out the forecast error variance of $x_t - x_{t,t}$, i.e. $P_{t,t} = Var(x_t - x_{t,t})$
+			\begin{eqnarray}
+	\begin{aligned}
+	P_{t,t} &= Var \bigg[ x_{t,t} - x_{t,t-1} -  \beta^{KG} (y_t - x_{t,t-1}) \bigg] \\
+	&= Var \bigg[ x_{t,t} - x_{t,t-1} -  \beta^{KG} (x_t + \eta_t -  x_{t,t-1}) \bigg] \\
+	&= Var \bigg[ x_{t,t} - x_{t,t-1} - \frac{P_{t,t-1}}{P_{t,t-1} + \sigma^2_{\eta}} (x_t + \eta_t -  x_{t,t-1}) \bigg] \\
+	&= E \bigg\{  \bigg[ x_{t,t} - x_{t,t-1} - \frac{P_{t,t-1}}{P_{t,t-1} + \sigma^2_{\eta}} (x_t + \eta_t -  x_{t,t-1}) \bigg]^2 \bigg\} \\
+		&= E \bigg\{  \bigg[ x_{t,t} - x_{t,t-1} \bigg]^2 \bigg\} -2 E \bigg\{ \bigg( x_{t,t} - x_{t,t-1} \bigg) \bigg( \frac{P_{t,t-1}}{P_{t,t-1} + \sigma^2_{\eta}} (x_t + \eta_t -  x_{t,t-1})  \bigg) \bigg\} \\
+		&+ E \bigg\{  \bigg[ \frac{P_{t,t-1}}{P_{t,t-1} + \sigma^2_{\eta}} (x_t + \eta_t -  x_{t,t-1}) \bigg]^2 \bigg\} \\
+		&= P_{t,t-1} - 2  P_{t,t-1} \frac{P_{t,t-1}}{P_{t,t-1} + \sigma^2_{\eta}} + P_{t,t-1} \frac{P_{t,t-1}}{P_{t,t-1} + \sigma^2_{\eta}} \\
+		&= P_{t,t-1} -  P_{t,t-1} \frac{P_{t,t-1}}{P_{t,t-1} + \sigma^2_{\eta}} \\
+		&= P_{t,t-1} \bigg[ 1  -  \frac{P_{t,t-1}}{P_{t,t-1} + \sigma^2_{\eta}} \bigg] \\
+		&= P_{t,t-1} ( 1  -  \beta^{KG} ) \\
+	\end{aligned}
+	\end{eqnarray}
+	
+	
+	\item $x_{t+1,t} =  x_{t,t}$ and the forecast error variance is $P_{t+1,t} = P_{t,t} + \sigma^2_{\varepsilon}$ which is
+	\begin{eqnarray}
+	\begin{aligned}
+	P_{t+1,t} &=  P_{t,t} + \sigma^2_{\varepsilon} \\
+	          &= P_{t,t-1} \bigg[ 1  - \frac{P_{t,t-1}}{P_{t,t-1} + \sigma^2_{\eta}} \bigg] + \sigma^2_{\varepsilon} \\
+	\end{aligned}
+	\end{eqnarray}
+	
+	\item Find the steady state value of $P$ as follows
+		\begin{eqnarray}
+	\begin{aligned}
+	P &= P \bigg[ 1  - \frac{P}{P + \sigma^2_{\eta}} \bigg] + \sigma^2_{\varepsilon} \\
+	  &= P  - \frac{P^2}{P + \sigma^2_{\eta}}  + \sigma^2_{\varepsilon} \\
+	\end{aligned}
+	\end{eqnarray}
+	which is 
+			\begin{eqnarray}
+	P^2  + \sigma^2_{\eta}P = P^2 + \sigma^2_{\eta}P  - P^2  + \sigma^2_{\varepsilon} P  + \sigma^2_{\varepsilon} \sigma^2_{\eta}
+	\end{eqnarray}
+which is 
+\begin{eqnarray}
+P^2  - \sigma^2_{\eta}P - \sigma^2_{\varepsilon} \sigma^2_{\eta} = 0
+\end{eqnarray}
+which is
+\begin{eqnarray}
+P = \frac{1}{2} \bigg(  \sigma^2_{\varepsilon}  +  \sqrt{\sigma^4_{\varepsilon} + 4 \sigma^2_{\varepsilon} \sigma^2_{\eta}}  \bigg)
+\end{eqnarray}
+
+
+
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
