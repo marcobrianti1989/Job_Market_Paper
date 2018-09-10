@@ -77,7 +77,7 @@ for i = 1:size(dataset,2)
 end
 
 % Proper Transformations - All the variables should be in logs
-percapita = 1;
+percapita = 0;
 if percapita == 1
       Hours         = Hours + Employment - Population; %Average weekly hours over population
       Consumption   = NonDurableCons + ServiceCons - Population;
@@ -87,17 +87,22 @@ if percapita == 1
       SP5002        = SP5002 - Population - GDPDef;
       GovPurchases  = GovPurchases - Population;
       CashFlow      = CashFlow - Population - GDPDef;
+else
+      SP5001        = SP5001 - GDPDef;
+      SP5002        = SP5002 - GDPDef;      
+      CashFlow      = CashFlow - GDPDef;
 end
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % HP1S w/o EBP
 Y         = CashFlowHP1S;
 X         = [MacroUncertH1HP1S GDPHP1S];
+%X         = [VXOHP1S GDPHP1S];
 LM        = fitlm(X,Y,'linear')
 % HP1S with EBP
 Y         = CashFlowHP1S;
 X         = [MacroUncertH1HP1S EBPHP1S GDPHP1S];
+%X         = [VXOHP1S EBPHP1S GDPHP1S];
 LM        = fitlm(X,Y,'linear')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -105,15 +110,17 @@ LM        = fitlm(X,Y,'linear')
 % HP w/o EBP
 Y         = CashFlowHP;
 X         = [MacroUncertH1HP GDPHP];
+%X         = [VXOHP GDPHP];
 LM        = fitlm(X,Y,'linear')
 % HP with EBP
 Y         = CashFlowHP;
 X         = [MacroUncertH1HP EBPHP GDPHP];
+%X         = [VXOHP EBPHP GDPHP];
 LM        = fitlm(X,Y,'linear')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-nlags = 6;
+nlags = 4;
 % diff w/o EBP
 clear X
 Y = CashFlow(1+nlags:end);
@@ -121,6 +128,8 @@ k = 1;
 for j = 1:nlags+1
       X(:,k:k+1) = [MacroUncertH1(1+nlags-j+1:end-j+1)...
             GDP(1+nlags-j+1:end-j+1)];
+            %X(:,k:k+1) = [VXO(1+nlags-j+1:end-j+1)...
+            %GDP(1+nlags-j+1:end-j+1)];
       k = k + 2;
 end
 LM        = fitlm(X,Y,'linear')
@@ -131,6 +140,8 @@ k = 1;
 for j = 1:nlags+1
       X(:,k:k+2) = [MacroUncertH1(1+nlags-j+1:end-j+1)...
             GDP(1+nlags-j+1:end-j+1) EBP(1+nlags-j+1:end-j+1)];
+            %X(:,k:k+2) = [VXO(1+nlags-j+1:end-j+1)...
+            %GDP(1+nlags-j+1:end-j+1) EBP(1+nlags-j+1:end-j+1)];
       k = k + 3;
 end
 LM        = fitlm(X,Y,'linear')

@@ -100,15 +100,15 @@ pc4                         = pc(:,4);
 % Define the system1
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'EBP','GDP','Consumption','Investment','CashFlow',...
-      'Hours','SP5002'};
+system_names  = {'GDP','Consumption','Investment',...
+      'Hours','SP5002','EBP','MacroUncertH1','CashFlow'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
 TFPposition = find(strcmp('TFP', system_names));
 VXOposition = find(strcmp('VXO', system_names));
-%Uposition   = find(strcmp('MacroUncertH1', system_names));
+Uposition   = find(strcmp('MacroUncertH1', system_names));
 EBPposition = find(strcmp('EBP', system_names));
 
 % Tests for lags
@@ -116,7 +116,7 @@ max_lags     = 4;
 [AIC,BIC,HQ] = aic_bic_hq(system,max_lags);
 
 % Cholesky decomposition
-nlags           = 3;
+nlags           = 4;
 [A,B,res,sigma] = sr_var(system, nlags);
 
 % Get Structural Shocks
@@ -162,8 +162,8 @@ base_path         = pwd;
 which_ID          = 'chol_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [EBPposition]; %[Uposition];
-shocknames        = {'EBP Shock'};%{'Uncertainty Shock'};
+which_shocks      = [Uposition EBPposition]; %[Uposition];
+shocknames        = {'Uncertainty Shock','EBP Shock'};%{'Uncertainty Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
 
