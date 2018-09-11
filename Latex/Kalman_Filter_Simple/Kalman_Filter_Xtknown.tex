@@ -1,0 +1,127 @@
+\documentclass[14pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[letterpaper,top=3cm,bottom=3cm,left=3cm,right=3cm,bindingoffset=0mm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{natbib}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{thmtools,thm-restate}
+\usepackage{hyperref}
+%\usepackage{extsizes}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\declaretheorem{proposition}
+\linespread{1.2}
+\raggedbottom
+\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+
+\begin{document}
+	
+	\large{
+
+\section*{Kalman Filter for Uncertainty}
+
+\subsection*{Setup}
+
+Observable equation is described by
+\begin{eqnarray}
+y_t = x_{t+1} + \eta_t
+\end{eqnarray}
+where $y_t$ can be observed at time $t$ and $\eta_t \sim N(0,\sigma^2_{\eta})$ is a noise shock which prevent to correctly observe future state $x_{t+1}$.
+
+
+State transition equation is described by
+\begin{eqnarray}
+x_{t} = x_{t-1} + \varepsilon_t
+\end{eqnarray}
+where $\varepsilon_t \sim N(0,\sigma^2_{\varepsilon})$ is a structural shock which affects the transition from $x_{t-1}$ to $x_t$.
+
+\subsection*{Procedure}
+
+Goal is to optimize the forecast of $x_{t+1}$ using available information at time $t$, i.e. $y_t$ and $x_t$. Given the initial value for $x_{0,0}$ and $Var(x_{1,0} - x_{0,0}) = P_{1,0}$. Procedure can be summarized as follows,
+\begin{enumerate}
+	\item Forecast $x_{t+1}$ using information at time $t$ and evaluate the error variance of this prediction.
+	\item Find the steady state variance $P_{t,t}$.
+\end{enumerate}
+
+\ 
+
+As a generalization, 
+\begin{enumerate}
+	\item $y_{t} = x_{t+1,t}$ and the forecast error variance is $\Omega^y_{t} = Var(x_{t+1,t}) + \sigma^2_{\eta} = P_{t,t-1} + \sigma^2_{\eta}$.
+	\item We want to forecast $x_{t+1,t}$ using all the available information up to time $t$. As a simplification we try to forecast $x_{t+1} -  x_{t}$ using $y_t -  x_{t}$.
+	Coefficient $\beta^{KG}$ is derived as follows
+	\begin{eqnarray}
+	\begin{aligned}
+	\beta^{KG} &= \frac{Cov(x_{t+1} -  x_{t}, y_t - x_{t})}{Var(y_t -  x_{t})}  \\
+	             &= \frac{Cov(x_{t+1} - x_{t},  x_t + \eta_t -  x_{t})}{Var( x_{t+1} + \eta_t - x_{t})} \\
+	             &= \frac{\sigma^2_{\varepsilon}}{\sigma^2_{\varepsilon} + \sigma^2_{\eta}} 
+	\end{aligned}
+	\end{eqnarray}
+	
+	This implies that
+	\begin{eqnarray}
+	x_{t+1} -  x_{t} = \beta^{KG} (y_t - x_{t})
+	\end{eqnarray}
+	which is
+		\begin{eqnarray}
+			\begin{aligned}
+	x_{t+1} &= x_{t} +  \beta^{KG} (y_t - x_{t}) \\
+	&= (1 - \beta^{KG})  x_{t} +  \beta^{KG}  y_t \\
+	&= \bigg(1 - \frac{\sigma^2_{\varepsilon}}{\sigma^2_{\varepsilon} + \sigma^2_{\eta}}  \bigg)  x_{t} +  \frac{\sigma^2_{\varepsilon}}{\sigma^2_{\varepsilon} + \sigma^2_{\eta}}   y_t \\
+		&= \frac{\sigma^2_{\eta}}{\sigma^2_{\varepsilon} + \sigma^2_{\eta}}  x_{t} +  \frac{\sigma^2_{\varepsilon}}{\sigma^2_{\varepsilon} + \sigma^2_{\eta}}   y_t \\
+				&= \frac{\frac{1}{\sigma^2_{\varepsilon}}}{\frac{1}{\sigma^2_{\eta}} + \frac{1}{\sigma^2_{\varepsilon}}}  x_{t} +  \frac{\frac{1}{\sigma^2_{\eta}}}{\frac{1}{\sigma^2_{\eta}} + \frac{1}{\sigma^2_{\varepsilon}}}   y_t \\
+		\end{aligned}
+	\end{eqnarray}
+	and this is the reason why $\beta^{KG}$ is called Kalman gain, i.e. it defines how much to weight signal $y_t$ to infer $x_{t+1}$.
+	
+	Now we need to figure out the forecast error variance of $x_{t+1} - x_{t+1,t}$, i.e. $P_{t+1,t} = Var(x_{t+1} - x_{t+1,t})$
+	\begin{eqnarray}
+	\begin{aligned}
+	P_{t+1,t} &= Var \bigg[ x_{t+1} - x_{t} -  \beta^{KG} (y_t - x_{t}) \bigg] \\
+	&= Var \bigg[ x_{t+1} - x_{t} -  \beta^{KG} (x_{t+1} + \eta_t -  x_{t}) \bigg] \\
+	&= Var \bigg[ x_{t+1} - x_{t} -  \frac{\sigma^2_{\varepsilon}}{\sigma^2_{\varepsilon} + \sigma^2_{\eta}} (x_{t+1} + \eta_t -  x_{t}) \bigg] \\
+	&= E \bigg\{  \bigg[ x_{t+1} - x_{t} -  \frac{\sigma^2_{\varepsilon}}{\sigma^2_{\varepsilon} + \sigma^2_{\eta}} (x_{t+1} + \eta_t -  x_{t}) \bigg]^2 \bigg\} \\
+		&= E \bigg\{  \bigg[ x_{t+1} - x_{t} \bigg]^2 \bigg\} -2 E \bigg\{ \bigg(  x_{t+1} - x_{t} \bigg) \bigg( \frac{\sigma^2_{\varepsilon}}{\sigma^2_{\varepsilon} + \sigma^2_{\eta}} (x_{t+1} + \eta_t -  x_{t})  \bigg) \bigg\} \\
+		&+ E \bigg\{  \bigg[ \frac{\sigma^2_{\varepsilon}}{\sigma^2_{\varepsilon} + \sigma^2_{\eta}} (x_{t+1} + \eta_t -  x_{t}) \bigg]^2 \bigg\} \\
+		&= \sigma^2_{\varepsilon} - 2   \sigma^2_{\varepsilon} \frac{ \sigma^2_{\varepsilon}}{ \sigma^2_{\varepsilon} + \sigma^2_{\eta}} +  \bigg( \frac{ \sigma^2_{\varepsilon}}{ \sigma^2_{\varepsilon} + \sigma^2_{\eta}} \bigg)^2 (\sigma^2_{\varepsilon} + \sigma^2_{\eta}) \\
+		&= \sigma^2_{\varepsilon} - 2   \sigma^2_{\varepsilon} \frac{ \sigma^2_{\varepsilon}}{ \sigma^2_{\varepsilon} + \sigma^2_{\eta}} +   \sigma^2_{\varepsilon} \frac{ \sigma^2_{\varepsilon}}{ \sigma^2_{\varepsilon} + \sigma^2_{\eta}}   \\
+		&= \sigma^2_{\varepsilon} -   \sigma^2_{\varepsilon} \frac{ \sigma^2_{\varepsilon}}{ \sigma^2_{\varepsilon} + \sigma^2_{\eta}}  \\
+		&= \sigma^2_{\varepsilon} \bigg( 1 -  \frac{ \sigma^2_{\varepsilon}}{ \sigma^2_{\varepsilon} + \sigma^2_{\eta}}  \bigg) \\
+		&= \frac{\sigma^2_{\varepsilon} \sigma^2_{\eta}}{ \sigma^2_{\varepsilon} + \sigma^2_{\eta}}  \\
+		&= \frac{1}{ \frac{1}{\sigma^2_{\varepsilon}} + \frac{1}{\sigma^2_{\eta}}}  \\		
+	\end{aligned}
+	\end{eqnarray}
+	
+
+
+
+\end{enumerate}
+
+
+}
+
+
+\end{document}

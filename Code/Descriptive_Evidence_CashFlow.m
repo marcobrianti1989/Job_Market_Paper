@@ -89,7 +89,7 @@ if percapita == 1
       CashFlow      = CashFlow - Population - GDPDef;
 else
       SP5001        = SP5001 - GDPDef;
-      SP5002        = SP5002 - GDPDef;      
+      SP5002        = SP5002 - GDPDef;
       CashFlow      = CashFlow - GDPDef;
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,28 +120,34 @@ LM        = fitlm(X,Y,'linear')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-nlags = 4;
+nlags = 5;
 % diff w/o EBP
 clear X
-Y = CashFlow(1+nlags:end);
+difference = 0;
+if difference == 1
+      Y = diff(CashFlow(1+nlags:end));
+else
+      Y = CashFlow(1+nlags:end);
+end
 k = 1;
 for j = 1:nlags+1
-      X(:,k:k+1) = [MacroUncertH1(1+nlags-j+1:end-j+1)...
-            GDP(1+nlags-j+1:end-j+1)];
-            %X(:,k:k+1) = [VXO(1+nlags-j+1:end-j+1)...
-            %GDP(1+nlags-j+1:end-j+1)];
+            X(:,k:k+1) = [MacroUncertH1(1+nlags-j+1:end-j+1)...
+                  GDP(1+nlags-j+1:end-j+1)];
+      %X(:,k:k) = [MacroUncertH1(2+nlags-j+1:end-j+1)];
+      %X(:,k:k+1) = [VXO(1+nlags-j+1:end-j+1)...
+      %GDP(1+nlags-j+1:end-j+1)];
       k = k + 2;
 end
 LM        = fitlm(X,Y,'linear')
 % diff with EBP
 clear X
-Y = CashFlow(1+nlags:end);
 k = 1;
 for j = 1:nlags+1
       X(:,k:k+2) = [MacroUncertH1(1+nlags-j+1:end-j+1)...
             GDP(1+nlags-j+1:end-j+1) EBP(1+nlags-j+1:end-j+1)];
-            %X(:,k:k+2) = [VXO(1+nlags-j+1:end-j+1)...
-            %GDP(1+nlags-j+1:end-j+1) EBP(1+nlags-j+1:end-j+1)];
+%       X(:,k:k+1) = [MacroUncertH1(2+nlags-j+1:end-j+1) EBP(2+nlags-j+1:end-j+1)];
+      %X(:,k:k+2) = [VXO(1+nlags-j+1:end-j+1)...
+      %GDP(1+nlags-j+1:end-j+1) EBP(1+nlags-j+1:end-j+1)];
       k = k + 3;
 end
 LM        = fitlm(X,Y,'linear')
