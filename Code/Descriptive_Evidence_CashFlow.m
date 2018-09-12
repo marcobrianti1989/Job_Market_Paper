@@ -79,19 +79,39 @@ end
 % Proper Transformations - All the variables should be in logs
 percapita = 0;
 if percapita == 1
-      Hours         = Hours + Employment - Population; %Average weekly hours over population
-      Consumption   = NonDurableCons + ServiceCons - Population;
-      Investment    = Investment + DurableCons - Population;
-      GDP           = GDP - Population;
-      SP5001        = SP5001 - Population - GDPDef;
-      SP5002        = SP5002 - Population - GDPDef;
-      GovPurchases  = GovPurchases - Population;
-      CashFlow      = CashFlow - Population - GDPDef;
+      Hours             = Hours + Employment - Population; %Average weekly hours over population
+      Consumption       = NonDurableCons + ServiceCons - Population;
+      Investment        = Investment + DurableCons - Population;
+      GDP               = GDP - Population;
+      SP5001            = SP5001 - Population - GDPDef;
+      SP5002            = SP5002 - Population - GDPDef;
+      GovPurchases      = GovPurchases - Population;
+      CashFlow          = CashFlow - Population - GDPDef;
+      Dividends         = Dividends - CorporateProfits;
+      CorporateProfits  = CorporateProfits - Population - GDPDef;
 else
-      SP5001        = SP5001 - GDPDef;
-      SP5002        = SP5002 - GDPDef;
-      CashFlow      = CashFlow - GDPDef;
+      SP5001            = SP5001 - GDPDef;
+      SP5002            = SP5002 - GDPDef;
+      CashFlow          = CashFlow - CorporateProfits; %GDPDef;
+      Dividends         = Dividends - CorporateProfits;
+      CorporateProfits  = CorporateProfits - GDPDef;
 end
+
+
+nlags = 2;
+Y     = CashFlow(1+nlags:end);
+X     = [GDP Investment Consumption SP5002 Hours MacroUncertH1 EBP CashFlow];
+k     = 1;
+for j = 1:nlags
+      XX(:,k:k+size(X,2)-1) = [X(1+nlags-j:end-j,:)];
+      k           = k + size(X,2);
+end
+XX        = [XX EBP(1+nlags:end) MacroUncertH1(1+nlags:end)];
+LM        = fitlm(XX,Y,'linear')
+
+azsxdcghj
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % HP1S w/o EBP

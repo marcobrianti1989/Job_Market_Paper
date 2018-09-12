@@ -86,7 +86,13 @@ if percapita == 1
       SP5001        = SP5001 - Population - GDPDef;
       SP5002        = SP5002 - Population - GDPDef;
       GovPurchases  = GovPurchases - Population;
-      CashFlow      = CashFlow - Population - GDPDef;
+      CashFlow      = CashFlow - Population - GDPDef; %CorporateProfits;
+      Dividends     = Dividends - Population - GDPDef;
+else
+      SP5001        = SP5001 - GDPDef;
+      SP5002        = SP5002 - GDPDef;
+      CashFlow      = CashFlow - CorporateProfits;
+      Dividends     = Dividends - GDPDef;
 end
 
 % Obtaine Principal Components
@@ -100,8 +106,8 @@ pc4                         = pc(:,4);
 % Define the system1
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'GDP','Consumption','Investment',...
-      'Hours','SP5002','EBP','MacroUncertH1','CashFlow'};
+system_names  = {'MacroUncertH1','GDP','Consumption','Investment',...
+      'Hours','SP5002','CashFlow'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
@@ -116,7 +122,7 @@ max_lags     = 4;
 [AIC,BIC,HQ] = aic_bic_hq(system,max_lags);
 
 % Cholesky decomposition
-nlags           = 4;
+nlags           = 3;
 [A,B,res,sigma] = sr_var(system, nlags);
 
 % Get Structural Shocks
@@ -162,8 +168,8 @@ base_path         = pwd;
 which_ID          = 'chol_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [Uposition EBPposition]; %[Uposition];
-shocknames        = {'Uncertainty Shock','EBP Shock'};%{'Uncertainty Shock'};
+which_shocks      = [Uposition]; %[Uposition];
+shocknames        = {'Uncertainty Shock'};%{'Uncertainty Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
 
