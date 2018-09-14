@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  12 SEP 2018 18:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  13 SEP 2018 18:53
 entering extended mode
 **./meeting.tex
 (meeting.tex
@@ -1045,60 +1045,62 @@ Dictionary: translator-theorem-dictionary, Language: English
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
 
 ]
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 64.
+<Financial_Uncertainty.png, id=38, 1163.0953pt x 636.87938pt>
+File: Financial_Uncertainty.png Graphic file (type png)
+
+<use Financial_Uncertainty.png>
+Package pdftex.def Info: Financial_Uncertainty.png used on input line 50.
+(pdftex.def)             Requested size: 302.39764pt x 165.58473pt.
+ [3
+
+ <./Financial_Uncertainty.png (PNG copy)>]
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 75.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 64.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 75.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 64.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 75.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 64.
+(Font)              <10.95> on input line 75.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 64.
+(Font)              <8> on input line 75.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 64.
-LaTeX Font Info:    Try loading font information for U+msa on input line 64.
+(Font)              <6> on input line 75.
+LaTeX Font Info:    Try loading font information for U+msa on input line 75.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 64.
+LaTeX Font Info:    Try loading font information for U+msb on input line 75.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 64.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 75.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 64.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <8> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 64.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <6> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 64.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 75.
 
-Overfull \hbox (18.43562pt too wide) in alignment at lines 64--64
- [][][] []
- []
-
-[3
-
-]
-Overfull \hbox (37.88873pt too wide) in alignment at lines 85--85
- [][][] []
+Overfull \hbox (3.4124pt too wide) in paragraph at lines 75--75
+ [] 
  []
 
 [4
@@ -1111,11 +1113,27 @@ Overfull \hbox (37.88873pt too wide) in alignment at lines 85--85
 
 ] [8
 
-] [9
+]
+<fig_financial_supply_demand_F.png, id=77, 2116.90875pt x 1043.39813pt>
+File: fig_financial_supply_demand_F.png Graphic file (type png)
 
-] [10
+<use fig_financial_supply_demand_F.png>
+Package pdftex.def Info: fig_financial_supply_demand_F.png used on input line 1
+86.
+(pdftex.def)             Requested size: 275.2078pt x 135.64651pt.
+ [9
 
-] [11
+ <./fig_financial_supply_demand_F.png>] <fig_financial_supply_demand_U.png, id=
+85, 2070.23438pt x 1049.42062pt>
+File: fig_financial_supply_demand_U.png Graphic file (type png)
+
+<use fig_financial_supply_demand_U.png>
+Package pdftex.def Info: fig_financial_supply_demand_U.png used on input line 1
+98.
+(pdftex.def)             Requested size: 269.13991pt x 136.42946pt.
+ [10
+
+ <./fig_financial_supply_demand_U.png>] [11
 
 ] [12
 
@@ -1129,6 +1147,16 @@ Overfull \hbox (37.88873pt too wide) in alignment at lines 85--85
 
 ] [17
 
+] [18
+
+] [19
+
+] [20
+
+] [21
+
+] [22
+
 ]
 \tf@nav=\write6
 \openout6 = `meeting.nav'.
@@ -1139,22 +1167,22 @@ Overfull \hbox (37.88873pt too wide) in alignment at lines 85--85
 \tf@snm=\write8
 \openout8 = `meeting.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 382.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 382.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 513.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 513.
  (meeting.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 382.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 382.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 513.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 513.
 Package rerunfilecheck Info: File `meeting.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 20670 strings out of 493323
- 407516 string characters out of 3139072
- 473321 words of memory out of 3000000
- 23676 multiletter control sequences out of 15000+200000
- 38310 words of font info for 44 fonts, out of 3000000 for 9000
+ 20701 strings out of 493323
+ 408036 string characters out of 3139072
+ 473324 words of memory out of 3000000
+ 23693 multiletter control sequences out of 15000+200000
+ 35595 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,17n,59p,856b,606s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,11n,59p,856b,606s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Fil
 es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fon
 ts/enc/dvips/lm/lm-mathex.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/l
@@ -1168,9 +1196,9 @@ nts/type1/public/lm/lmsso10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /lm/lmsso8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C
 :/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on meeting.pdf (17 pages, 189987 bytes).
+Output written on meeting.pdf (22 pages, 458948 bytes).
 PDF statistics:
- 176 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
- 85 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 212 PDF objects out of 1000 (max. 8388607)
+ 45 named destinations out of 1000 (max. 500000)
+ 100 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -13,7 +13,7 @@
 %\def \FigPath {Users\th3\Documents\Job_Market_Paper\Code\Figures} 
 
 
-\title{Research Proposal}
+\title{Uncertainty Shocks}
 \author{Marco Brianti}
 \institute{Boston College}
 \date{September 2018}
@@ -37,75 +37,217 @@
 		
 		
 	}
+
+\frame{\frametitle{Credit Conditions and Uncertainty (I)}
+
+
+\includegraphics[scale=0.26]{Financial_Uncertainty}
+
+\
+
+Proxies for \textbf{credit conditions} and \textbf{uncertainty} are both countercyclical and tightly correlated.
+
+}
+
+
+\frame{\frametitle{Credit Conditions and Uncertainty (II)}
+	
+	
+	\begin{table}
+		\begin{tabular}{c||cccccc}
+            & JLN         &      RV    & GZ  & EBP &    Moodys Aaa 	  \\
+            \hline
+            \hline
+JLN	        &    1        &       -    &      -     &       -    &    -   \\
+RV        	&    0.5865   &  1         &     -      &     -      &    -   \\ 
+GZ       	&    0.7742   &  0.6247    &  1         &     -      &     -  \\
+EBP      	&    0.6213   &  0.5621    &  0.7316    &  1         &     -  \\
+Moodys Aaa	&    0.4386   &  0.4554    &  0.7993    &  0.5243    &    1   \\
+	\end{tabular}
+	\end{table}
+
+\
+
+\
+
+As suggested by the graph above, all the variables are strongly correlated.
+
+}
+
+
+\frame{\frametitle{Financial Shocks and Uncertainty Shocks}
+	
+	Stock and Watson (2012); Caldara et al. (2016) among others shown that uncertainty shocks and financial shocks are deeply confounded.
+	
+	\
+	
+	\
+	
+	
+	$$
+	corr(\iota^{EBP}_t,\iota^{JLN}_t) \approx 0.45
+	$$
+	
+	\
+	
+	\
+	
+	
+	where $\iota^{EBP}_t$ is an unpredictable innovation in the \textbf{excess bond premium} from Gilchrist and Zakrajzek (2012) and $\iota^{JLN}_t$ is an unpredictable innovation in the \textbf{uncertainty proxy} from Jurado et al. (2015).
+	
+
+	
+
+	
+	
+	
+}
+
+\frame{\frametitle{Both a theoretical and empirical question}
+
+	Literature did not succeed yet to disentangle the two exogenous sources for two main reasons:
+\begin{enumerate}
+	\item Simultaneity
+	\begin{itemize}
+		\item Both types of variables are fast moving
+				\end{itemize}	
+			\item Observationally equivalence
+			
+			\begin{itemize}
+			\item They have the same qualitative effects on prices and quantities
+\end{itemize}
+\end{enumerate}
+
+\
+
+\
+
+As a result, both \textbf{zero-impact restrictions} cannot be used and \textbf{internal instruments} are not available.
+	
+}
+
+\frame{\frametitle{My contribution}
+	
+	I want to take a step back and show evidence and theory that financial and uncertainty shocks
+	
+	
+	\begin{itemize}
+		
+		\item are not observationally equivalent, and
+	
+		
+		\item they can be successfully disentangled.
+		
+		\end{itemize}
+	
+	\	
+	
+	\
+	
+	
+	In particular, I will show evidence that there exists a set of variables which respond differently to financial and uncertainty shocks. 
+	\begin{itemize}
+		\item there exists an \textbf{economic intuition} for this response
+		\item those variables can be used as \textbf{internal instruments}
+	\end{itemize}
+}
 	
 		\frame{\frametitle{Variables of Interest}
 		
-\begin{eqnarray*}
-	\begin{aligned}
-\text{Cash Flow} =& \ \text{Undistributed Corporate Profits} \\
-          +& \ \text{Consumption of Fixed Capital}    \\
-          -& \ \text{Net Capital Transfers Paid}
-          \end{aligned}
-\end{eqnarray*}
+
+\textbf{Cash Flow} is defined as (i) undistributed corporate profits plus (ii) consumption of fixed capital minus (iii) net capital transfers paid.
 
 \
 
-\begin{eqnarray*}
-	\begin{aligned}
-		\text{Undistributed Corporate Profits} =& \ \text{Corporate Profits} - \text{Dividends}    
-	\end{aligned}
-\end{eqnarray*}
+where 
+
+\begin{enumerate}
+	\item \textbf{Undistributed corporate profits} are defined as (i) corporate profits minus (ii) dividends
+	\item \textbf{consumption of fixed capital} can be simply interpreted as capital depreciation
+	\item \textbf{net capital transfers paid} are unrequited transfers, e.g. charity
+\end{enumerate}
 
 \
 
-where \textbf{consumption of fixed capital} can be simply interpreted as capital depreciation and \textbf{net capital transfers paid} are unrequited transfers, e.g. charity. 
-
+\textbf{Cash Flow} is a profit-related measure of \textbf{internal funds} available for investment. [The NIPA Handbook, December 2015]
 
 	}
-	
-	\frame{\frametitle{Key Variable}	
-		
-		
-		\begin{eqnarray*}
-			\begin{aligned}
-				\frac{\text{Cash Flow}}{\text{Corporate Profits}} =& \ 1 - \frac{\text{Dividends + Consumption of K - K Transfers}}{\text{Corporate Profits}} \\
-				=&  \ 1 - \frac{\text{Cash Dispersion}}{\text{Corporate Profits}}
-			\end{aligned}
-		\end{eqnarray*}	
-	
-	\
-	
-	
-	\textbf{Cash Flow} is a profit-related measure of internal funds available for investment. [The NIPA Handbook, December 2015]
-	
-	
-	
 
-		
-	}
-	\frame{\frametitle{Economic Intuition}
+
+\frame{\frametitle{Partial Equilibrium Analysis (I)}
 	
+	Decrease in the risk bearing capacity of the financial sector. 
 	
-\begin{itemize}
+	\begin{figure}[plain]
+		\includegraphics[scale=0.13]{fig_financial_supply_demand_F}
+	\end{figure}
 	
-	\item 	It is reasonable to think that after a \textbf{decrease in credit supply}, firms would attempt to decrease cash dispersion relatively to corporate profits $\Rightarrow$ increase cash flow relatively to current profits. 
+	Notice that I am taking as given the supply of internal source of finance. 
+}
+
+\frame{\frametitle{Partial Equilibrium Analysis (II)}
 	
-	\
+	Increase in the level of uncertainty. 
 	
-	\
+	\begin{figure}[plain]
+		\includegraphics[scale=0.13]{fig_financial_supply_demand_U}
+	\end{figure}
 	
-	\item It is reasonable to think that after an \textbf{increase in uncertainty}, corporate profits would decrease but firms would not attempt to decrease cash dispersion relatively to corporate profits since they do not need to increase cash flow relatively to current profits.
+	Notice that I am taking as given the supply of internal source of finance. 
+	
+}
+
+
+\frame{\frametitle{Economic Intuition}
+	
 	
 	\begin{itemize}
-		\item As a result an \textbf{uncertainty shock} should decrease cash flow relatively to current profits.
-	\end{itemize} 
-	
-
-	
-	
+		
+		\item 	After a \textbf{decrease in credit supply}, quantity of the internal source of finance should increase.
+		
+		\begin{itemize}
+			\item Controlling for supply of internal funds cash flow should increase.
+		\end{itemize}
+		
+		\
+		
+		\
+		
+		\item After an \textbf{increase in uncertainty}, quantity of the internal source of finance should either decrease or remain unchanged.
+		
+	\begin{itemize}
+	\item Controlling for supply of internal funds cash flow should either decrease or remain unchanged.
 \end{itemize}
-
+		
+		
+		
+		
+	\end{itemize}
+	
 }	
+	
+	\frame{\frametitle{Controlling for the Supply of Internal Funds}	
+		
+		The main source of internal funds available for investment is the \textbf{flow profit} of the current year.
+		
+		\
+		
+		In order to control for general equilibrium effect, cash flow needs to be normalized by the corporate profit.
+		
+		In particular, normalized cash flow can be thought as an index between $0$ and $1$
+		\begin{itemize}
+			\item If the index is equal to zero, current profits are fully distributed outside the firm
+			\item If index is equal to one, current profits are going to be internally used
+		\end{itemize}
+	
+	
+	
+	
+	
+
+		
+	}
+	
 
 \frame{\frametitle{Suggestive Evidence}
 	
@@ -129,7 +271,7 @@ where \textbf{consumption of fixed capital} can be simply interpreted as capital
 	
 	\
 	
-	and $F_t$ and $U_t$ are proxies for financial shocks and uncertainty shocks, respectively. 
+	and $F_t$ and $U_t$ are proxies for financial conditions and uncertainty levels, respectively. 
 
 	
 }
@@ -168,18 +310,7 @@ $$
 
 
 
-	\frame{\frametitle{Interpretation - Erosion of the Financial System}
-		
-Graph
 	
-		
-	}
-
-	\frame{\frametitle{Interpretation - Erosion of the Financial System}
-		
-Graph
-		
-	}
 
 	\frame{\frametitle{Technically Speaking (I)}
 		

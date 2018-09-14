@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AT274';
+range                       = 'B1:AW274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -77,7 +77,7 @@ for i = 1:size(dataset,2)
 end
 
 % Proper Transformations - All the variables should be in logs
-percapita = 0;
+percapita = 1;
 if percapita == 1
       Hours             = Hours + Employment - Population; %Average weekly hours over population
       Consumption       = NonDurableCons + ServiceCons - Population;
@@ -86,7 +86,7 @@ if percapita == 1
       SP5001            = SP5001 - Population - GDPDef;
       SP5002            = SP5002 - Population - GDPDef;
       GovPurchases      = GovPurchases - Population;
-      CashFlow          = CashFlow - Population - GDPDef;
+      CashFlow          = CashFlow - CorporateProfits;
       Dividends         = Dividends - CorporateProfits;
       CorporateProfits  = CorporateProfits - Population - GDPDef;
 else
@@ -106,8 +106,34 @@ for j = 1:nlags
       XX(:,k:k+size(X,2)-1) = [X(1+nlags-j:end-j,:)];
       k           = k + size(X,2);
 end
-XX        = [XX EBP(1+nlags:end) MacroUncertH1(1+nlags:end)];
+XX        = [XX EBP(1+nlags:end) MacroUncertH1(1+nlags:end)];% 
 LM        = fitlm(XX,Y,'linear')
+
+asd
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Creat Figure
+figure
+hold on
+set(gcf,'color','w');
+plot(Time,zscore(MacroUncertH3),'--','Linewidth',3)
+plot(Time,zscore(RV),'--','Linewidth',3)
+plot(Time,zscore(GZSpread),'-','Linewidth',1.5)
+plot(Time,zscore(EBP),'-','Linewidth',1.5)
+plot(Time,zscore(MoodySpreadAaa),'-','Linewidth',1.5)
+grid on
+LGD          = legend('JLN Uncertainty','Realized Volatility','GZ Spread','GZ EBP','Moodys Spread Aaa','Location','northwest');
+LGD.FontSize = 24;
+legend boxoff
+axis tight
+xlabel('Quarters','fontsize',24)
+ylabel('Standard Deviations','fontsize',24)
+close
+
+%export_fig('Financial_Uncertainty')
+ZZ = [MacroUncertH3 RV GZSpread EBP MoodySpreadAaa];
+corr(ZZ);
+
 
 azsxdcghj
 
