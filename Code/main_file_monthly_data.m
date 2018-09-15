@@ -46,7 +46,7 @@ end
 % Define the system1
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'EBP','IP','Consumption','Investment','SP500','UnRate'};
+system_names  = {'EBP','JLNUncertH1','IP','Consumption','Investment','SP500','UnRate'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
@@ -61,7 +61,7 @@ max_lags     = 4;
 % Cholesky decomposition
 nlags           = 4;
 [A,B,res,sigma] = sr_var(system, nlags);
-
+asd
 j = 0;
 resIP = res(1:end-j,2);
 resC  = res(1:end-j,3);

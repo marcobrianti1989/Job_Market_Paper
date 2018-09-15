@@ -77,7 +77,7 @@ for i = 1:size(dataset,2)
 end
 
 % Proper Transformations - All the variables should be in logs
-percapita = 1;
+percapita = 0;
 if percapita == 1
       Hours             = Hours + Employment - Population; %Average weekly hours over population
       Consumption       = NonDurableCons + ServiceCons - Population;
@@ -97,17 +97,42 @@ else
       CorporateProfits  = CorporateProfits - GDPDef;
 end
 
+% Obtaine Principal Components
+Zscore                      = 1; %remove mean and divide over the variance each series
+pc                          = get_principal_components(dataPC(:,2:end),Zscore);
+pc1                         = pc(:,1);
+pc2                         = pc(:,2);
+pc3                         = pc(:,3);
+pc4                         = pc(:,4);
+pc5                         = pc(:,5);
+pc6                         = pc(:,6);
 
-nlags = 2;
-Y     = CashFlow(1+nlags:end);
-X     = [GDP Investment Consumption SP5002 Hours MacroUncertH1 EBP CashFlow];
+% Step 1 - Get Innovations in both EBP and MacroUncert
+nlags1 = 4;
+yEBP = EBP(1+nlags1:end);
+yJLN = MacroUncertH3(1+nlags1:end);
+PC   = pc(:,1:6);
+k1     = 1;
+for j = 1:nlags1
+      xPC(:,k1:k1+size(PC,2)-1) = [PC(1+nlags1-j:end-j,:)];
+      k1           = k1 + size(PC,2);
+end
+[~, ~, resEBP] = quick_ols(yEBP,xPC);
+[~, ~, resJLN] = quick_ols(yJLN,xPC);
+
+% Step 2 - Regress CashFlow on resEBP and resJLN
+nlags = 4;
+Y     = CashFlow(1+nlags+nlags1:end);
+%X     = [GDP Investment Consumption SP5002 Hours MacroUncertH3 EBP CashFlow];
+X     = [PC EBP CashFlow];
 k     = 1;
 for j = 1:nlags
-      XX(:,k:k+size(X,2)-1) = [X(1+nlags-j:end-j,:)];
+      XX(:,k:k+size(X,2)-1) = [X(1+nlags-j+nlags1:end-j,:)];
       k           = k + size(X,2);
 end
-XX        = [XX EBP(1+nlags:end) MacroUncertH1(1+nlags:end)];% 
-LM        = fitlm(XX,Y,'linear')
+[~, ~, resCF]  = quick_ols(Y,XX);
+XX             = [XX resEBP(1+nlags:end) resJLN(1+nlags:end)];% 
+LM             = fitlm(XX,Y,'linear')
 
 asd
 

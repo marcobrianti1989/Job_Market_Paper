@@ -1,6 +1,32 @@
 clear
 close all
 
+filename = 'Daily';
+sheet    = 'Sheet1';
+range    = 'A1:I8213';
+[data, ~] = xlsread(filename,sheet,range);
+
+
+k = 1;
+for i = 1:length(data)
+      i;
+      locvec = [data(i,4) == data(i:end,1)];
+      loc = find(locvec,1,'first');
+      if isempty(loc) == 0
+                  DATA(k,:) = [data(loc+i-1,1:3) data(i,4:end)];
+                  k = k + 1
+      end
+end
+
+filename = 'Daily_objs.xlsx';
+xlswrite(filename,DATA)
+
+
+
+
+
+asd
+
 filename = 'SP500_Daily';
 sheet    = 'SP500';
 range    = 'A1:J17273';
@@ -22,8 +48,8 @@ while i <= size(data,1)
             i = i + 1;
       end
       MonthlyRV(j) = SqReturn_sum;
-      monthly(j)            = m; 
-      j = j + 1; 
+      monthly(j)            = m;
+      j = j + 1;
       i = i + 1;
       if m < 12
             m = m + 1;

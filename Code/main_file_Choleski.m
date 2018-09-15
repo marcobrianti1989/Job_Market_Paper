@@ -108,8 +108,8 @@ pc4                         = pc(:,4);
 % Define the system1
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'MacroUncertH3','EBP','GDP','Consumption','Investment',...
-      'Hours','SP5002','CorporateProfits'};
+system_names  = {'TFP','EBP','GDP','Consumption','Investment',...
+      'Hours','SP5002'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
@@ -170,8 +170,8 @@ base_path         = pwd;
 which_ID          = 'chol_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [Uposition EBPposition]; %[Uposition];
-shocknames        = {'Uncertainty Shock','Financial Shock'};
+which_shocks      = [TFPposition]; %[Uposition];
+shocknames        = {'TFP Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
 
@@ -181,11 +181,11 @@ m = linspace(1,H,H);
 for im = 1:length(m)
       vardec(:,:,im) = gen_vardecomp(IRF_vardec,m(im),H);
 end
-vardec = vardec(:,which_shocks,:);
+vardec = vardec(TFPposition,4,:);
 horz = linspace(0,H,H);
 figure
 hold on
-plot(horz,vardec(2,:),'linewidth',2)
+plot(horz,vardec(TFPposition,:),'linewidth',2)
 grid on
 legend boxoff
 xlabel('Horizon')
