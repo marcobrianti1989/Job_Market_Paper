@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  15 SEP 2018 17:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  17 SEP 2018 16:04
 entering extended mode
 **./meeting.tex
 (meeting.tex
@@ -1160,10 +1160,10 @@ Package rerunfilecheck Info: File `meeting.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 20683 strings out of 493323
- 407860 string characters out of 3139072
+ 20667 strings out of 493323
+ 407732 string characters out of 3139072
  470324 words of memory out of 3000000
- 23691 multiletter control sequences out of 15000+200000
+ 23675 multiletter control sequences out of 15000+200000
  35595 words of font info for 43 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,11n,59p,856b,606s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1177,7 +1177,7 @@ blic/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso10
 .pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso8.pfb><C:/Program 
 Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/public/lm/lmsy8.pfb>
-Output written on meeting.pdf (14 pages, 421778 bytes).
+Output written on meeting.pdf (14 pages, 421805 bytes).
 PDF statistics:
  153 PDF objects out of 1000 (max. 8388607)
  29 named destinations out of 1000 (max. 500000)

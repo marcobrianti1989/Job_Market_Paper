@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,%
+bindingoffset=0mm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newtheorem{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.75em depth0em\fi}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{float}
+\linespread{1.3}
+\raggedbottom
+
+
+
+
+%
+\font\reali=msbm10 at 12pt
+% subsets of real numbers
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+%
+
+\title{Corporate Profits: Net Cash Flow by BEA US}
+
+\begin{document}
+	\large{
+
+\maketitle
+
+Corporate profits represents the portion of total income earned from current production that is accounted for by U.S. corporation. BEA's featured measure of corporate profits provides a comprehensive and consistent economic measure of the income earned by \textbf{all US corporations}. As such, it is unaffected by changes in tax laws, and it is adjusted for nonreported and misreported income. It excludes dividend income, capital gains and losses, and other financing flows and adjustments, such as deduction for bad debt. When available, BEA uses data collected on a tax-accounting basis as the primary source of information on corporate profits. However, financial-accounting information is more timely than the tax-return data, so it is used by BEA to derive the estimates for the most recent year and for the current quarters. Corporate profits are derived as the sum of profits before tax (PBT) and two adjustments: the inventory valuation adjustment (\textbf{IVA}) and the capital consumption adjustment (\textbf{CCAdj}). The IVA converts the business-accounting valuation of withdrawals from inventory, which is based on a mixture of historical and current costs, to a current-cost basis by removing the capital-gain-like or the capital-loss-like element that results from valuing these withdrawals at prices of earlier periods. The CCAdj is a two-part adjustment that (i) converts valuations of depreciation that are based on a mixture of service lives and depreciation patterns specified in the tax code to valuations that are based on uniform service lives and empirically based depreciation patterns; and (ii) converts the measures of depreciation to a current-cost basis by removing from profits the capital-gain-like or capital-loss-like element that arises from valuing the depreciation of fixed assets at the prices of earlier periods. To evaluate \textbf{profits after tax}, BEA evaluates \textbf{taxes on corporate income}
+which are taxes paid on corporate earning to federal, statem and local governments and to foreign governments. \textbf{These earnings include capital gains} and other income excluded from PBT. \textbf{Profits after tax} are simply corporate profits minus taxes on corporate income.
+
+\
+
+\textbf{Net Cash Flow with IVA} is equal to \textbf{1. undistributed corporate profits with IVA and CCAdj} plus \textbf{2. consumption of corporate fixed capital} less \textbf{3. net capital transfers}. It is a profit-related measure of internal funds available for investment. 
+
+\begin{enumerate}
+	\item \textbf{Undistributed corporate profits with IVA and CCAdj} is equal to corporate profits with IVA and CCAdj less taxes on corporate income and less net dividends.
+	\item \textbf{Consumption of corporate fixed capital} is the economic charge for the using up of fixed capital. It is defined as the decline in the value of the stock of assets due to wear and tear, obsolesce, aging, and accidental damage except that caused by a catastrophic event. 
+	\item \textbf{Net capital transfers paid} is the net measure of unrequited transfers associated with the acquisition or disposal of assets between the corporate sector and other sectors.
+\end{enumerate} 
+
+
+\section*{Depreciation and Cash Flow}
+
+
+\subsection*{Direct Effect}
+
+Depreciation is an accounting method of allocating the cost of a tangible asset over its useful life and is used to account for declines in value over time. Depreciation spreads the expense of a fixed asset over the years of the useful life of that asset. Depreciation helps companies avoid taking a huge deduction in the year the asset is purchased, allowing companies to earn revenue from the asset. Net income is calculated, in part, by deducting expenses, like depreciation, from income earned during the period. However, net income is used as the starting point in calculating a company's cash flow. Since depreciation was taken out when calculating net income and is not a cash outlay,  depreciation is added back in when creating the cash flow statement. In other words, depreciation is an accounting measure and is added back into revenue or net sales when calculating a company's cash flow. As a result, depreciation does not affect cash flow. However, depreciation can have an indirect impact on cash flow.
+
+
+\subsection*{Indirect Effect}
+
+Since depreciation is listed as an expense, it reduces the amount of taxable income. Of course, tax laws can vary, but if depreciation is allowed to be a tax-deductible expense, it will reduce the tax payment for a company. With the company paying less in taxes, net income would be higher. And since net income is used as the starting point for calculating cash flow, net income would be higher as a result of the tax benefit deduction of depreciation. Although depreciation does not involve an outlay of cash, it could indirectly boost net income if depreciation expenses are a tax deduction, reducing the cash outlay for a company's taxes.  
+
+
+
+
+
+
+}
+\end{document}
+

@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AW274';
+range                       = 'B1:BB274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -77,25 +77,17 @@ for i = 1:size(dataset,2)
 end
 
 % Proper Transformations - All the variables should be in logs
-percapita = 0;
-if percapita == 1
-      Hours             = Hours + Employment - Population; %Average weekly hours over population
-      Consumption       = NonDurableCons + ServiceCons - Population;
-      Investment        = Investment + DurableCons - Population;
-      GDP               = GDP - Population;
-      SP5001            = SP5001 - Population - GDPDef;
-      SP5002            = SP5002 - Population - GDPDef;
-      GovPurchases      = GovPurchases - Population;
-      CashFlow          = CashFlow - CorporateProfits;
-      Dividends         = Dividends - CorporateProfits;
-      CorporateProfits  = CorporateProfits - Population - GDPDef;
-else
-      SP5001            = SP5001 - GDPDef;
-      SP5002            = SP5002 - GDPDef;
-      CashFlow          = CashFlow - CorporateProfits; %GDPDef;
-      Dividends         = Dividends - CorporateProfits;
-      CorporateProfits  = CorporateProfits - GDPDef;
-end
+SP5001            = SP5001 - GDPDef;
+SP5002            = SP5002 - GDPDef;
+ProfTransfers     = ProfitsTransfers - Dividends;
+OtherCF           = CashFlow - CorpProfitsAdj - CorpProfitsAdj;
+CashFlow          = CashFlow - CorpProfitsAdj;
+Dividends         = Dividends - CorpProfitsAdj;
+ConsFixedK        = ConsFixedK - CorpProfitsAdj;
+CPAdj             = CorpProfitsAdj - GDPDef;
+NetKTransfers     = NetKTransfers./CorpProfitsAdj;
+Tax               = CorpProfitsbefTax - CorpProfitsAdj;
+
 
 % Obtaine Principal Components
 Zscore                      = 1; %remove mean and divide over the variance each series
@@ -108,7 +100,7 @@ pc5                         = pc(:,5);
 pc6                         = pc(:,6);
 
 % Step 1 - Get Innovations in both EBP and MacroUncert
-nlags1 = 4;
+nlags1 = 5;
 yEBP = EBP(1+nlags1:end);
 yJLN = MacroUncertH3(1+nlags1:end);
 PC   = pc(:,1:6);
@@ -121,58 +113,58 @@ end
 [~, ~, resJLN] = quick_ols(yJLN,xPC);
 
 % Step 2 - Regress CashFlow on resEBP and resJLN
-nlags = 4;
-Y     = CashFlow(1+nlags+nlags1:end);
+nlags = nlags1;
+Y     = Tax(1+nlags+nlags1:end);
 %X     = [GDP Investment Consumption SP5002 Hours MacroUncertH3 EBP CashFlow];
-X     = [PC EBP CashFlow];
+X     = [PC EBP Tax];
 k     = 1;
 for j = 1:nlags
       XX(:,k:k+size(X,2)-1) = [X(1+nlags-j+nlags1:end-j,:)];
       k           = k + size(X,2);
 end
 [~, ~, resCF]  = quick_ols(Y,XX);
-XX             = [XX resEBP(1+nlags:end) resJLN(1+nlags:end)];% 
+XX             = [XX resEBP(1+nlags:end) resJLN(1+nlags:end)];%
 LM             = fitlm(XX,Y,'linear')
 
 asd
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Creat Figure
-figure
-hold on
-set(gcf,'color','w');
-plot(Time,zscore(MacroUncertH3),'--','Linewidth',3)
-plot(Time,zscore(RV),'--','Linewidth',3)
-plot(Time,zscore(GZSpread),'-','Linewidth',1.5)
-plot(Time,zscore(EBP),'-','Linewidth',1.5)
-plot(Time,zscore(MoodySpreadAaa),'-','Linewidth',1.5)
-grid on
-LGD          = legend('JLN Uncertainty','Realized Volatility','GZ Spread','GZ EBP','Moodys Spread Aaa','Location','northwest');
-LGD.FontSize = 24;
-legend boxoff
-axis tight
-xlabel('Quarters','fontsize',24)
-ylabel('Standard Deviations','fontsize',24)
-close
+% figure
+% hold on
+% set(gcf,'color','w');
+% plot(Time,zscore(MacroUncertH3),'--','Linewidth',3)
+% plot(Time,zscore(RV),'--','Linewidth',3)
+% plot(Time,zscore(GZSpread),'-','Linewidth',1.5)
+% plot(Time,zscore(EBP),'-','Linewidth',1.5)
+% plot(Time,zscore(MoodySpreadAaa),'-','Linewidth',1.5)
+% grid on
+% LGD          = legend('JLN Uncertainty','Realized Volatility','GZ Spread','GZ EBP','Moodys Spread Aaa','Location','northwest');
+% LGD.FontSize = 24;
+% legend boxoff
+% axis tight
+% xlabel('Quarters','fontsize',24)
+% ylabel('Standard Deviations','fontsize',24)
+% close
 
 %export_fig('Financial_Uncertainty')
-ZZ = [MacroUncertH3 RV GZSpread EBP MoodySpreadAaa];
-corr(ZZ);
+% ZZ = [MacroUncertH3 RV GZSpread EBP MoodySpreadAaa];
+% corr(ZZ);
 
 
-azsxdcghj
+% azsxdcghj
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % HP1S w/o EBP
 Y         = CashFlowHP1S;
-X         = [MacroUncertH1HP1S GDPHP1S];
+X         = [MacroUncertH3HP1S GDPHP1S];
 %X         = [VXOHP1S GDPHP1S];
 LM        = fitlm(X,Y,'linear')
 % HP1S with EBP
 Y         = CashFlowHP1S;
-X         = [MacroUncertH1HP1S EBPHP1S GDPHP1S];
+X         = [MacroUncertH3HP1S EBPHP1S GDPHP1S];
 %X         = [VXOHP1S EBPHP1S GDPHP1S];
 LM        = fitlm(X,Y,'linear')
 
@@ -180,12 +172,12 @@ LM        = fitlm(X,Y,'linear')
 
 % HP w/o EBP
 Y         = CashFlowHP;
-X         = [MacroUncertH1HP GDPHP];
+X         = [MacroUncertH3HP GDPHP];
 %X         = [VXOHP GDPHP];
 LM        = fitlm(X,Y,'linear')
 % HP with EBP
 Y         = CashFlowHP;
-X         = [MacroUncertH1HP EBPHP GDPHP];
+X         = [MacroUncertH3HP EBPHP GDPHP];
 %X         = [VXOHP EBPHP GDPHP];
 LM        = fitlm(X,Y,'linear')
 
@@ -202,8 +194,8 @@ else
 end
 k = 1;
 for j = 1:nlags+1
-            X(:,k:k+1) = [MacroUncertH1(1+nlags-j+1:end-j+1)...
-                  GDP(1+nlags-j+1:end-j+1)];
+      X(:,k:k+1) = [MacroUncertH1(1+nlags-j+1:end-j+1)...
+            GDP(1+nlags-j+1:end-j+1)];
       %X(:,k:k) = [MacroUncertH1(2+nlags-j+1:end-j+1)];
       %X(:,k:k+1) = [VXO(1+nlags-j+1:end-j+1)...
       %GDP(1+nlags-j+1:end-j+1)];
@@ -216,7 +208,7 @@ k = 1;
 for j = 1:nlags+1
       X(:,k:k+2) = [MacroUncertH1(1+nlags-j+1:end-j+1)...
             GDP(1+nlags-j+1:end-j+1) EBP(1+nlags-j+1:end-j+1)];
-%       X(:,k:k+1) = [MacroUncertH1(2+nlags-j+1:end-j+1) EBP(2+nlags-j+1:end-j+1)];
+      %       X(:,k:k+1) = [MacroUncertH1(2+nlags-j+1:end-j+1) EBP(2+nlags-j+1:end-j+1)];
       %X(:,k:k+2) = [VXO(1+nlags-j+1:end-j+1)...
       %GDP(1+nlags-j+1:end-j+1) EBP(1+nlags-j+1:end-j+1)];
       k = k + 3;

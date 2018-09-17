@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:AV274';
+range                       = 'B1:BA274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -79,22 +79,24 @@ end
 % Proper Transformations - All the variables should be in logs
 percapita = 1;
 if percapita == 1
-      Hours            = Hours + Employment - Population; %Average weekly hours over population
-      Consumption      = NonDurableCons + ServiceCons - Population;
-      Investment       = Investment + DurableCons - Population;
-      GDP              = GDP - Population;
-      SP5001           = SP5001 - Population - GDPDef;
-      SP5002           = SP5002 - Population - GDPDef;
-      GovPurchases     = GovPurchases - Population;
-      CashFlow         = CashFlow - CorporateProfits;%Population - GDPDef
-      Dividends        = Dividends - Population - GDPDef;
-      CorporateProfits = CorporateProfits - Population - GDPDef;
+      Hours               = Hours + Employment - Population; %Average weekly hours over population
+      Consumption         = NonDurableCons + ServiceCons - Population;
+      Investment          = Investment + DurableCons - Population;
+      GDP                 = GDP - Population;
+      SP5001              = SP5001 - Population - GDPDef;
+      SP5002              = SP5002 - Population - GDPDef;
+      GovPurchases        = GovPurchases - Population;
+      CashFlow            = CashFlow - CorporateProfitsIVA;%Population - GDPDef
+      Dividends           = Dividends - CorporateProfitsIVA;
+      ProfTransfers       = ProfitsTransfers - CorporateProfitsIVA;
+      CorporateProfitsIVA = CorporateProfitsIVA - Population - GDPDef;
 else
-      SP5001           = SP5001 - GDPDef;
-      SP5002           = SP5002 - GDPDef;
-      CashFlow         = CashFlow - CorporateProfits;
-      Dividends        = Dividends - GDPDef;
-      CorporateProfits = CorporateProfits - GDPDef;
+      SP5001              = SP5001 - GDPDef;
+      SP5002              = SP5002 - GDPDef;
+      CashFlow            = CashFlow - CorporateProfitsIVA;
+      Dividends           = Dividends - CorporateProfitsIVA;
+      ProfTransfers       = ProfitsTransfers - CorporateProfitsIVA;
+      CorporateProfitsIVA = CorporateProfits - GDPDef;
 end
 
 % Obtaine Principal Components
@@ -108,8 +110,8 @@ pc4                         = pc(:,4);
 % Define the system1
 % system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
 %       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'TFP','EBP','GDP','Consumption','Investment',...
-      'Hours','SP5002'};
+system_names  = {'TFP','SP5002','EBP','MacroUncertH3','GDP','Consumption','Investment',...
+      'Hours','NetKTransfers'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
@@ -129,11 +131,6 @@ nlags           = 3;
 
 % Get Structural Shocks
 ss = (inv(A)*res')';
-
-% Linear Regression Model
-Y         = CashFlowHP1S;
-X         = [MacroUncertH1HP1S GDPHP1S];
-LM        = fitlm(X,Y,'linear')
 
 % Test for sufficient information - H0: regressors on PC are equal to zero.
 reg_PC                     = [pc1 pc2 pc3 pc4];
@@ -170,8 +167,8 @@ base_path         = pwd;
 which_ID          = 'chol_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [TFPposition]; %[Uposition];
-shocknames        = {'TFP Shock'};
+which_shocks      = [Uposition EBPposition]; %[Uposition];
+shocknames        = {'Uncertainty Shock','Financial Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
 
