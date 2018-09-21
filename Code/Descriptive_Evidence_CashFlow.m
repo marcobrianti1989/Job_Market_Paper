@@ -88,7 +88,6 @@ CPAdj             = CorpProfitsAdj - GDPDef;
 NetKTransfers     = NetKTransfers./CorpProfitsAdj;
 Tax               = CorpProfitsbefTax - CorpProfitsAdj;
 
-
 % Obtaine Principal Components
 Zscore                      = 1; %remove mean and divide over the variance each series
 pc                          = get_principal_components(dataPC(:,2:end),Zscore);
@@ -102,9 +101,9 @@ pc6                         = pc(:,6);
 % Step 1 - Get Innovations in both EBP and MacroUncert
 nlags1 = 4;
 yEBP = GZSpread(1+nlags1:end);
-yJLN = MacroUncertH1(1+nlags1:end);
-PC   = pc(:,1:5);
-k1     = 1;
+yJLN = MacroUncertH3(1+nlags1:end);
+PC   = [pc(:,1:6) GZSpread MacroUncertH3];
+k1   = 1;
 for j = 1:nlags1
       xPC(:,k1:k1+size(PC,2)-1) = [PC(1+nlags1-j:end-j,:)];
       k1           = k1 + size(PC,2);
@@ -116,7 +115,7 @@ end
 nlags = nlags1;
 Y     = CashFlow(1+nlags+nlags1:end);
 %X     = [GDP Investment Consumption SP5002 Hours MacroUncertH3 EBP CashFlow];
-X     = [PC CashFlow GZSpread MacroUncertH1];
+X     = [PC CashFlow];
 k     = 1;
 for j = 1:nlags
       XX(:,k:k+size(X,2)-1) = [X(1+nlags-j+nlags1:end-j,:)];

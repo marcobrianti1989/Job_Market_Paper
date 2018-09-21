@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  19 SEP 2018 18:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  20 SEP 2018 13:31
 entering extended mode
 **./Literature_Survey.tex
 (Literature_Survey.tex
@@ -949,7 +949,7 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 281.
  [26]
-[27] [28] [29] [30] (Literature_Survey.aux) )
+[27] [28] [29] [30] [31] (Literature_Survey.aux) )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 41 ({)
@@ -976,9 +976,9 @@ nts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
  Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/M
 iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Literature_Survey.pdf (30 pages, 267053 bytes).
+Output written on Literature_Survey.pdf (31 pages, 270117 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
+ 165 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
