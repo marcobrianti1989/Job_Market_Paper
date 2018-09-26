@@ -1,4 +1,4 @@
-function [impact, gam] = identification_GPFA(A,B,SRhorizon,EBPposition,...
+function [impact, gam] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,EBPposition,...
       Uposition,CFposition,delta)
 
 % A chol impact matrix (nvar,nvar)
@@ -24,7 +24,8 @@ gamU_zero   = D(:,2); %uncertainty shock impact vector (initial value)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Setting the objective function of Step1
-objF = @(gamF) objective_PFA(EBPposition,CFposition,SRhorizon,B,A,gamF,delta); 
+objF = @(gamF) objective_PFA(EBPposition,CFposition,SRhorizon,...
+      SRhorizonIV,B,A,gamF,delta); 
 
 %Optimization Parameters
 options  = optimset('fmincon');
@@ -53,7 +54,7 @@ end
 
 % Setting the objective function of Step2
 delta2 = - delta; % Be careful on the sign of delta!
-objU = @(gamU) objective_PFA(Uposition,CFposition,SRhorizon,B,A,gamU,delta2);
+objU = @(gamU) objective_PFA(Uposition,CFposition,SRhorizon,SRhorizonIV,B,A,gamU,delta2);
 
 %Optimization Parameters
 options  = optimset('fmincon');

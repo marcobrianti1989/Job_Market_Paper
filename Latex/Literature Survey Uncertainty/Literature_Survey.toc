@@ -1,0 +1,21 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Angeletos and La'O (2010) - NBER Macroeconomics Annual}{2}
+\contentsline {section}{\numberline {2}Andrade, Crump, Eusepi, and Moench (2016) - JME}{3}
+\contentsline {section}{\numberline {3}Basu and Bundick (2017) - Econometrica}{4}
+\contentsline {section}{\numberline {4}Jurado, Ludvigson, and Ng (2015) - AER}{5}
+\contentsline {section}{\numberline {5}Bloom (2014) - JEP}{7}
+\contentsline {section}{\numberline {6}Berger, Dew-Becker, and Giglio (2019) - REStud}{9}
+\contentsline {section}{\numberline {7}Leduc and Liu (2016) - JME}{11}
+\contentsline {section}{\numberline {8}Cascaldi-Garcia and Galvao (2019) - JMCB}{12}
+\contentsline {section}{\numberline {9}Ludvigson, Ma, and Ng (2017) - NBER WP}{13}
+\contentsline {section}{\numberline {10}Stock and Watson (2012) - Brookings Papers EA}{15}
+\contentsline {section}{\numberline {11}Caldara, Fuentes-Albero, Gilchrist, and Zakrajsek (2016) - EER}{18}
+\contentsline {section}{\numberline {12}Gilchrist and Zakrajsek (2012) - AER}{20}
+\contentsline {section}{\numberline {13}Gilchrist, Sim, and Zakrajsek (2014) - NBER WP}{22}
+\contentsline {section}{\numberline {14}Nimark (2014) - AER}{23}
+\contentsline {section}{\numberline {15}Kozeniauskas, Orlik, and Veldkamp (2018) - JME}{26}
+\contentsline {section}{\numberline {16}Kozlowski, Veldkamp, and Venkateswaran (2018) - NBER Macro Annual}{27}
+\contentsline {section}{\numberline {17}McDonald, and Siegel (1986) - QJE}{29}
+\contentsline {section}{\numberline {18}Forni, Gambetti, and Sala (2017) - Working Paper}{30}
+\contentsline {section}{\numberline {19}Smietanka, Bloom, and Mizen (2018) - Working Paper}{31}
+\contentsline {section}{\numberline {20}Alfaro, Bloom, and Lin (2018) - NBER WP}{32}

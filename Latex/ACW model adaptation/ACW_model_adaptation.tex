@@ -1,0 +1,426 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\usepackage{graphicx,lmodern,subfigure,ulem,color,graphicx,tikz,booktabs,natbib}
+\usepackage{mathrsfs}
+\usetheme{Warsaw}
+%\definecolor{beamer@blendedblue}{rgb}{0.1,0.5,0.1}
+%\definecolor{ForestGreen}{RGB}{60, 140, 60}
+%\setbeamercolor{structure}{fg=beamer@blendedblue}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\bibliographystyle{chicago}
+\newcommand{\spitem}{\vspace{.3cm}\item}
+\newcommand{\elas}{$E_{labor}$}
+%\def \FigPath {Users\th3\Documents\Job_Market_Paper\Code\Figures} 
+
+\font\reali=msbm10 at 12pt
+% subsets of real numbers
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+
+\title{Three-Period Model}
+\author{Marco Brianti}
+\institute{Boston College}
+
+
+\begin{document}
+	
+	\frame{\titlepage \begin{center} Dissertation Project \end{center} }
+	
+
+\frame{\frametitle{Introduction to the Model}
+
+To provide an economic intuition of the differential response of \textbf{cash holdings} to uncertainty and financial shocks, I present a properly augmented model in the spirit of 
+\begin{itemize}
+	\item Almeida, Campello, and Weisbach (2004)
+	\item Han and Qiu (2007)
+\end{itemize}
+
+\
+
+\
+
+\
+
+It is a simple representation of a dynamic setting where a profit-maximizing firm have
+\begin{itemize}
+	\item present and future investment opportunities
+	\item current cash flow and external sources of finance might not be enough to fund all profitable projects
+\end{itemize}
+
+
+}
+
+
+\frame{\frametitle{Main Features}
+	
+	\begin{itemize}
+	
+	\item Model has three periods: 0, 1 and 2.
+	
+	\
+	
+	\item There is one representative firm (or a continuum of it)
+	
+	\
+	
+	\item Discount factor $\beta = 1$, but it can easily be relaxed
+	
+	\
+	
+	\item In P0 firm can invest $I_0$ in a long-term project.
+	\begin{itemize}
+		\item $I_0$ pays a deterministic return $g(I_0) = G(I_0) + qI_0$ in P2
+	\end{itemize}
+	
+	\
+
+    \item In P1 firm can invest $I_1$ in a short-term project.
+    \begin{itemize}
+	\item $I_1$ pays a deterministic return $h(i_0) = H(i_0) + qI_0$ in P2
+    \end{itemize}
+
+    \
+    
+    \item Both $G(\cdot)$ and $H(\cdot)$ - and thus $g(\cdot)$ and $h(\cdot)$ - display the following properties
+    \begin{itemize}
+    	\item $G'(\cdot)$ and $H'(\cdot)$ strictly positive
+    	\item $G''(\cdot)$ and $H''(\cdot)$ strictly negative
+    	\item $G'''(\cdot)$ and $H'''(\cdot)$ strictly positive
+    \end{itemize}
+
+   \end{itemize}	
+	
+}
+
+\frame{\frametitle{Period 0}
+	
+	
+	\begin{itemize}
+		\item Firm enters the period with $c_0$ internal liquidity from past and current cash flows
+		
+		\item Firm chooses optimal level of investment $I_0$, cash holding $C$, and borrowing $B_0$
+
+			\item Optimal choices are subject to nonnegative dividends constraint,
+			$$
+			d_0 = c_0 + B_0 - I_0 - C \geq 0
+			$$
+            and borrowing constraint 
+			$$
+			0 \leq B_0 \leq (1 - \tau)qI_0
+$$			
+where 
+
+\begin{itemize}
+	\item $q \in (0,1]$ is the part of $I_0$ that can be liquidated after usage 
+	\item $1 - \tau$ is the part of the liquidation value of $I_0$ that can be captured by creditors
+\end{itemize}
+			
+\end{itemize}
+
+}
+
+
+\frame{\frametitle{Period 1}
+
+\begin{itemize}
+	\item Firm enters the period with $C + c_1$ internal liquidity where
+	\begin{itemize}
+		\item $C$ is optimal level of cash holding chosen in P0
+		\item $c_1 \sim F[\underline{c_1}, \  \overline{c_1}] \geq 0$ is current cash flow
+		\item $c_1$ is unknown in P0 and drawn at the beginning of P1 
+		\end{itemize}
+	
+	\
+	
+	\item Firm chooses optimal schedules of both investment $I_1(c_1)$ and borrowing $B_1(c_1)$
+	
+	\
+	
+	\item Optimal choices are subject to nonnegative dividends constraint,
+	$$
+	d_1 = c_1 + B_1(c_1) - I_1(c_1) + C \geq 0
+	$$
+	and borrowing constraint 
+	$$
+	0 \leq B_1(c_1) \leq (1 - \tau_1)qI_1(c_1)
+	$$
+\end{itemize}
+
+}
+
+
+\frame{\frametitle{Period 2}
+	
+	\begin{itemize}
+		
+		\item Firm receives deterministic returns $g(I_0)$ and $h(I_1(c_1))$
+		
+		\
+		
+		\item Firm pays back loans $B_0$ and $B_1(c_1)$
+		
+		\
+		
+		\item Dividends are defined as
+		$$
+		d_2 = g(I_0) + h(I_1(c_1)) - B_0 - B_1(c_1)
+		$$
+				
+	\end{itemize}
+		
+}
+
+\frame{\frametitle{Firm's Problem}
+	
+\begin{eqnarray}
+\max_{C,I_0,B_0,I_1(c_1),B_1(c_1)} d_0 + d_1 + d_2
+\end{eqnarray}	
+subject to
+\begin{eqnarray}
+\begin{aligned}
+d_0 &= c_0 + B_0 - I_0 - C \geq 0 \\
+d_1 &= c_1 + B_1(c_1) - I_1(c_1) + C \geq 0 \\
+d_2 &= g(I_0) + h(I_1(c_1)) - B_0 - B_1(c_1) \\
+0   &\leq B_0 \leq (1 - \tau)qI_0 \\
+0   &\leq B_1(c_1) \leq (1 - \tau)qI_1(c_1)
+\end{aligned}
+\end{eqnarray}	
+}
+
+
+\frame{\frametitle{Solution - Unconstrained Firms}
+	
+A firm is financially unconstrained if it has enough financial resources such that
+
+$$
+g'(I_0^*) = 1
+$$	
+
+and
+
+$$
+h'(I_1^*(c_1)) = h'(I_1^*) = 1 \ \ \ \forall \ c_1 \in [\underline{c_1}, \  \overline{c_1}]
+$$
+
+\
+
+\begin{itemize}
+\item Both $I_0^*$ and $I_1^*$ are independent of $c_1$
+\item Firm is indifferent on optimal $C^*$, $B_0^*$, and $B_1^*$
+\end{itemize}
+		
+}
+
+
+\frame{\frametitle{Solution - Constrained Firms (I)}
+
+A firm is financially constrained if its investment levels are always lower than the first-best levels $I_0^*$ and $I_1^*$.
+
+\
+
+\
+
+\
+
+
+Constraints are always expected to bind since it is not profitable to 
+
+\
+
+\begin{itemize}
+	\item paying out dividends in the first two periods
+	
+	\
+	
+	\item borrowing less than the maximum amount
+\end{itemize}  
+
+
+
+
+
+}
+
+\frame{\frametitle{Solution - Constrained Firms (II)}
+
+Since constraints bind, 
+$$
+I_0 = \frac{c_0 - C}{1 - q + q \tau } \ \ \text{and} \ \ I_1(c_1) = \frac{c_1 + C}{1 - q + q \tau }
+$$
+
+\
+
+\
+
+Firm faces now a trade of on choosing optimal cash holding $C^*$
+
+\
+
+
+\begin{itemize}
+	\item the cost of saving an additional unit of cash holding $C$ is forgoing a unit of current investment projects
+	
+	\
+	
+	
+	\item the benefit of saving an additional unit of cash holding $C$ is the higher ability to fund future investment projects
+\end{itemize}
+	
+}
+
+
+\frame{\frametitle{Solution - Constrained Firms (III)}
+	
+Optimal $C^*(0,F)$ should be chosen to maximize
+\begin{eqnarray}
+\begin{aligned}
+\text{Objective} \ \ &= \ \ g(I_0) - I_0 + \E \big[ h(I_1) - I_1 | F \big] \\
+&= \ \ g \bigg( \frac{c_0 - C}{1 - q + q \tau } \bigg) - \frac{c_0 - C}{1 - q + q \tau } \\
+&+ \ \  \E \bigg[  h \bigg( \frac{c_1 + C}{1 - q + q \tau } \bigg) - \frac{c_1 + C}{1 - q + q \tau }   \bigg| F     \bigg]
+\end{aligned}
+\end{eqnarray}	
+
+\
+
+Solution for $C^*(0,F)$ solves
+\begin{eqnarray}
+g' \bigg( \frac{c_0 - C^*(0,F)}{1 - q + q \tau } \bigg) = \E \bigg[  h' \bigg( \frac{c_1 + C^*(0,F)}{1 - q + q \tau } \bigg)  \bigg| F  \bigg]
+\end{eqnarray}	
+	where SOC is negative by assumption on $G(\cdot)$ and $H(\cdot)$.
+	
+}
+
+\frame{\frametitle{Analysis}
+	
+	I analyze the effect of an uncertainty and credit supply shocks in period 0 in order to see the differential response of cash holding $C^*$
+	
+	\
+	
+	\
+	
+	
+	\textbf{Uncertainty Shock.} Mean-preserving spread of perceived distribution $F$ of $c_1$.
+	
+	\
+	
+	\
+	
+	\textbf{Credit Supply Shock.} Decrease by $\varepsilon$ of the part of the liquidation value of $I_0$ that can be captured by creditors,
+	$$
+	B_0 \leq (1 - (\tau + \varepsilon))qI_0
+	$$
+	
+}
+
+
+\frame{\frametitle{Uncertainty Shock (I)}
+	
+	Assume that $C^*(0,F)$ is the optimal cash holding when distribution of $c_1$ is $F$ and no credit supply shocks are in place.
+	
+	\
+	
+	Then the following two relations hold,
+	
+	
+	\begin{eqnarray}\label{eq:optimal_sol_F}
+	g' \bigg( \frac{c_0 - C^*(0,F)}{1 - q + q \tau } \bigg) = \E \bigg[  h' \bigg( \frac{c_1 + C^*(0,F)}{1 - q + q \tau } \bigg)  \bigg| F  \bigg]
+	\end{eqnarray}	
+	
+	
+	and
+	
+	
+	\begin{eqnarray}\label{eq:jensen_ineq}
+    \E \bigg[  h' \bigg( \frac{c_1 + C^*(0,F)}{1 - q + q \tau } \bigg)  \bigg| Q  \bigg] > \E \bigg[  h' \bigg( \frac{c_1 + C^*(0,F)}{1 - q + q \tau } \bigg)  \bigg| F  \bigg]
+    \end{eqnarray}
+    
+    where 
+    
+    \begin{itemize}
+    	\item Equation \ref{eq:optimal_sol_F} holds because $C^*(0,F)$ is optimal cash flow with $F$ 
+    	\item Equation \ref{eq:jensen_ineq} holds because of Jensen's inequality. 
+    \end{itemize}    	
+
+		
+}
+
+\frame{\frametitle{Uncertainty Shock (II)}
+	
+Combining \ref{eq:optimal_sol_F} and \ref{eq:jensen_ineq} yields
+
+
+\begin{eqnarray}
+g' \bigg( \frac{c_0 - C^*(0,F)}{1 - q + q (\tau + \varepsilon) } \bigg) > \E \bigg[  h' \bigg( \frac{c_1 + C^*(0,F)}{1 - q + q \tau } \bigg)  \bigg| F  \bigg]
+\end{eqnarray}
+
+\	
+
+	which implies that $C^*(0,Q) > C^*(0,F)$.	
+
+\
+
+\
+
+\textbf{Result.} In response to an uncertainty shock firm tends to accumulate additional cash holding from the motive of precautionary savings.
+
+	
+}
+
+\frame{\frametitle{Credit Supply Shock (I)}%TO BE FINISHED
+	
+	Given $C^*(0,F)$, then the following two relations hold,
+	
+	\begin{eqnarray}\label{eq:optimal_sol_0}
+	g' \bigg( \frac{c_0 - C^*(0,F)}{1 - q + q \tau } \bigg) = \E \bigg[  h' \bigg( \frac{c_1 + C^*(0,F)}{1 - q + q \tau } \bigg)  \bigg| F  \bigg]
+	\end{eqnarray}	
+	
+	and
+	
+	\begin{eqnarray}\label{eq:jensen_ineqeps}
+	g' \bigg( \frac{c_0 - C^*(0,F)}{1 - q + q (\tau + \varepsilon)} \bigg) > g' \bigg( \frac{c_0 - C^*(0,F)}{1 - q + q \tau } \bigg)
+	\end{eqnarray}
+	
+	where 
+	
+	\begin{itemize}
+		\item Equation \ref{eq:optimal_sol_0} holds because $C^*(0,F)$ is optimal cash flow with $F$ 
+		\item Equation \ref{eq:jensen_ineqeps} holds because of Jensen's inequality. 
+	\end{itemize}    	
+}
+
+\frame{\frametitle{Credit Supply Shock (II)}
+	
+	Combining \ref{eq:optimal_sol_0} and \ref{eq:jensen_ineqeps} yields
+	
+	
+	\begin{eqnarray}
+	g' \bigg( \frac{c_0 - C^*(0,F)}{1 - q + q \tau } \bigg) < \E \bigg[  h' \bigg( \frac{c_1 + C^*(0,F)}{1 - q + q \tau } \bigg)  \bigg| Q  \bigg]
+	\end{eqnarray}
+	
+	\	
+	
+	which implies that $C^*(\varepsilon,F) < C^*(0,F)$.	
+	
+	\
+	
+	\
+	
+	\textbf{Result.} In response to a negative credit supply shock firm tends to accumulate less cash to finance current projects which are more financially constrained. 
+
+}
+
+\frame{\frametitle{Lesson learned}
+	
+As a precautionary motive, firms prefer to increase cash holdings if they expect future outcomes to be more volatile.
+
+\
+
+After a financial shock, firms substitute more cash today with less cash tomorrow because they expect to me more financially constrained today than tomorrow. 	
+	
+}
+
+\end{document}

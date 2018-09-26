@@ -1,0 +1,2 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Almeida, Campello, and Weisbach (2004) - JF}{1}

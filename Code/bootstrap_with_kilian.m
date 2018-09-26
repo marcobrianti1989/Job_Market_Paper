@@ -74,7 +74,7 @@ for i_simul = 1:nsimul
             delt = 1;
             nonstationarities(i_simul,1) = 1;
             while flag == 1
-                  if nonstationarities(i_simul,1) < 1000
+                  if nonstationarities(i_simul,1) < 100
                         delt = delt - 0.01;
                         beta_tilde_star(:,:,i_simul) = beta_hat_star2(:,:,i_simul) - delt*psi_hat1;
                         flag = test_stationarity(beta_tilde_star(:,:,i_simul)');

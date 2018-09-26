@@ -87,6 +87,7 @@ if percapita == 1
       SP5002              = SP5002 - Population - GDPDef;
       GovPurchases        = GovPurchases - Population;
       CPAdj               = CorpProfitsAdj - Population - GDPDef;
+      TenYTreasury        = TenYTreasury;
 else
       Consumption         = NonDurableCons + ServiceCons;
       Investment          = Investment + DurableCons;
@@ -105,15 +106,15 @@ Zscore                      = 1; %remove mean and divide over the variance each 
 pc                          = get_principal_components(dataPC(:,2:end),Zscore);
 
 % Define the system1
-system_names  = {'TFP','EBP','MacroUncertH3','GDP','Consumption',...
-      'Investment','Hours','CashFlow'};
+system_names  = {'EBP','MacroUncertH3','GDP','Consumption',...
+      'Investment','Hours','TenYTreasury'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
 Uposition   = find(strcmp('MacroUncertH3', system_names));
 EBPposition = find(strcmp('EBP', system_names));
-CFposition  = find(strcmp('CashFlow', system_names));
+CFposition  = find(strcmp('TenYTreasury', system_names));
 GDPposition = find(strcmp('GDP', system_names));
 Cposition   = find(strcmp('Consumption', system_names));
 
@@ -127,16 +128,17 @@ nlags           = 4;
 
 % Generalized Penalty Function Approach
 objgam = 1;
-delta = 125;
+delta = 0;
 while abs(objgam) >= 0.05
       warning off
       SRhorizon       = 2;
-      [impact, gamma] = identification_GPFA(A,B,SRhorizon,EBPposition,...
+      SRhorizonIV     = 4;
+      [impact, gamma] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,EBPposition,...
             Uposition,CFposition,delta);
       gamF   = gamma(:,1);
       gamU   = gamma(:,2);
       objgam = gamF'*gamU
-      delta  = delta + .1
+      delta  = delta + 0.01
 end
 
 % Test for sufficient information - H0: regressors on PC are equal to zero.
@@ -152,7 +154,7 @@ pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 2000;
+nsimul            = 100;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
@@ -161,12 +163,13 @@ blocksize         = 4;
 % Get "bootstrapped A" nsimul times
 for i_simul=1:nsimul
       % Cholesky decomposition
-      [A_boot(:,:,i_simul),B_boot(:,:,i_simul),~,~] = sr_var(data_boot2(:,:,i_simul), nlags);
+      [A_boot(:,:,i_simul),B_boot(:,:,i_simul),~,~] = ...
+            sr_var(data_boot2(:,:,i_simul), nlags);
       % GPFA identification strategy
       warning off
       [impact_boot(:,:,i_simul), gamma_boot(:,:,i_simul)] = ...
-            identification_GPFA(A_boot(:,:,i_simul),B_boot(:,:,i_simul),SRhorizon,...
-            EBPposition,Uposition,CFposition,delta);
+            identification_GPFA(A_boot(:,:,i_simul),B_boot(:,:,i_simul),...
+            SRhorizon,SRhorizonIV,EBPposition,Uposition,CFposition,delta);
       i_simul
 end
 
@@ -195,11 +198,11 @@ m = linspace(1,H,H);
 for im = 1:length(m)
       vardec(:,im,:) = gen_vardecomp(IRF_vardec,m(im),H);
 end
-
+asd
 % Create and Printing figures for Variance decomposition
 base_path         = pwd;
 which_ID          = 'vardec_GPFA';
-print_figs        = 'yes';
+print_figs        = 'no';
 use_current_time  = 1; % don't save the time
 which_shocks      = [1 2]; %[Uposition];
 shocknames        = {'Financial Shock','Uncertainty Shock'};
