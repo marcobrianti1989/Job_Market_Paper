@@ -43,7 +43,7 @@ for k=2:H
     F                    = [obj_IRFs(:,k)' F(1:end-nvar)];
 end
 
-obj_FEV = sum(obj_IRFs(which_variable,:).^2);
+obj_FEV = sum(obj_IRFs(which_variable,:));
 obj_FEV = obj_FEV/DEN; %normalization
 
 obj_FEV = - obj_FEV; %BE CAREFUL! IT IS ALREADY NEGATIVE FOR FMINCON!!!

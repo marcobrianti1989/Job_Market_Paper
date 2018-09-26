@@ -44,10 +44,10 @@ if percapita == 1
 end
 
 % Define the system1
-% system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
-%       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'EBP','JLNUncertH1','IP','Consumption','Investment','SP500','UnRate'};
+system_names  = {'EBP','JLNUncertH1','IP','Consumption','SP500','UnRate'};
+EBPposition = find(strcmp('EBP', system_names));
 
+% Build up system
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
@@ -59,26 +59,15 @@ max_lags     = 4;
 [AIC,BIC,HQ] = aic_bic_hq(system,max_lags);
 
 % Cholesky decomposition
-nlags           = 4;
+nlags           = 8;
 [A,B,res,sigma] = sr_var(system, nlags);
-asd
-j = 0;
-resIP = res(1:end-j,2);
-resC  = res(1:end-j,3);
-resSP = res(1:end-j,6);
 
-% Linear Regression Model. It is the same of regress but it provides much
-% more useful information.
-Y = JLNUncertH1(1+nlags+j:end);
-Y2 = VXOHP(1+nlags+j:end);
-IPGrowth = diff(IP);
-%autocorr(IPGrowth.^2)
-IPGrowth = IPGrowth(nlags:end-j);
-X = [resIP IPGrowth];
-%LM = fitlm(X,Y,'linear')
+% Get Chol Structural Shocks
+sschol  = (inv(A)*res')';
 
-% Get Structural Shocks
-ss = (inv(A)*res')';
+% Barsky&Sims on EBPposition
+horizon         = 24;
+[impact, gamma] = just_news_ID(A,B,horizon,EBPposition);
 
 % Create dataset from bootstrap
 nburn             = 0;
@@ -89,16 +78,24 @@ blocksize         = 4;
       = bootstrap_with_kilian(B,nburn,res,nsimul,which_correction,blocksize);
 
 % Get "bootstrapped A" nsimul times
+warning off
 for i_simul=1:nsimul
       % Cholesky decomposition
-      [A_boot(:,:,i_simul),B_boot(:,:,i_simul),~,~] = sr_var(data_boot2(:,:,i_simul), nlags);
+      [A_boot(:,:,i_simul),B_boot(:,:,i_simul),~,~] = ...
+            sr_var(data_boot2(:,:,i_simul), nlags);
+      % News a la B&S identification strategy
+      [impact_boot(:,:,i_simul), gamma_boot(:,:,i_simul)] = ...
+            just_news_ID(A_boot(:,:,i_simul),B_boot(:,:,i_simul),...
+            horizon,EBPposition);
+      i_simul
 end
+warning on
 
 % Generate IRFs with upper and lower bounds
 sig1                       = 0.05;
 sig2                       = 0.025;
 H                          = 120;
-[IRFs, ub1, lb1, ub2, lb2] = genIRFs(A,A_boot,B,B_boot,H,sig1,sig2);
+[IRFs, ub1, lb1, ub2, lb2] = genIRFs(impact,impact_boot,B,B_boot,H,sig1,sig2);
 
 % Create and Printing figures
 base_path         = pwd;
@@ -106,7 +103,7 @@ which_ID          = 'chol_';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
 which_shocks      = [1];
-shocknames        = {'Uncertainty Shock'};
+shocknames        = {'News Financial Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
 
@@ -127,9 +124,14 @@ xlabel('Horizon')
 ylabel('Variance Explained')
 title('Variance Explained Of Real GDP')
 
+% Get Structural Shocks
+ss = get_structural_shocks_general(A,gamma,res,which_shocks);
+
+corr(sschol(:,2),ss(:,1))
+
 %save workspace_nicespecification_cons_inv_adjusted_Ulast
 
-
+%close all
 
 
 

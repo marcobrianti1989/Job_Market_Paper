@@ -86,6 +86,5 @@ for i_simul = 1:nsimul
                   end
             end
       end
-      i_simul
 end
       warning on

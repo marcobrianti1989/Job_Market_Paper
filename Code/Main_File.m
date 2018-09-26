@@ -84,8 +84,9 @@ for i_simul=1:nsimul
       [A_boot,B_boot(:,:,i_simul),~,~] = sr_var(data_boot2(:,:,i_simul), nlags);
       
       % Sequential Identification - 3 steps
-      [impact_boot(:,:,i_simul), gam_boot(:,:,i_simul)] = three_steps_brio_ID(A_boot,...
-            B_boot(:,:,i_simul),horizon,TFPposition,UNCposition);
+      [impact_boot(:,:,i_simul), gam_boot(:,:,i_simul)] = ...
+            three_steps_brio_ID(A_boot,B_boot(:,:,i_simul),...
+            horizon,TFPposition,UNCposition);
       
       i_simul
       

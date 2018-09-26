@@ -86,36 +86,37 @@ if percapita == 1
       SP5001              = SP5001 - Population - GDPDef;
       SP5002              = SP5002 - Population - GDPDef;
       GovPurchases        = GovPurchases - Population;
+      CPAdj               = CorpProfitsAdj - Population - GDPDef;
+      TenYTreasury        = TenYTreasury;
 else
+      Consumption         = NonDurableCons + ServiceCons;
+      Investment          = Investment + DurableCons;
       SP5001              = SP5001 - GDPDef;
       SP5002              = SP5002 - GDPDef;
-      CashFlow            = CashFlow - CorporateProfitsIVA;
-      Dividends           = Dividends - CorporateProfitsIVA;
-      ProfTransfers       = ProfitsTransfers - CorporateProfitsIVA;
-      CorporateProfitsIVA = CorporateProfits - GDPDef;
+      CPAdj               = CorpProfitsAdj - GDPDef;
 end
+% Other Transformations
+CashFlow            = CashFlow - CorpProfitsAdj;
+Dividends           = Dividends - CorpProfitsAdj;
+ProfTransfers       = ProfitsTransfers - CorpProfitsAdj;
+ConsFixedK          = ConsFixedK - CorpProfitsAdj;
 
 % Obtaine Principal Components
 Zscore                      = 1; %remove mean and divide over the variance each series
 pc                          = get_principal_components(dataPC(:,2:end),Zscore);
-pc1                         = pc(:,1);
-pc2                         = pc(:,2);
-pc3                         = pc(:,3);
-pc4                         = pc(:,4);
 
 % Define the system1
-% system_names  = {'SP5001','MacroUncertH1','TFPUtil','GDP','Consumption',...
-%       'Investment','Hours','YearInflation','FFR','GovSpending','CapUtilization','Inventories'};
-system_names  = {'MacroUncertH3','GDP','Consumption','Investment',...
-      'Hours'};
+system_names  = {'EBP','GDP','Consumption',...
+      'Investment','Hours'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
-TFPposition = find(strcmp('TFP', system_names));
-VXOposition = find(strcmp('VXO', system_names));
 Uposition   = find(strcmp('MacroUncertH3', system_names));
 EBPposition = find(strcmp('EBP', system_names));
+CFposition  = find(strcmp('TenYTreasury', system_names));
+GDPposition = find(strcmp('GDP', system_names));
+Cposition   = find(strcmp('Consumption', system_names));
 
 % Tests for lags
 max_lags     = 4;
@@ -125,11 +126,13 @@ max_lags     = 4;
 nlags           = 4;
 [A,B,res,sigma] = sr_var(system, nlags);
 
-% Get Structural Shocks
-ss = (inv(A)*res')';
+% Barsky&Sims on EBPposition
+horizon         = 4;
+[impact, gamma] = just_news_ID(A,B,horizon,EBPposition);
 
 % Test for sufficient information - H0: regressors on PC are equal to zero.
-reg_PC                     = [pc1 pc2 pc3 pc4];
+npc                        = 4;
+reg_PC                     = pc(:,1:npc);
 reg_PC                     = reg_PC(1+nlags:end,:);
 ushock_restricted          = res(:,2);
 k                          = size(reg_PC,2);
@@ -140,7 +143,7 @@ pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 500;
+nsimul            = 200;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
@@ -149,43 +152,67 @@ blocksize         = 4;
 % Get "bootstrapped A" nsimul times
 for i_simul=1:nsimul
       % Cholesky decomposition
-      [A_boot(:,:,i_simul),B_boot(:,:,i_simul),~,~] = sr_var(data_boot2(:,:,i_simul), nlags);
+      [A_boot(:,:,i_simul),B_boot(:,:,i_simul),~,~] = ...
+            sr_var(data_boot2(:,:,i_simul), nlags);
+      % News a la B&S identification strategy
+      warning off
+      [impact_boot(:,:,i_simul), gamma_boot(:,:,i_simul)] = ...
+            just_news_ID(A_boot(:,:,i_simul),B_boot(:,:,i_simul),...
+            horizon,EBPposition);
+      i_simul
 end
 
 % Generate IRFs with upper and lower bounds
-sig1                       = 0.05;
-sig2                       = 0.025;
-H                          = 20;
-[IRFs, ub1, lb1, ub2, lb2] = genIRFs(A,A_boot,B,B_boot,H,sig1,sig2);
+sig1                        = 0.05;
+sig2                        = 0.025;
+H                           = 20;
+[IRFs, ub1, lb1, ub2, lb2]  = genIRFs(impact,impact_boot,B,B_boot,H,sig1,sig2);
 
-% Create and Printing figures
+% Create and Printing figures for IRFs
 base_path         = pwd;
-which_ID          = 'chol_';
+which_ID          = 'GPFA';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
-which_shocks      = [Uposition]; %[Uposition];
-shocknames        = {'Uncertainty Shock'};
+which_shocks      = [1]; %[Uposition];
+shocknames        = {'News Financial Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
-asd
+
 % Get variance Decomposition
-[IRF_vardec, ~, ~, ~, ~] = genIRFs(A,0,B,0,H,sig1,sig2);
+N = null(gamma');
+D_null = [gamma N];
+impact_vardec = A*D_null; % where A is the chol.
+[IRF_vardec, ~, ~, ~, ~] = genIRFs(impact_vardec,0,B,0,H,sig1,sig2);
 m = linspace(1,H,H);
 for im = 1:length(m)
-      vardec(:,:,im) = gen_vardecomp(IRF_vardec,m(im),H);
+      vardec(:,im,:) = gen_vardecomp(IRF_vardec,m(im),H);
 end
-vardec = vardec(TFPposition,4,:);
-horz = linspace(0,H,H);
+asd
+% Create and Printing figures for Variance decomposition
+base_path         = pwd;
+which_ID          = 'vardec_GPFA';
+print_figs        = 'no';
+use_current_time  = 1; % don't save the time
+which_shocks      = [1 2]; %[Uposition];
+shocknames        = {'Financial Shock','Uncertainty Shock'};
+plot_vardec(vardec,H,which_shocks,shocknames,...
+      system_names,which_ID,print_figs,use_current_time,base_path)
+
+% Get Structural Shocks
+ss = get_structural_shocks_general(A,gamma,res,which_shocks);
+ssF = ss(:,1);
+ssU = ss(:,2);
+
+% Create Figure for Structural Shocks
 figure
 hold on
-plot(horz,vardec(TFPposition,:),'linewidth',2)
-grid on
+plot(Time(nlags+1:end),ssF,'LineWidth',1.5)
+plot(Time(nlags+1:end),ssU,'LineWidth',1.5)
+LGD = legend('Financial Shocks','Uncertainty Shocks');
+LGD.FontSize = 24;
 legend boxoff
-xlabel('Horizon')
-ylabel('Variance Explained')
-title('Variance Explained Of Real GDP')
-
-%save workspace_nicespecification_cons_inv_adjusted_Ulast
+axis tight
+grid on
 
 
 
