@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:BA274';
+range                       = 'B1:BC274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -88,12 +88,14 @@ if percapita == 1
       GovPurchases        = GovPurchases - Population;
       CPAdj               = CorpProfitsAdj - Population - GDPDef;
       TenYTreasury        = TenYTreasury;
+      SecuAssets          = CorpSecuritiesAssets - Population - GDPDef;
 else
       Consumption         = NonDurableCons + ServiceCons;
       Investment          = Investment + DurableCons;
       SP5001              = SP5001 - GDPDef;
       SP5002              = SP5002 - GDPDef;
       CPAdj               = CorpProfitsAdj - GDPDef;
+      SecuAssets          = CorpSecuritiesAssets - GDPDef;
 end
 % Other Transformations
 CashFlow            = CashFlow - CorpProfitsAdj;
@@ -107,14 +109,14 @@ pc                          = get_principal_components(dataPC(:,2:end),Zscore);
 
 % Define the system1
 system_names  = {'EBP','MacroUncertH3','GDP','Consumption',...
-      'Investment','Hours','TenYTreasury'};
+      'Investment','Hours','SecuAssets'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
 Uposition   = find(strcmp('MacroUncertH3', system_names));
 EBPposition = find(strcmp('EBP', system_names));
-CFposition  = find(strcmp('TenYTreasury', system_names));
+CFposition  = find(strcmp('SecuAssets', system_names));
 GDPposition = find(strcmp('GDP', system_names));
 Cposition   = find(strcmp('Consumption', system_names));
 
@@ -134,11 +136,11 @@ while abs(objgam) >= 0.05
       SRhorizon       = 2;
       SRhorizonIV     = 4;
       [impact, gamma] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,EBPposition,...
-            Uposition,CFposition,delta);
+            Uposition,CFposition,-delta);
       gamF   = gamma(:,1);
       gamU   = gamma(:,2);
       objgam = gamF'*gamU
-      delta  = delta + 0.01
+      delta  = delta + 0.1
 end
 
 % Test for sufficient information - H0: regressors on PC are equal to zero.
@@ -154,7 +156,7 @@ pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 100;
+nsimul            = 1000;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
@@ -169,7 +171,7 @@ for i_simul=1:nsimul
       warning off
       [impact_boot(:,:,i_simul), gamma_boot(:,:,i_simul)] = ...
             identification_GPFA(A_boot(:,:,i_simul),B_boot(:,:,i_simul),...
-            SRhorizon,SRhorizonIV,EBPposition,Uposition,CFposition,delta);
+            SRhorizon,SRhorizonIV,EBPposition,Uposition,CFposition,-delta);
       i_simul
 end
 
