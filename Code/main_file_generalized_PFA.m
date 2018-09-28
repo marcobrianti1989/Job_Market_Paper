@@ -135,8 +135,8 @@ while abs(objgam) >= 0.05
       warning off
       SRhorizon       = 2;
       SRhorizonIV     = 4;
-      [impact, gamma] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,EBPposition,...
-            Uposition,CFposition,-delta);
+      [impact, gamma] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,Uposition,...
+            Uposition,CFposition,delta);
       gamF   = gamma(:,1);
       gamU   = gamma(:,2);
       objgam = gamF'*gamU
@@ -171,7 +171,7 @@ for i_simul=1:nsimul
       warning off
       [impact_boot(:,:,i_simul), gamma_boot(:,:,i_simul)] = ...
             identification_GPFA(A_boot(:,:,i_simul),B_boot(:,:,i_simul),...
-            SRhorizon,SRhorizonIV,EBPposition,Uposition,CFposition,-delta);
+            SRhorizon,SRhorizonIV,Uposition,Uposition,CFposition,delta);
       i_simul
 end
 
