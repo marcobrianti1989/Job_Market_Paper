@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:BB274';
+range                       = 'B1:BG274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -103,7 +103,7 @@ pc6                         = pc(:,6);
 nlags1 = 4;
 yEBP = GZSpread(1+nlags1:end);
 yJLN = MacroUncertH3(1+nlags1:end);
-PC   = [pc(:,1:7) GZSpread MacroUncertH3];
+PC   = [pc(:,1:4) GZSpread MacroUncertH3];
 k1   = 1;
 for j = 1:nlags1
       xPC(:,k1:k1+size(PC,2)-1) = [PC(1+nlags1-j:end-j,:)];
@@ -114,9 +114,9 @@ end
 
 % Step 2 - Regress CashFlow on resEBP and resJLN
 nlags = nlags1;
-Y     = TenYTreasury(1+nlags+nlags1:end);
+Y     = Cash2Equity(1+nlags+nlags1:end);
 %X     = [GDP Investment Consumption SP5002 Hours MacroUncertH3 EBP CashFlow];
-X     = [PC TenYTreasury];
+X     = [PC Cash2Equity];
 k     = 1;
 for j = 1:nlags
       XX(:,k:k+size(X,2)-1) = [X(1+nlags-j+nlags1:end-j,:)];

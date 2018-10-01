@@ -10,7 +10,7 @@ else
 end
 
 % Reading Data
-filename                    = 'Compustat_Data_Sep_2018_2';
+filename                    = 'Compustat_Data_Sep_2018_3';
 sheet                       = 'WRDS';
 range                       = 'A1:Q1046908';
 [dataset, var_names]        = xlsread(filename, sheet, range);
@@ -21,17 +21,15 @@ end
 
 % Assess names to each variable as an array
 CompanyKey    = dataset(:,1);
-Quarters      = var_names(2:end,10);
-Assets        = dataset(:,12);
-Equity        = dataset(:,13);
-CashSTInv     = dataset(:,14);
-Cash          = dataset(:,15);
-
-
+Quarters      = var_names(2:end,11);
+Assets        = dataset(:,13);
+Equity        = dataset(:,14);
+CashSTInv     = dataset(:,15);
+Cash          = dataset(:,16);
 
 time = [1961:0.25:2018.25]';
 year = [1961:1:2018]';
-qrt  = [1:1:4]';
+qrt  = [1:1:4]'; 
 j    = 1;
 for iy = 1:length(year)
       for iq = 1:length(qrt)
@@ -57,21 +55,27 @@ for iy = 1:length(year)
             sumCashSTInv                         = sum(subCashSTInv);
             AggCashSTInv(j)                      = sumCashSTInv;
             % Counter
-            j                                    = j + 1;
-            
+            j                                    = j + 1;            
       end
 end
-AggCash        = AggCash(1:end-2);
-AggCashSTInv   = AggCashSTInv(1:end-2);
-AggEquity      = AggEquity(1:end-2);
-AggAssets      = AggAssets(1:end-2);
 
+% Remove last two quarters since there are no data on that. 
+AggCash             = AggCash(2:end-2);
+AggCashSTInv        = AggCashSTInv(2:end-2);
+AggEquity           = AggEquity(2:end-2);
+AggAssets           = AggAssets(2:end-2);
+time                = time(2:end); %this is just to show that now time is aligned with other variables
+
+% Remove trend using the seven term henderson filter
 [AggCashSTInvDt, ~] = seven_term_henderson_filter(AggCashSTInv);
 [AggCashDt, ~]      = seven_term_henderson_filter(AggCash);
 [AggEquityDt, ~]    = seven_term_henderson_filter(AggEquity);
 [AggAssetsDt, ~]    = seven_term_henderson_filter(AggAssets);
 
-NCash = AggCashSTInvDt./AggAssetsDt;
+Cash2Assets    = AggCashSTInvDt./AggAssetsDt;
+Cash2Equity    = AggCashSTInvDt./AggEquityDt;
+AggEquityDt    = AggEquityDt';
+avgCash2Equity = mean(Cash2Equity(24:end));
 
-plot(time(1:end-3),NCash(1:end-3))
+plot(time(38:end-3),AggCashSTInvDt(38:end-3))
 

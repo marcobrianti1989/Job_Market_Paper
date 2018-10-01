@@ -12,7 +12,7 @@ close all
 % Reading Data
 filename                    = 'Quarterly';
 sheet                       = 'Quarterly Data';
-range                       = 'B1:BF274';
+range                       = 'B1:BG274';
 do_truncation               = 1; %Do not truncate data. You will have many NaN
 [dataset, var_names]        = read_data(filename, sheet, range, do_truncation);
 tf                          = isreal(dataset);
@@ -89,6 +89,7 @@ if percapita == 1
       CPAdj               = CorpProfitsAdj - Population - GDPDef;
       TenYTreasury        = TenYTreasury;
       SecuAssets          = CorpSecuritiesAssets - Population - GDPDef;
+      M2                  = M2 - Population;
 else
       Consumption         = NonDurableCons + ServiceCons;
       Investment          = Investment + DurableCons;
@@ -102,6 +103,7 @@ CashFlow            = CashFlow - CorpProfitsAdj;
 Dividends           = Dividends - CorpProfitsAdj;
 ProfTransfers       = ProfitsTransfers - CorpProfitsAdj;
 ConsFixedK          = ConsFixedK - CorpProfitsAdj;
+Cash                = Cash - GDPDef;
 
 % Obtaine Principal Components
 Zscore                      = 1; %remove mean and divide over the variance each series
@@ -109,14 +111,14 @@ pc                          = get_principal_components(dataPC(:,2:end),Zscore);
 
 % Define the system1
 system_names  = {'EBP','MacroUncertH3','GDP','Consumption',...
-      'Investment','Hours','Cash2Assets'};
+      'Investment','Hours','Cash'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
 Uposition   = find(strcmp('MacroUncertH3', system_names));
 EBPposition = find(strcmp('EBP', system_names));
-CFposition  = find(strcmp('Cash2Assets', system_names));
+CFposition  = find(strcmp('Cash', system_names));
 GDPposition = find(strcmp('GDP', system_names));
 Cposition   = find(strcmp('Consumption', system_names));
 
@@ -134,7 +136,7 @@ delta = 0;
 while abs(objgam) >= 0.05
       warning off
       SRhorizon       = 2;
-      SRhorizonIV     = 8;
+      SRhorizonIV     = 4;
       [impact, gamma] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,Uposition,...
             EBPposition,CFposition,delta);
       gamF   = gamma(:,1);
@@ -156,7 +158,7 @@ pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 100;
+nsimul            = 200;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
@@ -183,9 +185,9 @@ H                          = 20;
 
 % Create and Printing figures for IRFs
 base_path         = pwd;
-which_ID          = 'GPFA';
+which_ID          = 'GPFA_Compustat_3lags';
 print_figs        = 'no';
-use_current_time  = 1; % don't save the time
+use_current_time  = 1; % (don't) save the time
 which_shocks      = [1 2]; %[Uposition];
 shocknames        = {'Uncertainty Shock','Financial Shock'};
 plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
@@ -203,7 +205,7 @@ end
 asd
 % Create and Printing figures for Variance decomposition
 base_path         = pwd;
-which_ID          = 'vardec_GPFA';
+which_ID          = 'vardec_GPFA_Compustat_3lags';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
 plot_vardec(vardec,H,which_shocks,shocknames,...
