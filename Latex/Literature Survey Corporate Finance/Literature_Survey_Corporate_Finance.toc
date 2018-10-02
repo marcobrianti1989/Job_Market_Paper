@@ -1,4 +1,4 @@
 \select@language {english}
 \contentsline {section}{\numberline {1}Almeida, Campello, and Weisbach (2004) - JF}{1}
-\contentsline {section}{\numberline {2}Han and Qiu (2007) - Journal of Corporate Finance}{2}
-\contentsline {section}{\numberline {3}Campello, Graham and Harvey (2010) - JFE}{2}
+\contentsline {section}{\numberline {2}Han and Qiu (2007) - Journal of Corporate Finance}{3}
+\contentsline {section}{\numberline {3}Campello, Graham and Harvey (2010) - JFE}{4}

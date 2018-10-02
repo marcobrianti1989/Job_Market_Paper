@@ -1,0 +1,438 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\usepackage{graphicx,lmodern,subfigure,ulem,color,graphicx,tikz,booktabs,natbib}
+\usepackage{mathrsfs}
+\usetheme{Warsaw}
+%\definecolor{beamer@blendedblue}{rgb}{0.1,0.5,0.1}
+%\definecolor{ForestGreen}{RGB}{60, 140, 60}
+%\setbeamercolor{structure}{fg=beamer@blendedblue}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\bibliographystyle{chicago}
+\newcommand{\spitem}{\vspace{.3cm}\item}
+\newcommand{\elas}{$E_{labor}$}
+%\def \FigPath {Users\th3\Documents\Job_Market_Paper\Code\Figures} 
+
+
+\title{Uncertainty Shocks and Financial Shocks}
+\author{Marco Brianti}
+\institute{Boston College}
+\date{October 2018}
+
+\usetheme[
+outer/progressbar=foot,
+outer/numbering=none
+]{metropolis}
+
+
+\begin{document}
+	
+	\frame{\titlepage \begin{center} Dissertation Project \end{center} }
+	
+
+
+
+
+
+\frame{\frametitle{Financial Shocks and Uncertainty Shocks}
+	
+	Stock and Watson (2012); Caldara et al. (2016) among others shown that uncertainty shocks and financial shocks are deeply confounded.
+	
+	\
+	
+	\
+	
+	
+	$$
+	corr(\iota^{EBP}_t,\iota^{JLN}_t) \approx 0.45
+	$$
+	
+	\
+	
+	\
+	
+	
+	where $\iota^{EBP}_t$ is an unpredictable innovation in the \textbf{excess bond premium} from Gilchrist and Zakrajzek (2012) and $\iota^{JLN}_t$ is an unpredictable innovation in the \textbf{uncertainty proxy} from Jurado et al. (2015).
+	
+
+	
+
+	
+	
+	
+}
+
+\frame{\frametitle{Both a theoretical and empirical question}
+
+	Literature did not succeed yet to disentangle the two exogenous sources for two main reasons:
+\begin{enumerate}
+	\item Simultaneity
+	\begin{itemize}
+		\item Both types of variables are fast moving
+				\end{itemize}	
+			\item Effect on observables
+			
+			\begin{itemize}
+			\item They have the same qualitative effects on prices and quantities
+\end{itemize}
+\end{enumerate}
+
+\
+
+\
+
+As a result, both \textbf{zero-impact restrictions} cannot be used and \textbf{internal instruments} are not available.
+	
+}
+
+\frame{\frametitle{This Project}
+	
+	I want to take a step back and argue that it is conceptually wrong to disentangle these two shocks as defined by the literature.
+	
+	\
+	
+	
+	From a theoretical point of view, uncertainty shocks can potentially be a primitive source of financial shocks.
+	
+	\
+	
+	
+	It is more important to gauge how much of the combinations of these shocks appears to be
+	\begin{itemize}
+		\item a credit supply shock $\Rightarrow$ \textbf{financial shock}
+		\item a credit demand shock $\Rightarrow$ \textbf{macro uncertainty shock}
+	\end{itemize}
+	
+	
+}
+	
+
+
+\frame{\frametitle{Main Contribution}
+	
+	
+	\begin{enumerate}
+		
+		\item I present evidence and theory of an \textbf{internal instrument} able to disentangle shifts in credit supply and demand. 
+
+
+\
+
+\
+
+\
+
+
+		
+		\item I provide a \textbf{new econometric method} which can be applied to disentangle two structural shocks when an internal instrument is available.
+		
+	\end{enumerate}
+	
+
+}
+
+\frame{\frametitle{Corporate Cash Reserves}
+	
+\textbf{Cash reserves} (or \textbf{cash holdings}) refer to money or extremely liquid short-term investment which an individual corporation saves in order to be ready to cover any emergency funding or short-term requirements. 
+
+\
+
+The typical U.S. large firm has cash equal to about 10\% and 15\% of total assets.
+
+\
+
+Together with current cash flow is consider the most important \textbf{internal source of finance}.
+}
+
+
+\frame{\frametitle{Cash Reserves and Financial Frictions}
+	
+	
+
+		
+Almeida, Campello, Weisbach, 2004. \textit{The Journal of Finance} 	
+		\begin{itemize}
+			\item[$\Rightarrow$] Financially constrained firms tend to build larger cash reserves as a buffer against potential credit supply shocks.
+		\end{itemize}
+		
+		
+		\
+		
+Kaplan and Zingales, 1997. \textit{Quarterly Journal of Economics}
+		\begin{itemize}
+	\item[$\Rightarrow$] Investment is positive related to cash reserves when firms are financially constrained.
+\end{itemize}
+		
+		\
+		
+		Campello, Graham, Harvey, 2010. \textit{Journal of Financial Economics}
+				\begin{itemize}
+			\item[$\Rightarrow$] After the 2008-09 credit supply shock, cash reserves decrease because adopted as internal source of finance. 
+		\end{itemize}
+		
+	
+}
+
+		\frame{\frametitle{Cash Reserves and Uncertainty}
+	
+Bloom, Mizen, Smietanka (2018). \textit{Working Paper}
+	\begin{itemize}
+		\item[$\Rightarrow$] Higher economic uncertainty in the years 2007-09 is related to an increase in cash holdings.
+			\end{itemize}
+
+
+	\
+	
+	\
+	
+Alfaro, Bloom, Lin (2018). \textit{NBER Working Paper}
+	
+	\begin{enumerate}
+		\item[$\Rightarrow$] Firms accumulate cash reserves and short-term liquid instruments following uncertainty rises.
+	\end{enumerate}
+	
+
+	
+
+	
+}
+	
+	
+	\frame{\frametitle{Economic Intuition I}	
+		
+To provide an economic intuition of the differential response of \textbf{cash holdings} to uncertainty and financial shocks, I present a properly augmented model in the spirit of 
+\begin{itemize}
+	\item Almeida, Campello, and Weisbach (2004)
+	\item Han and Qiu (2007)
+\end{itemize}
+
+
+\
+
+It is a simple representation of a dynamic setting where a credit-constrained profit-maximizing firm has
+\begin{itemize}
+	\item a trade-off between present and future investment opportunities
+	\item current cash flow and external sources of finance might not be enough to fund all profitable projects
+\end{itemize}
+
+		
+	}
+
+\frame{\frametitle{Economic Intuition I}
+
+	
+Model has three periods: 0, 1 and 2.
+	
+
+	
+Discount factor $\beta = 1$
+	
+
+	
+In P0 firm can invest $I_0$ 
+	\begin{itemize}
+		\item $I_0$ pays a deterministic return $g(I_0) = G(I_0) + qI_0$ in P2
+	\end{itemize}
+	
+	
+In P1 firm can invest $I_1$ 
+	\begin{itemize}
+		\item $I_1$ pays a deterministic return $h(i_0) = H(i_0) + qI_0$ in P2
+	\end{itemize}
+
+	
+}
+	
+
+\frame{\frametitle{Step 1}
+	
+	Regress both a proxy for uncertainty and financial conditions on lagged principal components obtained from a large dataset,
+	\begin{itemize}
+		\item $F_t = \alpha^F + A_F(L)PC_{t-1} + \iota^F_t$
+		\item $U_t = \alpha^U + A_U(L)PC_{t-1} + \iota^U_t$
+	\end{itemize}
+
+where 
+
+\begin{itemize}
+	\item $F_t$ is a proxy of financial conditions
+	\item $U_t$ is a proxy of uncertainty
+	\item $PC_t$ is a vector of principal components
+\end{itemize}
+
+\
+
+Goal is to obtain $\iota^F_t$ and $\iota^U_t$ as \textbf{unforecastable components} of $F_t$ and $U_t$, respectively.
+
+}
+
+\frame{\frametitle{Step 2}
+	
+Regress normalized cash flow on both innovations $\iota^F_t$ and $\iota_t^U$, controlling for its forecastable part,
+	
+	$$
+	\tilde{CF}_t = \alpha + B(L)PC_{t-1} + \beta^{F} \iota_t^F + \beta^{U} \iota_t^U + \varepsilon_t
+	$$
+	
+	where $\tilde{CF}_t$ is cash flow normalized by corporate profits.
+	
+	\
+	
+	\
+	
+	\textbf{Results.}
+	
+	\begin{itemize}
+		\item $\beta^F$ is always \textbf{positive} and \textbf{significant} at $1$\%.
+		
+		\item $\beta^U$ is almost always \textbf{not significant}. 
+	\end{itemize}
+
+
+	
+}
+
+	
+	\frame{\frametitle{Robustness Checks}
+		
+\begin{itemize}
+	\item Changing the number of lags, ranging from $3$ to $6$
+	\item Changing the number of $PC_t$, ranging from $4$ to $8$
+	\item Adding different controls in both steps
+	\item Using different measures of uncertainty and credit supply
+\end{itemize}
+
+}
+
+\frame{\frametitle{Penalty Functions}
+
+Penalty functions is a constrained maximization problem where the importance of the constraint depends on a exogenously given coefficient.
+
+\
+
+Given a standard constrained maximization problem,
+$$
+\max_x f(x) \ \ \text{s.t} \ \ g(x) \geq 0
+$$
+a penalty function is
+$$
+\max_x f(x) + \delta g(x), \ \ \delta > 0
+$$
+
+\begin{itemize}
+\item If $\delta = 0$ the constraint $g(x)$ is not taken into account
+\item If $\delta \rightarrow \infty$ optimal solution maximizes constraint $g(x)$
+\end{itemize}
+
+}
+
+
+
+
+\frame{\frametitle{Penalty Functions Approach (PFA) on Structural VARs}
+	
+	
+Firstly presented by Uhlig (2005), PFA has the flavor of \textbf{sign restrictions} but with the advantage that the problem is just identified, delivering an \textbf{unique solution}.
+
+\
+
+\
+
+\textbf{Shortcoming}: parameter $\delta$ is exogenously chosen making the identification strategy less credible.
+
+\
+
+\
+
+I suggest a \textbf{general penalty function approach} for internal instruments where $\delta$ is treated as an endogenous parameter chosen by the data.
+
+}
+
+\frame{\frametitle{Step 1 - Identifying uncertainty shocks}
+
+Given the reduced-form system $X_t = B X_{t-1} + \iota_t$ where 
+\begin{itemize}
+\item $X_t = [U_t \ \ F_t \ \ Y_t]'$ where $Y_t$ are macroeconomic variables.
+\item $\iota_t' \iota_t = \Sigma_{\iota}$
+\end{itemize}
+
+\
+
+\textbf{Step 1}
+\begin{eqnarray*}
+\max_{\gamma_{U}} \ & \ \sum_{t=0}^K e'_U B^t \tilde{A}_0 \gamma_U - \delta e'_{CF} \tilde{A}_0 \gamma_U \\
+\text{subject to} \ & \ \delta \geq 0 \ \ \text{and} \ \ \gamma_U \gamma_U' = 1
+\end{eqnarray*}
+ where 
+\begin{itemize}
+	\item $\tilde{A}_0 \tilde{A}'_0 = \Sigma_{\iota}$
+	\item $e_j$ is a selection vector of variable $j$
+\end{itemize}
+
+\
+
+An uncertainty shock maximizes its effect on uncertainty over the first $K$ quarters with penalty $\delta$ if cash flow is positive on impact.
+	
+}
+
+\frame{\frametitle{Step 2 - Identifying financial shocks}
+
+
+Given the reduced-form system $X_t = B X_{t-1} + \iota_t$ where 
+\begin{itemize}
+	\item $X_t = [U_t \ \ F_t \ \ Y_t]'$ where $Y_t$ are macroeconomic variables.
+	\item $\iota_t' \iota_t = \Sigma_{\iota}$
+\end{itemize}
+
+\
+
+\textbf{Step 2}
+\begin{eqnarray*}
+	\max_{\gamma_{F}} \ & \ \sum_{t=0}^J e'_F B^t \tilde{A}_0 \gamma_F + \delta e'_{CF} \tilde{A}_0 \gamma_F \\
+	\text{subject to} \ & \ \delta \geq 0, \ \ \gamma_F \gamma_F' = 1 \ \ \text{and} \ \ \gamma_U \gamma_F' = 0
+\end{eqnarray*}
+where 
+\begin{itemize}
+	\item $\tilde{A}_0 \tilde{A}'_0 = \Sigma_{\iota}$
+	\item $e_j$ is a selection vector of variable $j$
+\end{itemize}
+
+\
+
+
+A financial shock maximizes its effect on credit spread over the first $J$ quarters with penalty $\delta$ if cash flow is negative on impact.
+
+}
+
+\frame{\frametitle{How to choose $\delta$}
+	
+	Choose $\delta$ large enough such that it does not matter if you run Step 1 or Step 2 first.
+	
+	\
+	
+	In other words, internal instrument intervention should be strong enough such that $\gamma_U \gamma_F' \simeq 0$
+	
+	\
+	
+	Solution is \textbf{unique} over many dimensions.
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
