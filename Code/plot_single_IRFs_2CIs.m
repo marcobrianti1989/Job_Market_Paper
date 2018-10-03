@@ -42,14 +42,14 @@ for i_shock=1:nshocks
         plot(periods,IRFs(i_var,1:h,which_shock(i_shock)),'linewidth',1,'Color','r')
         xt = get(gca, 'XTick');
         set(gca, 'FontSize', 28)
-        title([name, ' on ' , varname],'fontsize',72)
+        title([varname],'fontsize',72)
         %ylim([min_y_lim(i_var) max_y_lim(i_var)]);
         hold off
         grid on
         
         % Save figures if you want to
         if strcmp(print_figs, 'yes')
-            invoke_export_fig([name, ' on ' , varname], which_ID_strat,...
+            invoke_export_fig([varname], which_ID_strat,...
                   use_current_time, base_path)
             close all
             pause(0.5)

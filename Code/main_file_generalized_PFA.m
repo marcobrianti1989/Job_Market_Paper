@@ -190,7 +190,7 @@ print_figs        = 'no';
 use_current_time  = 1; % (don't) save the time
 which_shocks      = [1 2]; %[Uposition];
 shocknames        = {'Uncertainty Shock','Financial Shock'};
-plot_single_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
+plot_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
 
 % Get variance Decomposition
@@ -226,8 +226,6 @@ LGD.FontSize = 24;
 legend boxoff
 axis tight
 grid on
-
-
 
 
 

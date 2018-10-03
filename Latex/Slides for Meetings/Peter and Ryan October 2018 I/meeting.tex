@@ -1,4 +1,5 @@
 \documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\setbeamercolor{background canvas}{bg=white}
 \usepackage{graphicx,lmodern,subfigure,ulem,color,graphicx,tikz,booktabs,natbib}
 \usepackage{mathrsfs}
 \usetheme{Warsaw}
@@ -11,6 +12,8 @@
 \newcommand{\spitem}{\vspace{.3cm}\item}
 \newcommand{\elas}{$E_{labor}$}
 %\def \FigPath {Users\th3\Documents\Job_Market_Paper\Code\Figures} 
+\DeclareMathOperator{\E}{\mathbb{E}}
+
 
 
 \title{Uncertainty Shocks and Financial Shocks}
@@ -37,7 +40,6 @@ outer/numbering=none
 	
 	Stock and Watson (2012); Caldara et al. (2016) among others shown that uncertainty shocks and financial shocks are deeply confounded.
 	
-	\
 	
 	\
 	
@@ -46,7 +48,6 @@ outer/numbering=none
 	corr(\iota^{EBP}_t,\iota^{JLN}_t) \approx 0.45
 	$$
 	
-	\
 	
 	\
 	
@@ -208,216 +209,255 @@ To provide an economic intuition of the differential response of \textbf{cash ho
 
 \
 
-It is a simple representation of a dynamic setting where a credit-constrained profit-maximizing firm has
-\begin{itemize}
-	\item a trade-off between present and future investment opportunities
-	\item current cash flow and external sources of finance might not be enough to fund all profitable projects
-\end{itemize}
+It is a simple representation of a dynamic setting where a credit-constrained profit-maximizing firm has a trade-off between present and future investment opportunities
+
 
 		
 	}
 
-\frame{\frametitle{Economic Intuition I}
-
-	
-Model has three periods: 0, 1 and 2.
-	
-
-	
-Discount factor $\beta = 1$
-	
-
-	
-In P0 firm can invest $I_0$ 
-	\begin{itemize}
-		\item $I_0$ pays a deterministic return $g(I_0) = G(I_0) + qI_0$ in P2
-	\end{itemize}
-	
-	
-In P1 firm can invest $I_1$ 
-	\begin{itemize}
-		\item $I_1$ pays a deterministic return $h(i_0) = H(i_0) + qI_0$ in P2
-	\end{itemize}
-
-	
-}
-	
-
-\frame{\frametitle{Step 1}
-	
-	Regress both a proxy for uncertainty and financial conditions on lagged principal components obtained from a large dataset,
-	\begin{itemize}
-		\item $F_t = \alpha^F + A_F(L)PC_{t-1} + \iota^F_t$
-		\item $U_t = \alpha^U + A_U(L)PC_{t-1} + \iota^U_t$
-	\end{itemize}
-
-where 
+\frame{\frametitle{Model}
 
 \begin{itemize}
-	\item $F_t$ is a proxy of financial conditions
-	\item $U_t$ is a proxy of uncertainty
-	\item $PC_t$ is a vector of principal components
-\end{itemize}
-
-\
-
-Goal is to obtain $\iota^F_t$ and $\iota^U_t$ as \textbf{unforecastable components} of $F_t$ and $U_t$, respectively.
-
-}
-
-\frame{\frametitle{Step 2}
-	
-Regress normalized cash flow on both innovations $\iota^F_t$ and $\iota_t^U$, controlling for its forecastable part,
-	
-	$$
-	\tilde{CF}_t = \alpha + B(L)PC_{t-1} + \beta^{F} \iota_t^F + \beta^{U} \iota_t^U + \varepsilon_t
-	$$
-	
-	where $\tilde{CF}_t$ is cash flow normalized by corporate profits.
+	\item[]
+\begin{itemize}
+     \item[Period 0] $ \ \ \ d_0 = y_0 + b_0 - i_0 - c$
 	
 	\
 	
+	
+	\item[Period 1] $ \ \ \ d_1 = y_1 + b_1 - i_1 + c, \ \ \ $ where $ \ y_1 \sim F$
+	
 	\
 	
-	\textbf{Results.}
 	
-	\begin{itemize}
-		\item $\beta^F$ is always \textbf{positive} and \textbf{significant} at $1$\%.
-		
-		\item $\beta^U$ is almost always \textbf{not significant}. 
-	\end{itemize}
-
-
-	
-}
-
-	
-	\frame{\frametitle{Robustness Checks}
-		
-\begin{itemize}
-	\item Changing the number of lags, ranging from $3$ to $6$
-	\item Changing the number of $PC_t$, ranging from $4$ to $8$
-	\item Adding different controls in both steps
-	\item Using different measures of uncertainty and credit supply
+	\item[Period 2] $ \ \ \ d_2 = g(I_0) - b_0 + h(I_1) - b_1$
+\end{itemize}
 \end{itemize}
 
+\begin{eqnarray*}
+	\begin{aligned}
+\max_{\{ b_t,i_t,c \}_{t=0,1}} \ \ &\E \Big[  d_0 + d_1 + d_2     \Big| F  \Big] \\
+\text{subject to} \ \ &b_t \leq (1 - \tau_t)i_t, \ \ \ t = 0,1 \\
+&d_t \geq 0, \ \ \ t = 0,1,2
+\end{aligned}
+\end{eqnarray*}
+	
+}
+	
+	
+
+\frame{\frametitle{Solution}
+	
+	Financially constrained firm: $I^*_t < I^{FB}_t$ for $t=0,1$
+\begin{itemize}
+	\item[$\Rightarrow$] $b_t = (1 - \tau_t)i_t \ \ $ for $ \ t=0,1$
+	\item[$\Rightarrow$] $d_t = 0 \ \ $ for $ \ t=0,1$
+\end{itemize}
+which implies $I_0 = \frac{y_0 - c}{\tau_0}$ and $I_1 = \frac{y_1 + c}{\tau_1}$. Objective function is,
+\begin{eqnarray*}
+	\max_c g \bigg( \frac{y_0 - c}{\tau_0 } \bigg) - \frac{y_0 - c}{\tau_0 } +   \E \bigg[  h \bigg( \frac{y_1 + c}{\tau_1 } \bigg) - \frac{y_1 + c}{\tau_1 }   \bigg| F     \bigg]
+	\end{eqnarray*}
+and optimal condition for $c^*(\tau_0,F)$ is
+\begin{eqnarray*}
+\underbrace{g' \bigg( \frac{y_0 - c^*(\tau_0,F)}{\tau_0 } \bigg)}_{\text{Marginal Return of $I_0$}} = \underbrace{\E \bigg[  h' \bigg( \frac{y_1 + c^*(\tau_0,F)}{\tau_1 } \bigg)  \bigg| F  \bigg]}_{\text{$\E$ Marginal Return of $I_1$}}
+\end{eqnarray*}
+
 }
 
-\frame{\frametitle{Penalty Functions}
+\frame{\frametitle{Comparative Statics}
+	Given the Euler equation for cash $c$,
+	\begin{eqnarray*}
+		\underbrace{g' \bigg( \frac{y_0 - c^*(\tau_0,F)}{\tau_0 } \bigg)}_{\text{Marginal Return of $I_0$}} = \underbrace{\E \bigg[  h' \bigg( \frac{y_1 + c^*(\tau_0,F)}{\tau_1 } \bigg)  \bigg| F  \bigg]}_{\text{$\E$ Marginal Return of $I_1$}}
+	\end{eqnarray*}
 
-Penalty functions is a constrained maximization problem where the importance of the constraint depends on a exogenously given coefficient.
+\
+	
+\textbf{Uncertainty shock}: $y_1 \sim Q$ which is mean-preserving spread in $F$
+	\begin{enumerate}
+	\item[$\Rightarrow$] $c^*(\tau_0,Q) > c^*(\tau_0,F)$ as long as $h'''(\cdot) > 0$
+\end{enumerate}
 
 \
 
-Given a standard constrained maximization problem,
+\textbf{Financial shock}: $\tau_0^f > \tau_0$ which is a decrease in $b_0$
+	\begin{enumerate}
+	\item[$\Rightarrow$] $c^*(\tau_0^f,Q) < c^*(\tau_0,F)$ 
+\end{enumerate}
+
+}
+
+
+
+\frame{\frametitle{Penalty Functions (I)}
+
+Penalty functions is a maximization problem where the importance of the constraint depends on some assumptions.
+
+\
+
+Consider the standard constrained maximization problem,
 $$
 \max_x f(x) \ \ \text{s.t} \ \ g(x) \geq 0
 $$
-a penalty function is
+a penalty function is an unconstrained maximization problem
 $$
-\max_x f(x) + \delta g(x), \ \ \delta > 0
+\max_x f(x) + G \big( g(x) \big) 
 $$
 
-\begin{itemize}
-\item If $\delta = 0$ the constraint $g(x)$ is not taken into account
-\item If $\delta \rightarrow \infty$ optimal solution maximizes constraint $g(x)$
-\end{itemize}
+
+$\Rightarrow$ Assumptions on $G(\cdot)$ determines the importance of $g(x)$.
+
 
 }
 
 
-
-
-\frame{\frametitle{Penalty Functions Approach (PFA) on Structural VARs}
+\frame{\frametitle{Penalty Functions (II)}
 	
-	
-Firstly presented by Uhlig (2005), PFA has the flavor of \textbf{sign restrictions} but with the advantage that the problem is just identified, delivering an \textbf{unique solution}.
+Given $\max_x f(x) \ \ \text{s.t} \ \ g(x) \geq 0$, I assume $G(\cdot)$ to be linear,
+$$
+\max_x f(x) + \delta  g(x), \ \ \ \delta > 0
+$$
+$\Rightarrow$ the larger $\delta$, the more important $g(x)$
 
 \
+
+Applied to SVARs, PFA has the flavor of \textbf{sign restrictions} but with the advantage that the problem is \textbf{just identified}. 
 
 \
 
 \textbf{Shortcoming}: parameter $\delta$ is exogenously chosen making the identification strategy less credible.
-
-\
-
-\
-
-I suggest a \textbf{general penalty function approach} for internal instruments where $\delta$ is treated as an endogenous parameter chosen by the data.
-
+	
+	
 }
 
-\frame{\frametitle{Step 1 - Identifying uncertainty shocks}
+
+
+\frame{\frametitle{Identification (I)}
+	
+	Given the reduced-form system $X_t = \textcolor{red}{B} X_{t-1} + \iota_t$ where 
+	\begin{itemize}
+		\item $X_t = [U_t \ \ F_t \ \ Y_t]'$ where $Y_t$ are macroeconomic variables.
+		\item $\iota_t' \iota_t = \Sigma_{\iota}$
+	\end{itemize}
+	\textbf{Step 1}
+	\begin{eqnarray*}
+		\max_{\gamma_{U}} \ & \ \sum_{t=0}^K e'_U B^t \tilde{A}_0 \gamma_U + \delta e'_{C} \tilde{A}_0 \gamma_U \\
+		\text{subject to} \ & \ \delta \geq 0 \ \ \text{and} \ \ \gamma_U \gamma_U' = 1
+	\end{eqnarray*}
+	\textbf{Step 2}
+	\begin{eqnarray*}
+		\max_{\gamma_{F}} \ & \ \sum_{t=0}^J e'_F B^t \tilde{A}_0 \gamma_F - \delta e'_{C} \tilde{A}_0 \gamma_F \\
+		\text{subject to} \ & \ \delta \geq 0, \ \ \gamma_F \gamma_F' = 1 \ \ \text{and} \ \ \gamma_U \gamma_F' = 0
+	\end{eqnarray*}
+	where $\tilde{A}_0 \tilde{A}'_0 = \Sigma_{\iota}$ and $e_j$ is a selection vector of variable $j$.
+	
+}
+
+
+\frame{\frametitle{Identification (I)}
+	
+	Given the reduced-form system $X_t = B X_{t-1} + \iota_t$ where 
+	\begin{itemize}
+		\item $X_t = [U_t \ \ F_t \ \ C_t \ \ Y_t]'$ 
+		\item $\iota_t' \iota_t = \Sigma_{\iota}$
+	\end{itemize}
+	\textcolor{red}{\textbf{Step 1 - Uncertainty Shock}}
+	\begin{eqnarray*}
+		\max_{\gamma_{U}} \ & \ \sum_{t=0}^K e'_U B^t \tilde{A}_0 \gamma_U + \delta e'_{C} \tilde{A}_0 \gamma_U \\
+		\text{subject to} \ & \ \delta \geq 0 \ \ \text{and} \ \ \gamma_U \gamma_U' = 1
+	\end{eqnarray*}
+
+
+An uncertainty shock maximizes its effect on uncertainty over the first $K$ quarters with penalty (merit) $\delta$ if cash is negative (positive) on impact.
+	
+}
+
+\frame{\frametitle{Identification (I)}
 
 Given the reduced-form system $X_t = B X_{t-1} + \iota_t$ where 
 \begin{itemize}
 \item $X_t = [U_t \ \ F_t \ \ Y_t]'$ where $Y_t$ are macroeconomic variables.
 \item $\iota_t' \iota_t = \Sigma_{\iota}$
 \end{itemize}
-
-\
-
-\textbf{Step 1}
+\textcolor{red}{\textbf{Step 2 - Financial Shock}}
 \begin{eqnarray*}
-\max_{\gamma_{U}} \ & \ \sum_{t=0}^K e'_U B^t \tilde{A}_0 \gamma_U - \delta e'_{CF} \tilde{A}_0 \gamma_U \\
-\text{subject to} \ & \ \delta \geq 0 \ \ \text{and} \ \ \gamma_U \gamma_U' = 1
-\end{eqnarray*}
- where 
-\begin{itemize}
-	\item $\tilde{A}_0 \tilde{A}'_0 = \Sigma_{\iota}$
-	\item $e_j$ is a selection vector of variable $j$
-\end{itemize}
-
-\
-
-An uncertainty shock maximizes its effect on uncertainty over the first $K$ quarters with penalty $\delta$ if cash flow is positive on impact.
-	
-}
-
-\frame{\frametitle{Step 2 - Identifying financial shocks}
-
-
-Given the reduced-form system $X_t = B X_{t-1} + \iota_t$ where 
-\begin{itemize}
-	\item $X_t = [U_t \ \ F_t \ \ Y_t]'$ where $Y_t$ are macroeconomic variables.
-	\item $\iota_t' \iota_t = \Sigma_{\iota}$
-\end{itemize}
-
-\
-
-\textbf{Step 2}
-\begin{eqnarray*}
-	\max_{\gamma_{F}} \ & \ \sum_{t=0}^J e'_F B^t \tilde{A}_0 \gamma_F + \delta e'_{CF} \tilde{A}_0 \gamma_F \\
+	\max_{\gamma_{F}} \ & \ \sum_{t=0}^J e'_F B^t \tilde{A}_0 \gamma_F - \delta e'_{C} \tilde{A}_0 \gamma_F \\
 	\text{subject to} \ & \ \delta \geq 0, \ \ \gamma_F \gamma_F' = 1 \ \ \text{and} \ \ \gamma_U \gamma_F' = 0
 \end{eqnarray*}
-where 
+A financial shock maximizes its effect on credit spread over the first $J$ quarters with penalty (merit) $\delta$ if cash is positive (negative) on impact.
+	
+}
+
+
+
+
+
+\frame{\frametitle{Identification (I)}
+	
+	Given the reduced-form system $X_t = B X_{t-1} + \iota_t$ where 
+	\begin{itemize}
+		\item $X_t = [U_t \ \ F_t \ \ Y_t]'$ where $Y_t$ are macroeconomic variables.
+		\item $\iota_t' \iota_t = \Sigma_{\iota}$
+	\end{itemize}
+	\textbf{Step 1 - Uncertainty Shock}
+	\begin{eqnarray*}
+		\max_{\gamma_{U}} \ & \ \sum_{t=0}^K e'_U B^t \tilde{A}_0 \gamma_U + \textcolor{red}{\delta} e'_{C} \tilde{A}_0 \gamma_U \\
+		\text{subject to} \ & \ \delta \geq 0 \ \ \text{and} \ \ \gamma_U \gamma_U' = 1
+	\end{eqnarray*}
+	\textbf{Step 2 - Financial Shock}
+	\begin{eqnarray*}
+		\max_{\gamma_{F}} \ & \ \sum_{t=0}^J e'_F B^t \tilde{A}_0 \gamma_F - \textcolor{red}{\delta} e'_{C} \tilde{A}_0 \gamma_F \\
+		\text{subject to} \ & \ \delta \geq 0, \ \ \gamma_F \gamma_F' = 1 \ \ \text{and} \ \ \textcolor{red}{\gamma_U \gamma_F' = 0}
+	\end{eqnarray*}
+	where $\tilde{A}_0 \tilde{A}'_0 = \Sigma_{\iota}$ and $e_j$ is a selection vector of variable $j$.
+	
+}
+
+\frame{\frametitle{Identification (II)}
+
+I suggest a \textbf{general approach} where $\delta$ is treated as an endogenous parameter chosen by the data.
 \begin{itemize}
-	\item $\tilde{A}_0 \tilde{A}'_0 = \Sigma_{\iota}$
-	\item $e_j$ is a selection vector of variable $j$
+\item[$\Rightarrow$] Given the problem above, set $\delta$ such that $\gamma_U \gamma'_F = 0$
 \end{itemize}
 
-\
+\begin{center}
+\includegraphics[scale=0.15]{fig_GPFA_intuition_figure_}
+\end{center}
+
+\textbf{Intuition.} Internal instrument intervention should be strong enough such that $\gamma_U \gamma_F' = 0$.
 
 
-A financial shock maximizes its effect on credit spread over the first $J$ quarters with penalty $\delta$ if cash flow is negative on impact.
+
+
+
 
 }
 
-\frame{\frametitle{How to choose $\delta$}
-	
-	Choose $\delta$ large enough such that it does not matter if you run Step 1 or Step 2 first.
-	
-	\
-	
-	In other words, internal instrument intervention should be strong enough such that $\gamma_U \gamma_F' \simeq 0$
-	
-	\
-	
-	Solution is \textbf{unique} over many dimensions.
+\frame{\frametitle{Results - Uncertainty Shock}
+
+\begin{center}
+	\includegraphics[scale=0.27]{fig_Uncertainty_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_25_58}
+\end{center}	
+
 	
 }
 
+\frame{\frametitle{Results - Financial Shock}
+	
+	\begin{center}
+		\includegraphics[scale=0.27]{fig_Financial_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_26_00}
+	\end{center}	
+		
+}
 
+
+
+\frame{\frametitle{Results - Variance Explained}
+	
+	\begin{center}
+		\includegraphics[scale=0.27]{fig_var_dec_vardec_GPFA_Compustat_3lags_03-Oct-2018_12_37_32}
+	\end{center}	
+	
+}
 
 
 

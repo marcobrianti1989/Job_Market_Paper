@@ -1,4 +1,4 @@
-function invoke_export_fig(figname, some_comment,use_current_time, base_path)
+function invoke_export_fig(figname,some_comment,use_current_time,base_path)
 % This file invokes the export_fig command which requires the figure to be saved to be open
 % Inputs:
 % figname      = what you want the figure to be called
