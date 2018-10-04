@@ -31,15 +31,40 @@ outer/numbering=none
 	
 	\frame{\titlepage \begin{center} Dissertation Project \end{center} }
 	
+	
+	\frame{\frametitle{Credit Conditions and Uncertainty (I)}	
+		
+		\includegraphics[scale=0.26]{Financial_Uncertainty}
+		
+	}
 
 
-
-
+\frame{\frametitle{Credit Conditions and Uncertainty (II)}
+	
+	
+	\begin{table}
+		\begin{tabular}{c||cccccc}
+			& JLN         &      RV    & GZ  & EBP &    Moodys Aaa 	  \\
+			\hline
+			\hline
+			JLN	        &    1        &       -    &      -     &       -    &    -   \\
+			RV        	&    0.5865   &  1         &     -      &     -      &    -   \\ 
+			GZ       	&    0.7742   &  0.6247    &  1         &     -      &     -  \\
+			EBP      	&    \textbf{0.6213}   &  0.5621    &  0.7316    &  1         &     -  \\
+			Moodys Aaa	&    0.4386   &  0.4554    &  0.7993    &  0.5243    &    1   \\
+		\end{tabular}
+	\end{table}
+	
+	
+	\
+	
+	As suggested by the graph above, all the variables are strongly correlated.
+	
+}
 
 \frame{\frametitle{Financial Shocks and Uncertainty Shocks}
 	
 	Stock and Watson (2012); Caldara et al. (2016) among others shown that uncertainty shocks and financial shocks are deeply confounded.
-	
 	
 	\
 	
@@ -48,88 +73,61 @@ outer/numbering=none
 	corr(\iota^{EBP}_t,\iota^{JLN}_t) \approx 0.45
 	$$
 	
-	
 	\
 	
 	
 	where $\iota^{EBP}_t$ is an unpredictable innovation in the \textbf{excess bond premium} from Gilchrist and Zakrajzek (2012) and $\iota^{JLN}_t$ is an unpredictable innovation in the \textbf{uncertainty proxy} from Jurado et al. (2015).
-	
-
-	
-
-	
-	
-	
+		
 }
 
 \frame{\frametitle{Both a theoretical and empirical question}
-
+	
 	Literature did not succeed yet to disentangle the two exogenous sources for two main reasons:
-\begin{enumerate}
-	\item Simultaneity
-	\begin{itemize}
-		\item Both types of variables are fast moving
-				\end{itemize}	
-			\item Effect on observables
-			
-			\begin{itemize}
-			\item They have the same qualitative effects on prices and quantities
-\end{itemize}
-\end{enumerate}
-
-\
-
-\
-
-As a result, both \textbf{zero-impact restrictions} cannot be used and \textbf{internal instruments} are not available.
+	\begin{enumerate}
+		\item Simultaneity
+		\begin{itemize}
+			\item[$\Rightarrow$] Both types of variables are fast moving
+		\end{itemize}	
+		\item Effect on observables
+		
+		\begin{itemize}
+			\item[$\Rightarrow$] They have the same qualitative effects on prices and quantities
+		\end{itemize}
+	\end{enumerate}
 	
-}
-
-\frame{\frametitle{This Project}
-	
-	I want to take a step back and argue that it is conceptually wrong to disentangle these two shocks as defined by the literature.
 	
 	\
 	
-	
-	From a theoretical point of view, uncertainty shocks can potentially be a primitive source of financial shocks.
-	
-	\
-	
-	
-	It is more important to gauge how much of the combinations of these shocks appears to be
-	\begin{itemize}
-		\item a credit supply shock $\Rightarrow$ \textbf{financial shock}
-		\item a credit demand shock $\Rightarrow$ \textbf{macro uncertainty shock}
-	\end{itemize}
-	
+	As a result, both \textbf{zero-impact restrictions} cannot be used and \textbf{internal instruments} are not available.
 	
 }
+
+
+\frame{\frametitle{My contribution}
 	
-
-
-\frame{\frametitle{Main Contribution}
+	I want to take a step back and show evidence and theory that financial and uncertainty shocks are \textbf{qualitative different}.
+	
+	
+	
+	\	
+	
+	
+	
+	In particular, 
 	
 	
 	\begin{enumerate}
+		\item	I will discuss \textbf{evidence} that there exists a variable which responds differently to financial and uncertainty shocks. 
+		\begin{itemize}
+			\item[$\Rightarrow$] those variables can be used as \textbf{internal instruments}
+		\end{itemize}
 		
-		\item I present evidence and theory of an \textbf{internal instrument} able to disentangle shifts in credit supply and demand. 
-
-
-\
-
-\
-
-\
-
-
 		
-		\item I provide a \textbf{new econometric method} which can be applied to disentangle two structural shocks when an internal instrument is available.
+		\item I will provide a \textbf{new econometric method} to use internal instruments to disentangle two structural shocks.
 		
 	\end{enumerate}
-	
-
 }
+	
 
 \frame{\frametitle{Corporate Cash Reserves}
 	
