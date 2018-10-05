@@ -2,3 +2,6 @@
 \contentsline {section}{\numberline {1}Almeida, Campello, and Weisbach (2004) - JF}{1}
 \contentsline {section}{\numberline {2}Han and Qiu (2007) - Journal of Corporate Finance}{3}
 \contentsline {section}{\numberline {3}Campello, Graham and Harvey (2010) - JFE}{4}
+\contentsline {section}{\numberline {4}Kaplan and Zingales (1997) - QJE}{6}
+\contentsline {section}{\numberline {5}Riddick and Whited (2009) - Journal of Finance}{7}
+\contentsline {section}{\numberline {6}Ajello (2016) - AER}{7}
