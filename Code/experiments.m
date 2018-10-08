@@ -62,9 +62,9 @@ Months = monthly';
 Datamonthly = [Months MonthlyRV'];
 
 j = 1;
-for i = 1:length(Datamonthly)
-      if floor(((i - 1)/3)) == (i - 1)/3 && length(Datamonthly) - i > 3
-            QuarterlyRV(j) = mean(MonthlyRV(i+2:i+2+2));
+for i = 1:length(ciccio)
+      if floor(((i - 1)/3)) == (i - 1)/3 && length(ciccio) - i > 3
+            Quarterlyciccio(j) = mean(ciccio(i:i+2));
             j = j + 1;
       end
 end

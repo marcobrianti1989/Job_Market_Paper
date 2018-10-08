@@ -1,5 +1,5 @@
 function [impact, gam] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,EBPposition,...
-      Uposition,CFposition,delta)
+      Uposition,IVposition,delta)
 
 % A chol impact matrix (nvar,nvar)
 % Reduce-form regressors coefficient (1+nvar*nlags,nvar)
@@ -24,7 +24,7 @@ gamU_zero   = D(:,2); %uncertainty shock impact vector (initial value)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Setting the objective function of Step1
-objF = @(gamF) objective_PFA(EBPposition,CFposition,SRhorizon,...
+objF = @(gamF) objective_PFA(EBPposition,IVposition,SRhorizon,...
       SRhorizonIV,B,A,gamF,delta); 
 
 %Optimization Parameters
@@ -54,7 +54,7 @@ end
 
 % Setting the objective function of Step2
 delta2 = - delta; % Be careful on the sign of delta!
-objU = @(gamU) objective_PFA(Uposition,CFposition,SRhorizon,SRhorizonIV,B,A,gamU,delta2);
+objU = @(gamU) objective_PFA(Uposition,IVposition,SRhorizon,SRhorizonIV,B,A,gamU,delta2);
 
 %Optimization Parameters
 options  = optimset('fmincon');

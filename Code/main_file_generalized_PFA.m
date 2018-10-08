@@ -28,39 +28,6 @@ for iif = 3:length(dataset)
       DatasetHP1S(iif,:)    = dataset_HPgen(end,:);
 end
 
-% Obtain Principal Components
-filename                    = 'DatasetPC';
-sheet                       = 'Quarterly';
-range                       = 'B2:DA288';
-do_truncation_PC            = 1; %Do not truncate data. You will have many NaN
-dataPC                      = read_data(filename,sheet,range,do_truncation_PC);
-tfPC                        = isreal(dataset);
-if tfPC == 0
-      warning('DatasetPC has complex variables in it.')
-end
-dataPC                      = real(dataPC);
-time_start_PC               = dataPC(1,1);
-time_end_PC                 = dataPC(end,1);
-
-% Align the two datasets
-align_datasets = 1;
-if align_datasets == 1
-      if time_start < time_start_PC
-            loc_start = find(dataset(:,1) == time_start_PC);
-            dataset = dataset(loc_start:end,:);
-      elseif time_start > time_start_PC
-            loc_start = find(dataPC(:,1) == time_start);
-            dataPC = dataPC(loc_start:end,:);
-      end
-      if time_end < time_end_PC
-            loc_end = find(dataPC(:,1) == time_end);
-            dataPC = dataPC(1:loc_end,:);
-      elseif time_end > time_end_PC
-            loc_end = find(dataset(:,1) == time_end);
-            dataset = dataset(1:loc_end,:);
-      end
-end
-
 % Assess names to each variable as an array
 for i = 1:size(dataset,2)
       eval([var_names{i} ' = dataset(:,i);']);
@@ -105,20 +72,16 @@ ProfTransfers       = ProfitsTransfers - CorpProfitsAdj;
 ConsFixedK          = ConsFixedK - CorpProfitsAdj;
 Cash                = Cash - GDPDef;
 
-% Obtaine Principal Components
-Zscore                      = 1; %remove mean and divide over the variance each series
-pc                          = get_principal_components(dataPC(:,2:end),Zscore);
-
 % Define the system1
 system_names  = {'EBP','MacroUncertH3','GDP','Consumption',...
-      'Investment','Hours','Cash'};
+      'Investment','Hours','Cash2Assets','GDPDef'};
 
 for i = 1:length(system_names)
       system(:,i) = eval(system_names{i});
 end
 Uposition   = find(strcmp('MacroUncertH3', system_names));
 EBPposition = find(strcmp('EBP', system_names));
-CFposition  = find(strcmp('Cash', system_names));
+IVposition  = find(strcmp('Cash2Assets', system_names));
 GDPposition = find(strcmp('GDP', system_names));
 Cposition   = find(strcmp('Consumption', system_names));
 
@@ -132,33 +95,23 @@ nlags           = 3;
 
 % Generalized Penalty Function Approach
 objgam = 1;
-delta = 0;
-while abs(objgam) >= 0.05
+delta = 4.7121851891011;
+while abs(objgam) >= 10^(-8)
       warning off
       SRhorizon       = 2;
       SRhorizonIV     = 4;
-      [impact, gamma] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,Uposition,...
-            EBPposition,CFposition,delta);
+      [impact, gamma] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,EBPposition,...
+            Uposition,IVposition,-delta);
       gamF   = gamma(:,1);
       gamU   = gamma(:,2);
       objgam = gamF'*gamU
-      delta  = delta + 0.1
+      delta  = delta + 0.000000000000001
 end
-
-% Test for sufficient information - H0: regressors on PC are equal to zero.
-npc                        = 4;
-reg_PC                     = pc(:,1:npc);
-reg_PC                     = reg_PC(1+nlags:end,:);
-ushock_restricted          = res(:,2);
-k                          = size(reg_PC,2);
-q                          = size(reg_PC,2);
-[~,~,ushock_unrestricted]  = quick_ols(ushock_restricted,reg_PC);
-TT                         = size(reg_PC,1);
-pvalue_FGtest              = f_test(ushock_restricted,ushock_unrestricted,q,TT,k);
+delta = - delta; % Negative because the first variable is EBP and cash respons negatively on impact
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 200;
+nsimul            = 20;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
@@ -173,7 +126,7 @@ for i_simul=1:nsimul
       warning off
       [impact_boot(:,:,i_simul), gamma_boot(:,:,i_simul)] = ...
             identification_GPFA(A_boot(:,:,i_simul),B_boot(:,:,i_simul),...
-            SRhorizon,SRhorizonIV,Uposition,EBPposition,CFposition,delta);
+            SRhorizon,SRhorizonIV,EBPposition,Uposition,IVposition,delta);
       i_simul
 end
 
@@ -185,11 +138,11 @@ H                          = 20;
 
 % Create and Printing figures for IRFs
 base_path         = pwd;
-which_ID          = 'GPFA_Compustat_3lags';
+which_ID          = 'GPFA_Compustat_3lags_gamgamZero_GDPDef';
 print_figs        = 'no';
 use_current_time  = 1; % (don't) save the time
 which_shocks      = [1 2]; %[Uposition];
-shocknames        = {'Uncertainty Shock','Financial Shock'};
+shocknames        = {'Financial Shock','Uncertainty Shock'};
 plot_IRFs_2CIs(IRFs,ub1,lb1,ub2,lb2,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
 
@@ -205,7 +158,7 @@ end
 asd
 % Create and Printing figures for Variance decomposition
 base_path         = pwd;
-which_ID          = 'vardec_GPFA_Compustat_3lags';
+which_ID          = 'vardec_GPFA_Compustat_3lags_gamgamZero_GDPDef';
 print_figs        = 'no';
 use_current_time  = 1; % don't save the time
 plot_vardec(vardec,H,which_shocks,shocknames,...
@@ -227,7 +180,64 @@ legend boxoff
 axis tight
 grid on
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Read Ramey Shocks
+filename                    = 'RameyShocks';
+sheet                       = 'Sheet1';
+range                       = 'B1:M278';
+do_truncation_RameyShocks   = 0; %Do not truncate data. You will have many NaN
+[Rameyshocks, Rameynames]   = read_data(filename,sheet,range,do_truncation_RameyShocks);
+tfRameyShocks               = isreal(Rameyshocks);
+if tfRameyShocks == 0
+      warning('DatasetPC has complex variables in it.')
+end
 
+% Assess names to each shock as an array
+for i = 1:size(Rameyshocks,2)
+      eval([Rameynames{i} ' = Rameyshocks(:,i);']);
+end
 
+for i = 2:size(Rameyshocks,2)
+      % Get Structural Shocks
+      ss = get_structural_shocks_general(A,gamma,res,which_shocks);
+      ssF = ss(:,1);
+      ssU = ss(:,2);
+      [tuple, ~, ~] = truncate_data([TimeShocks Rameyshocks(:,i)]);
+      % Align the two datasets
+      time_start_Ramey = tuple(1,1);
+      time_end_Ramey   = tuple(end,1);
+      if Time(nlags+1) < time_start_Ramey && Time(end) > time_end_Ramey
+            disp([num2str(i),' is Case 1'])
+            loc_start_Ramey = find(Time(:) == time_start_Ramey);
+            loc_end_Ramey   = find(Time(:) == time_end_Ramey);
+            ssU             = ssU(loc_start_Ramey:loc_end_Ramey);
+            ssF             = ssF(loc_start_Ramey:loc_end_Ramey);
+      elseif Time(nlags+1) > time_start_Ramey && Time(end) < time_end_Ramey
+            disp([num2str(i),' is Case 2'])
+            loc_start_Ramey = find(tuple(:,1) == Time(nlags+1));
+            loc_end_Ramey   = find(tuple(:,1) == Time(end));
+            tuple           = tuple(loc_start_Ramey:loc_end_Ramey,:);
+      elseif Time(nlags+1) < time_start_Ramey && Time(end) < time_end_Ramey
+            disp([num2str(i),' is Case 3'])
+            loc_start_Ramey = find(Time(:) == time_start_Ramey);
+            ssU             = ssU(loc_start_Ramey:end);
+            ssF             = ssF(loc_start_Ramey:end);            
+            loc_end_Ramey   = find(tuple(:,1) == Time(end));
+            tuple           = tuple(1:loc_end_Ramey,:);
+      elseif Time(nlags+1) > time_start_Ramey && Time(end) > time_end_Ramey
+            disp([num2str(i),' is Case 4'])
+            loc_start_Ramey = find(tuple(:,1) == Time(nlags+1));
+            tuple           = tuple(loc_start_Ramey:end,:);
+            loc_end_Ramey   = find(Time(:) == time_end_Ramey);
+            ssU             = ssU(1+nlags:loc_end_Ramey);
+            ssF             = ssF(1+nlags:loc_end_Ramey);
+      end
+      bigtuple                = [tuple ssU ssF];
+      Rameynames{i}
+      [corri, pvaluei]        = corrcoef(bigtuple(:,2:end))
+      cell_tuple              = num2cell(bigtuple);
+      cell_tuple_store{i-1}   = cell_tuple;
+      
+end
 

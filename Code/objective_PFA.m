@@ -77,12 +77,7 @@ else
       
       % Negative for fmincon
       objPFA = - objPFA; %BE CAREFUL! IT IS ALREADY NEGATIVE FOR FMINCON!!!
-      
-      
-      
-      
-      
-      
-      
-      
+end
+
+
 end
