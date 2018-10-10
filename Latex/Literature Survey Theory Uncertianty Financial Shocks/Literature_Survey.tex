@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,%
+bindingoffset=0mm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newtheorem{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.75em depth0em\fi}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{float}
+\linespread{1.3}
+\raggedbottom
+
+
+
+
+%
+\font\reali=msbm10 at 12pt
+% subsets of real numbers
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+%
+
+\title{Related Literature}
+\author{Marco Brianti}
+\date{A.Y. 2018/2019}
+
+\begin{document}
+	\large{
+
+\maketitle
+
+\tableofcontents
+
+\section{Khan and Thomas (2013) - Journal of Political Economy}
+
+Can a large shock to an economy's financial sector produce a large and lasting recession? Over the past few years, events in thew real and financial sector have been difficult to disentangle. They develop a DSGE model to explore how real and financial shocks affect the size and frequency of aggregate fluctuations. When they consider a temporary shock affecting individual firms' access to credit, their model predicts aggregate changes resembling those from the 2007 US recession in several aspects. These findings suggest that changes in firms' access to credit are important in understanding the recent US recession.\footnote{Their own work follows in the spirit of Kiyotaki and Moore (1997) in that the financial frictions we explore are collateralized borrowing constraints. Moreover, their focus on the aggregate implications shocks is also shared by the work of Jermann and Quadrini (2012).} Finally, credit shocks lead to gradual reductions in aggregate TFP that are qualitatively different from persistent shocks to its exogenous component. This happens because the misallocation of resources grows as a growing fraction of firms find it increasingly difficult to finance investment. 
+
+\textbf{Model.} They feature heterogeneous firms with both aggregate and idiosyncratic productivity. To ensure that a part of firms do not have enough capital to avoid financial constraints they also feature exogenous entry and exit. New firms have to rebuild capital to avoid collateralized borrowing constraints. This implies that some firms are surely financially constrained, some face the risk, and some others are not going to be financially constrained. A financial shock is thus related to a change in the fraction of capital that can be pladged by the lender. Firms also face a real friction in the form of partial irreversibly of investment which naturally yields a two-sided (S,s) investment decision rules. Households consumes using labor revenue - endogenously supplied - and dividends from firms' shares. They calibrate the model to both match aggregate and firm-level data. 
+
+\textbf{Results.} In steady state older and wealthier firms that are unconstrained have higher capital or higher savings relative to constrained firms. For a large fraction of our economy's firms, financial considerations interfere with the optimal investment responses to information about the future marginal product of capital conveyed by current productivity. Even in steady states this generates misallocation. They first show that aggregate productivity shocks cannot describe 2007 US crisis alone.\footnote{You can find an interesting short discussion at page 1089 related to this.} Thus, they analyze the effect of a credit shock to the their model economy. The shock implies a drop in debt of about 26\% which is the amount observed during the crisis. This shock implies effects on aggregate variables consistent with empirical trends. With the sudden reduction in credit, there is a drop in the fraction of firms that are financially unconstrained and a sharp rise in the fraction of firms facing currently binding borrowing limits. Moreover, the increased inefficiency that reduces TFP arises because small firms, now facing unusually severe collateral requirements, experience an increasing marginal product of capital. These problems grow in subsequent dates, and the cross-sectional mean and coefficient of variation of the ex post marginal product of capital continue raising. Capital falls in small firms over time, so their marginal product keep rising. In line with empirical evidence, small firms reduce their employment much more of large firms. A tightening of collateral constraints alone, a purely financial shock, drives large and persistent real effects in our model economy. It does so because it moves the distribution of firm-level capital further away from the efficient one allocating insufficient capital to small firms. Beyond this, it takes many periods to rebuild the aggregate capital stock. 
+
+
+\end{document}
+

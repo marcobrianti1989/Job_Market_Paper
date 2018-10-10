@@ -1,0 +1,2 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Khan and Thomas (2013) - Journal of Political Economy}{1}
