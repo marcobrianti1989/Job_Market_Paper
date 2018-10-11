@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  11 OCT 2018 12:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  11 OCT 2018 13:57
 entering extended mode
-**./Literature_Survey.tex
-(Literature_Survey.tex
+**./TODO_List.tex
+(TODO_List.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -814,9 +814,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box40
 \@float@everytoks=\toks38
 \@floatcapt=\box41
-)
-(Literature_Survey.aux)
-\openout1 = `Literature_Survey.aux'.
+) (TODO_List.aux)
+\openout1 = `TODO_List.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
@@ -931,67 +930,33 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 43.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(Literature_Survey.toc [1
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 48.
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}])
-\tf@toc=\write4
-\openout4 = `Literature_Survey.toc'.
-
-[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
-Overfull \hbox (2.34148pt too wide) in paragraph at lines 178--178
-[]\OT1/cmr/bx/n/14.4 Caldara, Fuentes-Albero, Gilchrist, and Za-kra-jsek (2016)
-
- []
-
-[17] [18] [19] [20] [21] [22] [23] [24] [25]
-Overfull \hbox (0.6577pt too wide) in paragraph at lines 262--264
-\OT1/cmr/m/n/12 He can prove that the cross-sectional av-er-age ex-pec-ta-tion 
-of $\OML/cmm/m/it/12 x$ \OT1/cmr/m/n/12 re-sponds more strongly
- []
-
-[26] [27]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 285.
-
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 285.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
+ [1
 
-Overfull \hbox (6.67487pt too wide) in paragraph at lines 292--292
-[]\OT1/cmr/bx/n/14.4 Kozlowski, Veld-kamp, and Venkateswaran (2018) - NBER
- []
-
-[28] [29] [30] [31] [32] [33] [34] [35] (Literature_Survey.aux) )
-(\end occurred inside a group at level 1)
-
-### simple group (level 1) entered at line 41 ({)
-### bottom level 
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] (TODO_List.aux) ) 
 Here is how much of TeX's memory you used:
- 13666 strings out of 493323
- 260616 string characters out of 3139072
- 316501 words of memory out of 3000000
- 16913 multiletter control sequences out of 15000+200000
- 10840 words of font info for 41 fonts, out of 3000000 for 9000
+ 13651 strings out of 493323
+ 260365 string characters out of 3139072
+ 309493 words of memory out of 3000000
+ 16905 multiletter control sequences out of 15000+200000
+ 9189 words of font info for 35 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,8n,54p,3385b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmb
-x12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Literature_Survey.pdf (35 pages, 280304 bytes).
+ 55i,6n,54p,476b,192s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb>
+Output written on TODO_List.pdf (1 page, 54317 bytes).
 PDF statistics:
- 177 PDF objects out of 1000 (max. 8388607)
+ 29 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

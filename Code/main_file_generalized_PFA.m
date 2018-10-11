@@ -96,9 +96,9 @@ nlags           = 3;
 % Generalized Penalty Function Approach
 objgam = 1;
 delta = 4.7121851891011;
-while abs(objgam) >= 10^(-8)
+while abs(objgam) >= 0.05;%10^(-8)
       warning off
-      SRhorizon       = 2;
+      SRhorizon       = 1;
       SRhorizonIV     = 4;
       [impact, gamma] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,EBPposition,...
             Uposition,IVposition,-delta);
@@ -111,7 +111,7 @@ delta = - delta; % Negative because the first variable is EBP and cash respons n
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 20;
+nsimul            = 200;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...

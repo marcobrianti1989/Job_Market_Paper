@@ -44,7 +44,7 @@ if percapita == 1
 end
 
 % Define the system1
-system_names  = {'EBP','JLNUncertH1','IP','Consumption','SP500','UnRate'};
+system_names  = {'JLNUncertH1','EBP','IP','Consumption','SP500','UnRate'};
 EBPposition = find(strcmp('EBP', system_names));
 
 % Build up system
@@ -64,14 +64,14 @@ nlags           = 8;
 
 % Get Chol Structural Shocks
 sschol  = (inv(A)*res')';
-
+asd
 % Barsky&Sims on EBPposition
-horizon         = 24;
+horizon         = 4;
 [impact, gamma] = just_news_ID(A,B,horizon,EBPposition);
 
 % Create dataset from bootstrap
 nburn             = 0;
-nsimul            = 500;
+nsimul            = 50;
 which_correction  = 'none';
 blocksize         = 4;
 [beta_tilde, data_boot2, beta_tilde_star,nonstationarities] ...
@@ -126,8 +126,7 @@ title('Variance Explained Of Real GDP')
 
 % Get Structural Shocks
 ss = get_structural_shocks_general(A,gamma,res,which_shocks);
-
-corr(sschol(:,2),ss(:,1))
+corr(sschol(:,1),ss(:,1))
 
 %save workspace_nicespecification_cons_inv_adjusted_Ulast
 

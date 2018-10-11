@@ -14,8 +14,6 @@ nlags                 = nvarlags/nvar;
 % Defining initial values
 D              = eye(nvar);
 gamNews_zero   = D(:,1); %news shock impact vector (initial value)
-gamTFP_zero    = D(:,2); %surprize TFP shock impact vector (initial value)
-gamUnc_zero    = D(:,3); %uncertainty shock impact vector (initial value)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % First Step - Identifying gamNews for news shock - Similar to B&S(2012)
