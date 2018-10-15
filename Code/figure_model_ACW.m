@@ -11,18 +11,18 @@ Y = -1 + par1./(par2 + X);
 figure(1)
 set(gcf,'color','w');
 hold on
-plot(X,Y,'linewidth',2,'color','k')
-plot([0 Xlim],[0 0],'color','k')
+plot(X,Y,'linewidth',4,'color','k')
+plot([0 Xlim],[0 0],'linewidth',1,'color','r')
 ylim([-1 1])
 xlim([0 Xlim])
-set(gca,'XTick',[0],'XTickLabel',{'0'},'fontsize',18);
-set(gca,'YTick',[-1 0 +1],'YTickLabel',{'-1','0','1'},'fontsize',18);
-xlabel('\delta','fontsize',24)
-ylabel('\gamma_U \gamma_F''','fontsize',24)
+set(gca,'XTick',[0],'XTickLabel',{'0'},'fontsize',32);
+set(gca,'YTick',[-1 0 +1],'YTickLabel',{'-1','0','1'},'fontsize',32);
+xlabel('\delta: Instrument Intervention','fontsize',45)
+ylabel('\gamma_U \gamma_F'': Shocks Correlation','fontsize',45)
 hold off
 
-base_path         = pwd;
-invoke_export_fig('GPFA_intuition','figure',0,base_path)
+% base_path         = pwd;
+% invoke_export_fig('GPFA_intuition','figure',0,base_path)
 
 
 

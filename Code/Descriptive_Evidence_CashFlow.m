@@ -126,33 +126,35 @@ end
 XX             = [XX resEBP(1+nlags:end) resJLN(1+nlags:end)];%
 LM             = fitlm(XX,Y,'linear')
 
-asd
+clc;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Creat Figure
-% figure
-% hold on
-% set(gcf,'color','w');
-% plot(Time,zscore(MacroUncertH3),'--','Linewidth',3)
-% plot(Time,zscore(RV),'--','Linewidth',3)
-% plot(Time,zscore(GZSpread),'-','Linewidth',1.5)
-% plot(Time,zscore(EBP),'-','Linewidth',1.5)
-% plot(Time,zscore(MoodySpreadAaa),'-','Linewidth',1.5)
-% grid on
-% LGD          = legend('JLN Uncertainty','Realized Volatility','GZ Spread','GZ EBP','Moodys Spread Aaa','Location','northwest');
-% LGD.FontSize = 24;
-% legend boxoff
-% axis tight
-% xlabel('Quarters','fontsize',24)
-% ylabel('Standard Deviations','fontsize',24)
-% close
+%Creat Figure
+figure
+hold on
+set(gcf,'color','w');
+plot(Time,zscore(MacroUncertH3),'--','Linewidth',3)
+%plot(Time,zscore(RV),'--','Linewidth',3)
+%plot(Time,zscore(GZSpread),'-','Linewidth',1.5)
+plot(Time,zscore(EBP),'-','Linewidth',2.25)
+%plot(Time,zscore(MoodySpreadAaa),'-','Linewidth',1.5)
+grid on
+LGD          = legend('Jurado et al. (2015) Uncertainty','Gilchrist and Zakrajsek (2012) Excess Bond Premium','Location','northwest');
+LGD.FontSize = 32;
+legend boxoff
+axis tight
+xt = get(gca, 'XTick');
+set(gca, 'FontSize', 20)
+set(gca,'yticklabel',{[]}) 
+xlabel('Quarters','fontsize',32)
+ylabel('Standard Deviations','fontsize',32)
 
-%export_fig('Financial_Uncertainty')
+export_fig('Financial_Uncertainty')
 % ZZ = [MacroUncertH3 RV GZSpread EBP MoodySpreadAaa];
 % corr(ZZ);
 
 
-% azsxdcghj
+azsxdcghj
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
