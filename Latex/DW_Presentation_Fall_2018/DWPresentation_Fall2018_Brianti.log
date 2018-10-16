@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  15 OCT 2018 17:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  16 OCT 2018 14:46
 entering extended mode
 **./DWPresentation_Fall2018_Brianti.tex
 (DWPresentation_Fall2018_Brianti.tex
@@ -1185,18 +1185,8 @@ LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <5> not available
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <20.74> on input line 174.
-LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <14.4> on input line 174.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 174.
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <20.74> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 174.
-
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <14.4> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 174.
-
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <12> not available
 (Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 174.
 
  [7
@@ -1232,14 +1222,14 @@ Overfull \vbox (9.2454pt too high) detected at line 265
 ] [18
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+lmss on input line 473
+LaTeX Font Info:    Try loading font information for OMS+lmss on input line 475
 .
-LaTeX Font Info:    No file OMSlmss.fd. on input line 473.
+LaTeX Font Info:    No file OMSlmss.fd. on input line 475.
 
 
 LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 473.
+(Font)              for symbol `textbullet' on input line 475.
 
 [19
 
@@ -1254,11 +1244,11 @@ LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
 File: fig_GPFA_intuition_figure_.png Graphic file (type png)
 
 <use fig_GPFA_intuition_figure_.png>
-Package pdftex.def Info: fig_GPFA_intuition_figure_.png used on input line 548.
+Package pdftex.def Info: fig_GPFA_intuition_figure_.png used on input line 550.
 
 (pdftex.def)             Requested size: 220.86566pt x 121.13736pt.
 
-Overfull \vbox (18.02931pt too high) detected at line 548
+Overfull \vbox (18.02931pt too high) detected at line 550
  []
 
 [23
@@ -1273,10 +1263,10 @@ ic file (type png)
 
 <use fig_Uncertainty_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_25_58.png>
 Package pdftex.def Info: fig_Uncertainty_Shock_GPFA_Compustat_3lags_03-Oct-2018
-_12_25_58.png used on input line 571.
+_12_25_58.png used on input line 573.
 (pdftex.def)             Requested size: 315.05624pt x 180.09021pt.
 
-Overfull \hbox (7.76637pt too wide) in paragraph at lines 571--571
+Overfull \hbox (7.76637pt too wide) in paragraph at lines 573--573
  [] 
  []
 
@@ -1291,10 +1281,10 @@ File: fig_Financial_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_26_00.png Graphic
 
 <use fig_Financial_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_26_00.png>
 Package pdftex.def Info: fig_Financial_Shock_GPFA_Compustat_3lags_03-Oct-2018_1
-2_26_00.png used on input line 579.
+2_26_00.png used on input line 581.
 (pdftex.def)             Requested size: 315.05624pt x 180.09021pt.
 
-Overfull \hbox (7.76637pt too wide) in paragraph at lines 579--579
+Overfull \hbox (7.76637pt too wide) in paragraph at lines 581--581
  [] 
  []
 
@@ -1309,10 +1299,10 @@ file (type png)
 
 <use fig_var_dec_vardec_GPFA_Compustat_3lags_03-Oct-2018_12_37_32.png>
 Package pdftex.def Info: fig_var_dec_vardec_GPFA_Compustat_3lags_03-Oct-2018_12
-_37_32.png used on input line 589.
+_37_32.png used on input line 591.
 (pdftex.def)             Requested size: 317.9019pt x 184.56198pt.
 
-Overfull \hbox (10.61203pt too wide) in paragraph at lines 589--589
+Overfull \hbox (10.61203pt too wide) in paragraph at lines 591--591
  [] 
  []
 
@@ -1333,11 +1323,11 @@ Overfull \hbox (10.61203pt too wide) in paragraph at lines 589--589
 \tf@snm=\write8
 \openout8 = `DWPresentation_Fall2018_Brianti.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 642.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 642.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 643.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 643.
  (DWPresentation_Fall2018_Brianti.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 642.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 642.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 643.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 643.
 Package rerunfilecheck Info: File `DWPresentation_Fall2018_Brianti.out' has not
  changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -1347,11 +1337,11 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 21206 strings out of 493323
- 424707 string characters out of 3139072
+ 21186 strings out of 493323
+ 424399 string characters out of 3139072
  487189 words of memory out of 3000000
- 24145 multiletter control sequences out of 15000+200000
- 78882 words of font info for 87 fonts, out of 3000000 for 9000
+ 24127 multiletter control sequences out of 15000+200000
+ 65436 words of font info for 73 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,18n,89p,1824b,789s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Program Fil
@@ -1362,14 +1352,14 @@ m-rm.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 s/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX 2.9/font
 s/type1/public/lm/lmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
 lmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmss10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/lm/lmss17.pfb><C:/Program Files/MiKTeX
+gram Files/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/lm/lmss8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso1
 0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso8.pfb><C:/Program
  Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb>
-Output written on DWPresentation_Fall2018_Brianti.pdf (29 pages, 630674 bytes).
+Output written on DWPresentation_Fall2018_Brianti.pdf (29 pages, 629875 bytes).
 
 PDF statistics:
  248 PDF objects out of 1000 (max. 8388607)

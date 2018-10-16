@@ -19,3 +19,4 @@
 \contentsline {section}{\numberline {18}Forni, Gambetti, and Sala (2017) - Working Paper}{31}
 \contentsline {section}{\numberline {19}Smietanka, Bloom, and Mizen (2018) - Working Paper}{32}
 \contentsline {section}{\numberline {20}Alfaro, Bloom, and Lin (2018) - NBER WP}{33}
+\contentsline {section}{\numberline {21}Bloom (2009) - Econometrica}{35}
