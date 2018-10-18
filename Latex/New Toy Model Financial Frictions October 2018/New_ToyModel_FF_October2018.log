@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  18 OCT 2018 18:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  18 OCT 2018 17:38
 entering extended mode
-**./DWPresentation_Fall2018_Brianti.tex
-(DWPresentation_Fall2018_Brianti.tex
+**./New_ToyModel_FF_October2018.tex
+(New_ToyModel_FF_October2018.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 75 language(s) loaded.
 (C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\beamer.cls
@@ -866,76 +866,24 @@ terthemesplit.sty))
 (C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\themes\color\beamerco
 lorthemeorchid.sty)
 (C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\themes\color\beamerco
-lorthemewhale.sty))
-(C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\latex\beamertheme-metropolis\beame
-rthememetropolis.sty
-Package: beamerthememetropolis 2017/01/23 v1.2 Metropolis Beamer theme
+lorthemewhale.sty)) (New_ToyModel_FF_October2018.aux)
+\openout1 = `New_ToyModel_FF_October2018.aux'.
 
-(C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\latex\pgfopts\pgfopts.sty
-Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
-\pgfopts@list@add@a@toks=\toks46
-\pgfopts@list@add@b@toks=\toks47
-)
-(C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\latex\beamertheme-metropolis\beame
-rinnerthememetropolis.sty
-Package: beamerinnerthememetropolis 2017/01/23 Metropolis inner theme
- ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
-Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count172
-\calc@Bcount=\count173
-\calc@Adimen=\dimen275
-\calc@Bdimen=\dimen276
-\calc@Askip=\skip66
-\calc@Bskip=\skip67
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count174
-\calc@Cskip=\skip68
-)
-\metropolis@titleseparator@linewidth=\skip69
-\metropolis@progressonsectionpage=\skip70
-\metropolis@progressonsectionpage@linewidth=\skip71
-\metropolis@blocksep=\skip72
-\metropolis@blockadjust=\skip73
-\metropolis@parskip=\skip74
-)
-(C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\latex\beamertheme-metropolis\beame
-routerthememetropolis.sty
-Package: beamerouterthememetropolis 2017/01/23 Metropolis outer theme
-\metropolis@frametitle@padding=\skip75
-\metropolis@progressinheadfoot=\skip76
-\metropolis@progressinheadfoot@linewidth=\skip77
-)
-(C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\latex\beamertheme-metropolis\beame
-rcolorthememetropolis.sty
-Package: beamercolorthememetropolis 2017/01/23 Metropolis color theme
-)
-(C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\latex\beamertheme-metropolis\beame
-rfontthememetropolis.sty
-Package: beamerfontthememetropolis 2017/01/23 Metropolis font theme
-
-
-Package beamerthememetropolis Warning: You need to compile with XeLaTeX or LuaL
-aTeX to use the Fira fonts on input line 95.
-
-)) (DWPresentation_Fall2018_Brianti.aux)
-\openout1 = `DWPresentation_Fall2018_Brianti.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Try loading font information for OT1+lmss on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 29.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmss.fd"
@@ -977,17 +925,17 @@ File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 (C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count175
-\scratchdimen=\dimen277
+\scratchcounter=\count172
+\scratchdimen=\dimen275
 \scratchbox=\box61
-\nofMPsegments=\count176
-\nofMParguments=\count177
-\everyMPshowfont=\toks48
-\MPscratchCnt=\count178
-\MPscratchDim=\dimen278
-\MPnumerator=\count179
-\makeMPintoPDFobject=\count180
-\everyMPtoPDFconversion=\toks49
+\nofMPsegments=\count173
+\nofMParguments=\count174
+\everyMPshowfont=\toks46
+\MPscratchCnt=\count175
+\MPscratchDim=\dimen276
+\MPnumerator=\count176
+\makeMPintoPDFobject=\count177
+\everyMPtoPDFconversion=\toks47
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1003,7 +951,7 @@ G,.JBIG2,.JB2,.eps]
 )
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box62
-Package hyperref Info: Link coloring OFF on input line 31.
+Package hyperref Info: Link coloring OFF on input line 29.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1011,62 +959,62 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count181
+\c@section@level=\count178
 )
-LaTeX Info: Redefining \ref on input line 31.
-LaTeX Info: Redefining \pageref on input line 31.
-LaTeX Info: Redefining \nameref on input line 31.
+LaTeX Info: Redefining \ref on input line 29.
+LaTeX Info: Redefining \pageref on input line 29.
+LaTeX Info: Redefining \nameref on input line 29.
 
-(DWPresentation_Fall2018_Brianti.out) (DWPresentation_Fall2018_Brianti.out)
+(New_ToyModel_FF_October2018.out) (New_ToyModel_FF_October2018.out)
 \@outlinefile=\write5
-\openout5 = `DWPresentation_Fall2018_Brianti.out'.
+\openout5 = `New_ToyModel_FF_October2018.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> OT1/cmss/m/n on input line 31.
+(Font)                  OT1/lmr/m/n --> OT1/cmss/m/n on input line 29.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> OT1/cmss/bx/n on input line 31.
+(Font)                  OT1/lmr/bx/n --> OT1/cmss/bx/n on input line 29.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 31.
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 29.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 31.
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 29.
 \symnumbers=\mathgroup7
 \sympureletters=\mathgroup8
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmss/m/n --> OT1/lmr/m/n on input line 31.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 31.
+(Font)                  OT1/lmss/m/n --> OT1/lmr/m/n on input line 29.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> OT1/lmss/bx/n on input line 31.
+(Font)                  OT1/lmr/bx/n --> OT1/lmss/bx/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/lmr/bx/n --> OT1/lmss/bx/n on input line 31.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 31.
+(Font)                  OT1/lmr/bx/n --> OT1/lmss/bx/n on input line 29.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> OT1/lmss/m/n on input line 31.
+(Font)                  OT1/lmss/m/n --> OT1/lmss/m/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> OT1/lmss/m/n on input line 31.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 31.
+(Font)                  OT1/lmss/bx/n --> OT1/lmss/m/n on input line 29.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> OT1/lmss/m/it on input line 31.
+(Font)                  OT1/lmr/m/it --> OT1/lmss/m/it on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/lmr/bx/it --> OT1/lmss/m/it on input line 31.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 31.
+(Font)                  OT1/lmr/bx/it --> OT1/lmss/m/it on input line 29.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> OT1/lmtt/m/n on input line 31.
+(Font)                  OT1/lmtt/m/n --> OT1/lmtt/m/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> OT1/lmtt/m/n on input line 31.
+(Font)                  OT1/lmtt/m/n --> OT1/lmtt/m/n on input line 29.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/lmss/m/n --> OT1/lmss/bx/n on input line 31.
+(Font)                  OT1/lmss/m/n --> OT1/lmss/bx/n on input line 29.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/lmss/m/it --> OT1/lmss/bx/it on input line 31.
+(Font)                  OT1/lmss/m/it --> OT1/lmss/bx/it on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/lmss/bx/n --> OT1/lmr/bx/n on input line 31.
+(Font)                  OT1/lmss/bx/n --> OT1/lmr/bx/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> OT1/lmss/bx/n on input line 31.
+(Font)                  OT1/lmss/bx/n --> OT1/lmss/bx/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/m/n --> OT1/lmss/bx/n on input line 31.
+(Font)                  OT1/lmss/m/n --> OT1/lmss/bx/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/lmss/m/it --> OT1/lmss/bx/it on input line 31.
+(Font)                  OT1/lmss/m/it --> OT1/lmss/bx/it on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> OT1/lmtt/bx/n on input line 31.
+(Font)                  OT1/lmtt/m/n --> OT1/lmtt/bx/n on input line 29.
 
 (C:\Users\th3\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\translator\dicts\tran
 slator-basic-dictionary\translator-basic-dictionary-English.dict
@@ -1092,284 +1040,135 @@ Dictionary: translator-numbers-dictionary, Language: English
 slator-theorem-dictionary\translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-(DWPresentation_Fall2018_Brianti.nav)
-Overfull \vbox (55.31038pt too high) detected at line 33
- []
+(New_ToyModel_FF_October2018.nav) [1
 
-[1
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 69.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
+]
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 94.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 69.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 94.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 69.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 94.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 69.
+(Font)              <10.95> on input line 94.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 69.
+(Font)              <8> on input line 94.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 69.
-LaTeX Font Info:    Try loading font information for U+msa on input line 69.
+(Font)              <6> on input line 94.
+LaTeX Font Info:    Try loading font information for U+msa on input line 94.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 69.
+LaTeX Font Info:    Try loading font information for U+msb on input line 94.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 69.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 94.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 69.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 94.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <8> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 69.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 94.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <6> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 69.
-
-Overfull \vbox (2.98051pt too high) detected at line 69
- []
-
-[2
-
-] [3
-
-] <Financial_Uncertainty.png, id=38, 1163.0953pt x 660.96938pt>
-File: Financial_Uncertainty.png Graphic file (type png)
-
-<use Financial_Uncertainty.png>
-Package pdftex.def Info: Financial_Uncertainty.png used on input line 108.
-(pdftex.def)             Requested size: 290.77312pt x 165.24193pt.
-
-Overfull \vbox (2.87561pt too high) detected at line 108
- []
-
-[4
-
- <./Financial_Uncertainty.png (PNG copy)>]
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 94.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 134.
+(Font)              <10> on input line 94.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 134.
+(Font)              <7> on input line 94.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 134.
+(Font)              <5> on input line 94.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <10> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 134.
-
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 94.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <7> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 134.
-
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 94.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <5> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 134.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 94.
+ [3
 
- [5
+] [4
 
-] [6
+] [5
 
 ]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 181.
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <14.4> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 181.
+[6
 
- [7
+] [7
 
 ] [8
 
-]
-Overfull \vbox (9.2454pt too high) detected at line 243
- []
+] [9
 
-[9
-
-]
-Overfull \vbox (9.2454pt too high) detected at line 272
- []
-
-[10
+] [10
 
 ] [11
 
 ] [12
 
-]
-Overfull \hbox (9.34991pt too wide) in alignment at lines 365--365
- [][][] []
- []
-
-[13
+] [13
 
 ] [14
 
-] [15
-
-]
-LaTeX Font Info:    Try loading font information for OMS+lmss on input line 452
-.
-LaTeX Font Info:    No file OMSlmss.fd. on input line 452.
-
-
-LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 452.
-
-
-Overfull \vbox (4.61195pt too high) detected at line 452
- []
-
-[16
-
-]
-Overfull \hbox (32.07726pt too wide) in alignment at lines 482--482
- [][][] []
- []
-
-
-Overfull \vbox (0.82584pt too high) detected at line 482
- []
-
-[17
-
-] <fig_GPFA_intuition_figure_.png, id=120, 1227.08438pt x 673.01437pt>
-File: fig_GPFA_intuition_figure_.png Graphic file (type png)
-
-<use fig_GPFA_intuition_figure_.png>
-Package pdftex.def Info: fig_GPFA_intuition_figure_.png used on input line 497.
-
-(pdftex.def)             Requested size: 220.86566pt x 121.13736pt.
-
-Overfull \vbox (18.02931pt too high) detected at line 497
- []
-
-[18
-
- <./fig_GPFA_intuition_figure_.png (PNG copy)>] [19
-
-]
-<fig_Uncertainty_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_25_58.png, id=132, 1
-166.85938pt x 666.99188pt>
-File: fig_Uncertainty_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_25_58.png Graph
-ic file (type png)
-
-<use fig_Uncertainty_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_25_58.png>
-Package pdftex.def Info: fig_Uncertainty_Shock_GPFA_Compustat_3lags_03-Oct-2018
-_12_25_58.png used on input line 520.
-(pdftex.def)             Requested size: 315.05624pt x 180.09021pt.
-
-Overfull \hbox (7.76637pt too wide) in paragraph at lines 520--520
- [] 
- []
-
-[20
-
- <./fig_Uncertainty_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_25_58.png (PNG co
-py)>]
-<fig_Financial_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_26_00.png, id=138, 116
-6.85938pt x 666.99188pt>
-File: fig_Financial_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_26_00.png Graphic
- file (type png)
-
-<use fig_Financial_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_26_00.png>
-Package pdftex.def Info: fig_Financial_Shock_GPFA_Compustat_3lags_03-Oct-2018_1
-2_26_00.png used on input line 528.
-(pdftex.def)             Requested size: 315.05624pt x 180.09021pt.
-
-Overfull \hbox (7.76637pt too wide) in paragraph at lines 528--528
- [] 
- []
-
-[21
-
- <./fig_Financial_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_26_00.png (PNG copy
-)>]
-<fig_var_dec_vardec_GPFA_Compustat_3lags_03-Oct-2018_12_37_32.png, id=144, 1177
-.39874pt x 683.55376pt>
-File: fig_var_dec_vardec_GPFA_Compustat_3lags_03-Oct-2018_12_37_32.png Graphic 
-file (type png)
-
-<use fig_var_dec_vardec_GPFA_Compustat_3lags_03-Oct-2018_12_37_32.png>
-Package pdftex.def Info: fig_var_dec_vardec_GPFA_Compustat_3lags_03-Oct-2018_12
-_37_32.png used on input line 538.
-(pdftex.def)             Requested size: 317.9019pt x 184.56198pt.
-
-Overfull \hbox (10.61203pt too wide) in paragraph at lines 538--538
- [] 
- []
-
-[22
-
- <./fig_var_dec_vardec_GPFA_Compustat_3lags_03-Oct-2018_12_37_32.png (PNG copy)
->] [23
-
-] [24
-
 ]
 \tf@nav=\write6
-\openout6 = `DWPresentation_Fall2018_Brianti.nav'.
+\openout6 = `New_ToyModel_FF_October2018.nav'.
 
 \tf@toc=\write7
-\openout7 = `DWPresentation_Fall2018_Brianti.toc'.
+\openout7 = `New_ToyModel_FF_October2018.toc'.
 
 \tf@snm=\write8
-\openout8 = `DWPresentation_Fall2018_Brianti.snm'.
+\openout8 = `New_ToyModel_FF_October2018.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 590.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 590.
- (DWPresentation_Fall2018_Brianti.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 590.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 590.
-Package rerunfilecheck Info: File `DWPresentation_Fall2018_Brianti.out' has not
- changed.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 374.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 374.
+ (New_ToyModel_FF_October2018.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 374.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 374.
+Package rerunfilecheck Info: File `New_ToyModel_FF_October2018.out' has not cha
+nged.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
  ) 
 Here is how much of TeX's memory you used:
- 21168 strings out of 493323
- 424240 string characters out of 3139072
- 486189 words of memory out of 3000000
- 24119 multiletter control sequences out of 15000+200000
- 65436 words of font info for 73 fonts, out of 3000000 for 9000
+ 20680 strings out of 493323
+ 407682 string characters out of 3139072
+ 471351 words of memory out of 3000000
+ 23685 multiletter control sequences out of 15000+200000
+ 53222 words of font info for 64 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,21n,89p,1824b,789s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,17n,59p,876b,554s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Program Fil
-es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fon
-ts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/l
-m-rm.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/lm/lmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
-lmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmss10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/lm/lmss8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso1
-0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso8.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/symbols/msbm10.pfb>
-Output written on DWPresentation_Fall2018_Brianti.pdf (24 pages, 617573 bytes).
-
+es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fon
+ts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/l
+m-rm.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/lm/lmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmss8.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/lm/lmsso10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/lm/lmsso8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/symbols/msbm10.pfb>
+Output written on New_ToyModel_FF_October2018.pdf (14 pages, 172677 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
- 50 named destinations out of 1000 (max. 500000)
- 80 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 164 PDF objects out of 1000 (max. 8388607)
+ 29 named destinations out of 1000 (max. 500000)
+ 85 words of extra memory for PDF output out of 10000 (max. 10000000)
 

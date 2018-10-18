@@ -1,0 +1,373 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\usepackage{graphicx,lmodern,subfigure,ulem,color,graphicx,tikz,booktabs,natbib}
+\usepackage{mathrsfs}
+\usetheme{Warsaw}
+%\definecolor{beamer@blendedblue}{rgb}{0.1,0.5,0.1}
+%\definecolor{ForestGreen}{RGB}{60, 140, 60}
+%\setbeamercolor{structure}{fg=beamer@blendedblue}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\bibliographystyle{chicago}
+\newcommand{\spitem}{\vspace{.3cm}\item}
+\newcommand{\elas}{$E_{labor}$}
+%\def \FigPath {Users\th3\Documents\Job_Market_Paper\Code\Figures} 
+
+\font\reali=msbm10 at 12pt
+% subsets of real numbers
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+
+\title{Three-Period Model}
+\author{Marco Brianti}
+\institute{Boston College}
+
+
+\begin{document}
+	
+	\frame{\titlepage \begin{center} Dissertation Project \end{center} }
+	
+
+\frame{\frametitle{Introduction to the Model}
+
+To provide an economic intuition of the differential response of \textbf{cash holdings} to uncertainty and financial shocks, I present a properly augmented model in the spirit of Almeida, Campello, and Weisbach (2004).
+
+
+\
+
+\
+
+\
+
+It is a simple representation of a dynamic setting where a profit-maximizing firm have
+\begin{itemize}
+	\item present and future investment opportunities
+	\item current cash flow and external sources of finance might not be enough to fund all profitable projects
+\end{itemize}
+
+
+}
+
+
+\frame{\frametitle{Main Features}
+	
+	\begin{itemize}
+	
+	\item Model has three periods: 0, 1 and 2.
+	
+	\
+	
+	\item There is one representative firm (or a continuum of it)
+	
+	\
+	
+	\item Discount factor $\beta = 1$, but it can easily be relaxed
+	
+	\
+	
+	\item In P0 firm can invest $I_0$ in a long-term project.
+	\begin{itemize}
+		\item $I_0$ pays a deterministic return $g(I_0)$ in P2
+	\end{itemize}
+	
+	\
+
+    \item In P1 firm can invest $I_1$ in a short-term project.
+    \begin{itemize}
+	\item $I_1$ pays a deterministic return $h(i_1)$ in P2
+    \end{itemize}
+
+    \
+    
+    \item Both $g(\cdot)$ and $h(\cdot)$ - display the following properties
+    \begin{itemize}
+    	\item $g'(\cdot)$ and $h'(\cdot)$ strictly positive
+    	\item $g''(\cdot)$ and $h''(\cdot)$ strictly negative
+    	\item $g'''(\cdot)$ and $h'''(\cdot)$ strictly positive
+    \end{itemize}
+
+   \end{itemize}	
+	
+}
+
+\frame{\frametitle{Period 0}
+	
+	
+	\begin{itemize}
+		\item Firm enters the period with $y_0$ internal liquidity from past and current cash flows
+		
+		\item Firm chooses optimal level of investment $I_0$, cash holding $C$, and borrowing $B_0$
+
+			\item Optimal choices are subject to nonnegative dividends constraint,
+			$$
+			d_0 = y_0 + B_0 - I_0 - C \geq 0
+			$$
+            and financial frictions since debt repayment in period 2 is
+			$$
+			B_0(1 + r_0) \ \ \text{where} \ \ r_0 = \alpha B_0
+$$			
+
+the economic intuition is that the larger the debt, the riskier the loan, the higher the rate.
+
+
+			
+\end{itemize}
+
+}
+
+
+\frame{\frametitle{Period 1}
+
+\begin{itemize}
+	\item Firm enters the period with $C + y_1$ internal liquidity where
+	\begin{itemize}
+		\item $C$ is optimal level of cash holding chosen in P0
+		\item $y_1 \sim F[\underline{y_1}, \  \overline{y_1}] \geq 0$ is current cash flow
+		\item $y_1$ is unknown in P0 and drawn at the beginning of P1 
+		\end{itemize}
+	
+	\
+	
+	\item Firm chooses optimal schedules of both investment $I_1(c_1)$ and borrowing $B_1(c_1)$
+	
+	\
+	
+	\item Optimal choices are subject to nonnegative dividends constraint,
+	$$
+	d_1 = y_1 + B_1(c_1) - I_1(c_1) + C \geq 0
+	$$
+	and financial frictions
+	$$
+	B_1(1 + r_1) \ \ \text{where} \ \ r_1 = \alpha B_1
+	$$
+\end{itemize}
+
+}
+
+
+\frame{\frametitle{Period 2}
+	
+	\begin{itemize}
+		
+		\item Firm receives deterministic returns $g(I_1)$ and $h(I_1(y_1))$
+		
+		\
+		
+		\item Firm pays back  $B_0(1 + r_0)$ and $B_1(y_1)(1+r_1)$
+		
+		\
+		
+		\item Dividends are defined as
+		$$
+		d_2 = g(I_0) + h(I_1(y_1)) - B_0(1 + r_0) - B_1(y_1)(1 + r_1)
+		$$
+				
+	\end{itemize}
+		
+}
+
+\frame{\frametitle{Firm's Problem}
+	
+\begin{eqnarray}
+\max_{C,I_0,B_0,I_1(c_1),B_1(c_1)} d_0 + d_1 + d_2
+\end{eqnarray}	
+subject to
+\begin{eqnarray}
+\begin{aligned}
+d_0 &= y_0 + B_0 - I_0 - C \geq 0 \\
+d_1 &= y_1 + B_1(y_1) - I_1(y_1) + C \geq 0 \\
+d_2 &= g(I_0) + h(I_1(y_1)) - B_0(1 + r_0) - B_1(y_1)(1 + r_1) \\
+r_0 &= \alpha B_0 \\
+r_1 &= \alpha B_1
+\end{aligned}
+\end{eqnarray}	
+}
+
+
+\frame{\frametitle{Solution}
+	
+I make the fair assumption that using only internal source of finance is not a profit maximizing solution. Mathematically,
+
+$$
+g'(y_0) > 1 \ \ \text{and} \ \ h'(y_1) > 1 
+$$	
+which means that the marginal return of investment is larger than the marginal cost of borrowing when debt is equal to zero.
+
+
+\
+
+\
+
+This implies that $d_0 = d_1 = 0$, $B_0 > 0$, and $B_1 > 0$.  
+
+\
+
+\
+
+Thus, $I_0 = y_0 + B_0 - C$ and $I_1 = y_1 + B_1 + C$
+		
+}
+
+
+\frame{\frametitle{Solution (cont.)}
+
+Problem can be rewritten as
+\begin{eqnarray*}
+	\begin{aligned}
+\max_{B_0,B_1,C} & \ \ \ \ g(y_0 + B_0 - C) + \E \Big[ h(y_1 + B_1 + C) \Big] \\
+                 & \ \ \ \ - B_0 - \alpha B_0^2 - B_1 - \alpha B_1^2 - y_0 - \E y_1 \\
+               \end{aligned}
+\end{eqnarray*}
+
+First Order Conditions imply 
+
+\
+
+\begin{itemize}
+	\item[$B_0:$] $g'(y_0 + B_0^* - C^*) = 1 + 2 \alpha B_0^*$
+
+	
+	\item[$B_1:$] $\E \Big[ h'(y_1 + B_1^* + C^*) \Big] = 1 + 2 \alpha B_1^*$
+	
+
+	
+	\item[$C:$] $\E \Big[ h'(y_1 + B_1^* + C^*) \Big] = g'(y_0 + B_0^* - C^*)$
+\end{itemize}
+
+}
+
+\frame{\frametitle{Solution (cont.)}
+
+FOC for $C$ implies that
+
+\
+
+$$
+1 + 2\alpha B_0^* = 1 + 2\alpha B_1^* \ \ \Rightarrow \ \ B_0^* = B_1^*
+$$
+
+\
+
+since $Ey_1 = y_0$, this implies that 
+
+\
+
+$$
+\E \Big[ h'(y_1 + B_1^*) \Big] > g'(y_0 + B_0^*) \ \ \text{since} \ \ h''' > 0
+$$
+
+\
+
+which implies that in equilibrium $C^* > 0$.
+
+	
+}
+
+
+\frame{\frametitle{Comparative Statics - Financial Shock}
+	
+An unexpected financial shock implies that the cost of debt in period 0 increases of $\varepsilon$. First order conditions implies,
+
+\
+
+\begin{itemize}
+	\item[$B_0:$] $g'(y_0 + B_0^{**} - C^{**}) = 1 + 2  ( \alpha + \varepsilon ) B_0^{**}$
+	
+	\
+	
+	\item[$B_1:$] $\E \Big[ h'(y_1 + B_1^{**} + C^{**}) \Big] = 1 + 2 \alpha B_1^{**}$
+	
+	\
+	
+	\item[$C:$] $\E \Big[ h'(y_1 + B_1^{**} + C^{**}) \Big] = g'(y_0 + B_0^{**} - C^{**})$
+\end{itemize}
+
+}
+
+\frame{\frametitle{Comparative Statics - Financial Shock (cont.)}
+	
+FOC for $C$ implies that
+
+\
+
+$$
+1 + 2\alpha B_0^{**} + 2 \varepsilon B_0^{**}  = 1 + 2\alpha B_1^{**} \ \ \Rightarrow \ \ B_0^{**} < B_1^{**}
+$$
+
+\
+
+which implies that 
+
+\
+
+$$
+\E \Big[ h'(y_1 + B_1^{**} + C^*) \Big] < g'(y_0 + B_0^{**} - C^*) 
+$$
+
+\
+
+which implies that in equilibrium $C^{**} < C^*$.
+
+
+	
+}
+
+
+\frame{\frametitle{Comparative Statics - Uncertainty Shock}
+	
+	An uncertainty shock is defined as a mean preserving spread of the distribution of $y_1$. First order conditions implies,
+	
+\
+
+\begin{itemize}
+	\item[$B_0:$] $g'(y_0 + B_0^{***} - C^{***}) = 1 + 2  \alpha B_0^{***}$
+	
+	\
+	
+	\item[$B_1:$] $\E \Big[ h'(y_1 + B_1^{***} + C^{***}) \Big] = 1 + 2 \alpha B_1^{***}$
+	
+	\
+	
+	\item[$C:$] $\E \Big[ h'(y_1 + B_1^{***} + C^{***}) \Big] = g'(y_0 + B_0^{***} - C^{***})$
+\end{itemize}
+	
+  	
+
+		
+}
+
+\frame{\frametitle{Comparative Statics - Uncertainty Shock (cont.)}
+	
+
+FOC for $C$ implies that
+
+\
+
+$$
+1 + 2\alpha B_0^{***} = 1 + 2\alpha B_1^{***} \ \ \Rightarrow \ \ B_0^{***} = B_1^{***}
+$$
+
+\
+
+since $Ey_1 = y_0$, this implies that 
+
+\
+
+$$
+\E \Big[ h'(y_1 + B_1^{***} + C^{*}) \Big] > g'(y_0 + B_0^{***} - C^*) \ \ \text{since} \ \ h''' > 0
+$$
+
+\
+
+which implies that in equilibrium $C^{***} > C^*$.
+
+
+	
+}
+
+
+
+\end{document}

@@ -1,6 +1,55 @@
 clear
 close all
 
+
+y0              = 0.01;
+y1              = 0.01;
+c               = 0;
+b0grid          = linspace(0,1,1000);
+b1grid          = linspace(0,1,1000);
+alp             = 1/3;
+R0              = 1.5;
+R1              = 1.2;
+
+optP0           = alp*(y0 + b0grid  - c).^(alp - 1) - R0;
+[~, loc0]       = min(optP0.^2);
+b0opt           = b0grid(loc0);
+optP1           = alp*(y1 + b1grid  - c).^(alp - 1) - R1;
+[~, loc1]       = min(optP1.^2);
+b1opt           = b0grid(loc1);
+c               = 0.101;
+func            = (y0 + b0opt - c).^alp - R0*b0opt + ...
+      (y1 + b1opt + c).^alp - R1*b1opt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+return
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+clear
+close all
+
 filename = 'Daily';
 sheet    = 'Sheet1';
 range    = 'A1:I8213';
