@@ -17,7 +17,7 @@ ylim([-1 1])
 xlim([0 Xlim])
 set(gca,'XTick',[0],'XTickLabel',{'0'},'fontsize',32);
 set(gca,'YTick',[-1 0 +1],'YTickLabel',{'-1','0','1'},'fontsize',32);
-xlabel('\delta: Instrument Intervention','fontsize',45)
+xlabel('\delta: Instrument Weight','fontsize',45)
 ylabel('\gamma_U \gamma_F'': Shocks Correlation','fontsize',45)
 hold off
 

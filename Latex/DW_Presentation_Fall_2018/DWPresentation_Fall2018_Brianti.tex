@@ -17,7 +17,7 @@
 
 
 
-\title{Uncertainty Shocks and Financial Shocks}
+\title{Financial and Uncertainty Shocks}
 \author{Marco Brianti}
 \institute{Boston College}
 \date{October 2018}
@@ -53,7 +53,7 @@ Depth and duration of \textbf{financial crisis}
 New strands of literature arose proposing alternative shocks
 \begin{enumerate}
 	\item \textbf{Financial shocks} - Khan and Thomas (2013) JPE %among others Jerman and Quadrini (2012) AER, Christiano, Motto e Rostagno (2010) Working paper
-	\item \textbf{Uncertainty shocks} - Bloom (2009) Econometrica %was the first to estimate the dynamic effect of uncertainty in a both an empirical and theoretical context 
+	\item \textbf{Uncertainty shocks} - Bloom (2009) ECMA %was the first to estimate the dynamic effect of uncertainty in a both an empirical and theoretical context 
 	\end{enumerate}
 
 \
@@ -68,14 +68,14 @@ New strands of literature arose proposing alternative shocks
 
 	}
 
-	\frame{\frametitle{Definitions}	
+	\frame{\frametitle{Theoretical Definitions}	
 		
 		\
 		
 %Important to define because both shocks are residuals from endogenouse proxy variables that depends on other structural shocks	
 \textbf{Financial Shocks.} Unanticipated innovations to financial conditions orthogonal to any other known economic disturbance.
 $$
-F_t = g(s_t^Y) + s_t^F
+F_t = g(s_t^Y,s_t^U) + s_t^F
 $$
 %A financial shock is an unexpected deterioration of the credit conditions - in general proxied by the credit spread - which cannot be explained by other economic forces as productivity or policies. How can we think about s^F? Following Gilchrist (2012) AER, as a change in the risk-bearing capacity of the lending sector which is not trigger by other shocks. So s^F is a measure of our ignorance of the capital market, but it is an imortant one because it represents independent changes in the credit conditions. 
 
@@ -84,9 +84,9 @@ $$
 
 
 
-\textbf{Uncertainty Shocks.} Innovations in the expected variance of future (traditional) shocks which cannot be explained by any current source of economic fluctuations.
+\textbf{Uncertainty Shocks.} Innovations to the forecast error variance of aggregate variables orthogonal to any other known economic disturbance.
 $$
-U_t = h(s_t^Y) + s_t^U
+U_t = h(s_t^Y,s_t^F) + s_t^U
 $$
 %when agents observe large 1st-order shocks they may also use this information to update the distribution of future shocks implying a jump in uncertainty. However, this jump is endogenous to a large realized shock. How can we think about s^U? According to Nimark (2014) - AER and Forni, Gambetti, and Sala (2017) - WP, I interpret s^U as a signal regarding future states of the economy which implies changes in the variance of the distribution of future shocks.
 
@@ -94,7 +94,7 @@ $$
 }
 	
 	
-	\frame{\frametitle{Empirical Challenge in Structural VAR}	
+	\frame{\frametitle{Empirical Proxies for Financial Conditions and Uncertainty}	
 		
 		\
 		
@@ -107,26 +107,25 @@ $$
 		
 	}
 
-	\frame{\frametitle{Empirical Challenge in Structural VAR (cont.)}	
+	\frame{\frametitle{Motivation: Empirical Challenge in Structural VAR}	
 	
-	Uncertainty shocks and financial shocks are deeply \textbf{confounded}.
+	Empirically distinguishing between financial and uncertainty shocks is difficult
 	\begin{itemize}
-		\item[$\Rightarrow$] correlation of raw series is above 0.5 
-		\item[$\Rightarrow$] correlation of their \textbf{innovations} remains close to 0.5
+		\item[$\Rightarrow$] financial distress is empirically associated with larger volatility 
 	\end{itemize}
 
 \
 
 
-	Empirical literature did not succeed yet to disentangle these two exogenous sources due to:
+Within a SVAR framework, this correlation significantly complicates identification of both shocks
 \begin{enumerate}
-	\item Simultaneity
+	\item Implausible \textbf{zero-contemporaneous restrictions}
 	\begin{itemize}
-		\item[$\Rightarrow$] Both types of variables are fast moving
+		\item[$\Rightarrow$] Both $F_t$ and $U_t$ are fast moving
 	\end{itemize}	
-	\item Effect on observables	
+	\item Unavailable instruments for \textbf{sign restrictions}	
 	\begin{itemize}
-		\item[$\Rightarrow$] They have the same qualitative effects on prices and quantities
+		\item[$\Rightarrow$] Current theoretical models predict same qualitative effects on both prices and quantities
 	\end{itemize}
 \end{enumerate}
 	
@@ -151,7 +150,7 @@ $$
 	
 	
 	\begin{enumerate}
-		\item I argue that there exists a variable which responds differently to financial and uncertainty shocks. 
+		\item \textbf{Corporate cash holdings} respond differently to financial and uncertainty shocks. 
 		\begin{itemize}
 			\item[$\Rightarrow$] Identification assumption
 			\end{itemize}
@@ -160,7 +159,7 @@ $$
 		
 		\item I provide a \textbf{new econometric tool} to sequentially identify two structural shocks when an internal instrument is available.
 		\begin{itemize}
-			\item[$\Rightarrow$] Generalized Penalty Function Approach in Structural VAR 
+			\item[$\Rightarrow$] Generalized Penalty Function Approach  
 		\end{itemize}
 		
 	\end{enumerate}
@@ -168,7 +167,7 @@ $$
 
 \frame{\frametitle{Roadmap}
 	\Large{
-		$ \ \ \ \ \ $ 1. \textbf{Cash Reserves}
+		$ \ \ \ \ \ $ 1. \textbf{Cash Holdings}
 		
 		$ \ \ \ \ \ $ 2. Model
 		
@@ -183,25 +182,31 @@ $$
 
 \frame{\frametitle{Corporate Cash Holdings}
 	
-\textbf{Cash reserves} refer to money which a corporation keeps on hand to cover any emergency funding or short-term requirements. 
+\textbf{Cash and Cash Equivalents} refer to assets a business hold as ready cash
+\begin{itemize}
+	\item Coffer as petty cash
+	\item Bank account
+	\item Bank certificates of deposits
+\end{itemize}
 
 \
 
-The typical U.S. large firm has cash equal to about 15\% of total assets.
+U.S. large firms have cash equal to about 15\% of total assets.
 
 \
 
-Together with current cash flow is consider the most important \textbf{internal source of finance}.
+It is a \textbf{stock variable}, 
+$$
+Cash_t = Cash_{t-1} + NY_t + \delta K_t - I_t + B_t - D_t.
+$$
 
-\
 
-Cash provides \textbf{unconditional liquidity} available at any time.
 
 
 }
 
 
-\frame{\frametitle{Cash Reserves and Financial Frictions}
+\frame{\frametitle{Cash is a Substitute for External Finance}
 	
 	
 
@@ -223,7 +228,7 @@ Cash provides \textbf{unconditional liquidity} available at any time.
 		
 
 	\begin{itemize}
-	\item[3.] After a negative credit supply shock firms \textbf{burn cash} to \textbf{avoid investment cuts} and \textbf{decrease financial costs}.
+	\item[3.] After a negative credit supply shock firms \textbf{burn cash} to \textbf{avoid investment cuts} and \textbf{reduce financial costs}.
 	
 	\hfill Campello, Graham, Harvey, 2010 JFE
 \end{itemize}
@@ -242,7 +247,7 @@ Cash provides \textbf{unconditional liquidity} available at any time.
 	
 }
 
-		\frame{\frametitle{Cash Reserves and Uncertainty}
+		\frame{\frametitle{Cash is Positively Correlated with Uncertainty}
 				\begin{itemize}
 				\item[1.] Financially constrained firm \textbf{holds more cash if cash flow is more volatile}.
 
@@ -273,7 +278,7 @@ Cash provides \textbf{unconditional liquidity} available at any time.
 
 \frame{\frametitle{Roadmap}
 	\Large{
-		$ \ \ \ \ \ $ 1. Cash Reserves
+		$ \ \ \ \ \ $ 1. Cash Holdings
 		
 		$ \ \ \ \ \ $ 2. \textbf{Model}
 		
@@ -300,7 +305,7 @@ Cash provides \textbf{unconditional liquidity} available at any time.
 		
 %}
 
-\frame{\frametitle{Setting}
+\frame{\frametitle{Three-Period Partial Equilibrium Model}
 	
 	
 
@@ -312,19 +317,19 @@ Cash provides \textbf{unconditional liquidity} available at any time.
 	\
 	
 	
-	\item[Period 1] $ \ \ \ d_1 = y_1 + b_1 - i_1 + c, \ \ \ $ where $ \ y_1 \sim F$
+	\item[Period 1] $ \ \ \ d_1 = y_1 + b_1 - i_1 + c, \ \ \ $ where $ \ y_1 \sim F(y_0,\sigma^2)$
 	
 	\
 	
 	
-	\item[Period 2] $ \ \ \ d_2 = g(I_0) - b_0(1 + r_0) + g(I_1) - b_1(1 + r_1)$
+	\item[Period 2] $ \ \ \ d_2 = g(i_0) - b_0(1 + r_0) + g(i_1) - b_1(1 + r_1)$
 \end{itemize}
 \end{itemize}
 
 \begin{eqnarray*}
 	\begin{aligned}
 \max_{\{ b_t,i_t,c \}_{t=0,1}} \ \ &\E \Big[  d_0 + d_1 + d_2     \Big| F  \Big] \\
-\text{subject to} \ \ &r_t = \alpha_t b_t, \ \ \ t = 0,1 \\
+\text{subject to} \ \ &r_0 = \frac{1}{2}\alpha_0 b_0 \ \ \text{and} \ \ r_1 = \frac{1}{2}\alpha_1 b_1 \\
 &d_t \geq 0, \ \ \ t = 0,1,2
 \end{aligned}
 \end{eqnarray*}
@@ -332,7 +337,7 @@ Cash provides \textbf{unconditional liquidity} available at any time.
 \
 
 \begin{center}
-Financial shock: $\uparrow \alpha_0$ $ \ \ \ \ $ vs $ \ \ \ \ $ Uncertainty shock: $\uparrow F$
+Financial shock: $\uparrow \alpha_0$ $ \ \ \ \ $ vs $ \ \ \ \ $ Uncertainty shock: $\uparrow \sigma^2$
 \end{center}
 	
 }
@@ -347,15 +352,15 @@ Financial shock: $\uparrow \alpha_0$ $ \ \ \ \ $ vs $ \ \ \ \ $ Uncertainty shoc
 which implies $i_0 = y_0 + b_0 - c$ and $i_1 = y_1 + b_1 + c$. Objective function is,
 \begin{eqnarray*}
 	\begin{aligned}
-	\max_{b_0,b_1,c} \ \ &g \big( i_0 \big) - b_0 - \alpha_0 b_0^2 - y_0 + \E \big[  g \big( i_1 \big) - b_1 - \alpha_1 b_1^2 - y_1   \big| F     \big]
+	\max_{b_0,b_1,c} \ \ &g \big( i_0 \big) - b_0 - \frac{1}{2} \alpha_0 b_0^2 - y_0 + \E \bigg[  g \big( i_1 \big) - b_1 - \frac{1}{2} \alpha_1 b_1^2 - y_1   \bigg| F     \bigg]
 	 \end{aligned}
 	\end{eqnarray*}
 First Order Conditions
 \begin{itemize}
-	\item[$b_0:$] $g'(y_0 + b_0^* - c^*) = 1 + 2 \alpha b_0^*$
+	\item[$b_0:$] $g'(y_0 + b_0^* - c^*) = 1 + \alpha_0 b_0^*$
 	
 	
-	\item[$b_1:$] $\E \Big[ g'(y_1 + b_1^* + c^*) \Big] = 1 + 2 \alpha b_1^*$
+	\item[$b_1:$] $\E \Big[ g'(y_1 + b_1^* + c^*) \Big] = 1 + \alpha_1 b_1^*$
 	
 	
 	
@@ -368,10 +373,10 @@ First Order Conditions
 	
 	Given the first order conditions,
 \begin{itemize}
-	\item[$b_0:$] $g'(y_0 + b_0^* - c^*) = 1 + 2 \alpha b_0^*$
+	\item[$b_0:$] $g'(y_0 + b_0^* - c^*) = 1 + \alpha_0 b_0^*$
 	
 	
-	\item[$b_1:$] $\E \Big[ g'(y_1 + b_1^* + c^*) \Big] = 1 + 2 \alpha b_1^*$
+	\item[$b_1:$] $\E \Big[ g'(y_1 + b_1^* + c^*) \Big] = 1 + \alpha_1 b_1^*$
 	
 	
 	
@@ -382,7 +387,7 @@ First Order Conditions
 	
 \textbf{Uncertainty shock}: $y_1 \sim Q$ which is mean-preserving spread in $F$
 	\begin{enumerate}
-	\item[$\Rightarrow$] $c^*(\alpha_0,Q) > c^*(\alpha_0,F)$ as long as $h'''(\cdot) > 0$
+	\item[$\Rightarrow$] $c^*(\alpha_0,Q) > c^*(\alpha_0,F)$ as long as $g'''(\cdot) > 0$
 \end{enumerate}
 
 \
@@ -553,24 +558,68 @@ I suggest a \textbf{general approach} where $\delta$ is treated as an endogenous
 
 \frame{\frametitle{Conclusions}
 	
-\
+So far,
 	
-Cash can be used as an internal instrument to simultaneously identify uncertainty and financial shocks
+\begin{itemize}
+	
+\item Cash as an internal instrument to simultaneously identify financial and uncertainty shocks
 
-\
 
-GPFA seems to be able to use internal instruments to fully disentangle two confounded shocks
+\item An econometric tool to overcome known SVAR shortcomings
 
-\
 
-Both shocks have a remarkable effect on aggregate variables 
+\item Empirical results confirm the relevance of both shocks
 
-\
 
-Financial shocks have larger effect in the short run while uncertainty shocks in the medium run
+\item Financial shocks have larger effects in the short run while uncertainty shocks in the medium run
+
+\end{itemize}
+
+	Nest Steps,
+\begin{itemize}
+	
+	\item Firm-level evidence on the differential response of cash
+	
+	\item General equilibrium model
+	
+\end{itemize}
 
 }
 
+\frame{\frametitle{Appendix A - Simulated Data}
+	
+	Simulate the model,
+	\begin{eqnarray*}
+	\begin{cases}
+	X_t = \rho_{XX} X_{t-1} + \rho_{XY} Y_{t-1}  + \rho_{XZ} Z_{t-1}  +  \alpha_{1X}s_t^1  +  \alpha_{2X}s_t^2 \\
+	Y_t = \rho_{YX} X_{t-1} + \rho_{YY} Y_{t-1}  + \rho_{YZ} Z_{t-1}  +  \alpha_{1Y}s_t^1  +  \alpha_{2Y}s_t^2 \\
+	Z_t = \rho_{ZX} X_{t-1} - \rho_{ZY} Y_{t-1}  + \rho_{ZZ} Z_{t-1}  +  \alpha_{1Z}s_t^1  -  \alpha_{2Z}s_t^2
+	\end{cases}
+	\end{eqnarray*}
+	
+	Objective is to estimate $s_t^1$ and $s_t^2$ under the assumption that we only know the sign of $\alpha_{ij}$, $i=\{1,2\}$, and $j = \{X, Y, Z\}$.
+	
+}
+
+
+\frame{\frametitle{Appendix A - Result for T = 100}
+	
+\begin{center}
+	\includegraphics[scale=0.27]{test_small}
+\end{center}	
+
+	
+}
+
+
+
+\frame{\frametitle{Appendix A - Result for T = 100000}
+	
+\begin{center}
+	\includegraphics[scale=0.27]{test_large}
+\end{center}		
+	
+}
 
 
 
