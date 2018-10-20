@@ -36,7 +36,7 @@ for i_var=1:nvar
                   LGD.FontSize = 16;
                   legend boxoff
             end
-            axis tight
+            %axis tight
             hold off
             grid on
       end

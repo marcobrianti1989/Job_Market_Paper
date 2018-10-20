@@ -13,6 +13,7 @@
 \newcommand{\elas}{$E_{labor}$}
 %\def \FigPath {Users\th3\Documents\Job_Market_Paper\Code\Figures} 
 \DeclareMathOperator{\E}{\mathbb{E}}
+\usepackage{makecell}
 
 
 
@@ -35,7 +36,16 @@ outer/numbering=none
 
 	
 	
-		\frame{\frametitle{Alternative Drivers of Economic Fluctuations}	
+		\frame{\frametitle{Alternative Drivers of Economic Fluctuations}
+			
+			\	
+			
+			\textit{The shocks that produced the recession were primarily associated with \textbf{financial disruptions} and \textbf{heightened uncertainty}}
+			
+			\hfill  Stock and Watson (2012) 
+			%Stock and Watson (2012) comprehensive empirical anatomy of the Great recession
+			%The shocks that produced the recession were primarily associated with financial disruptions and heightened uncertainty		
+			
 			
 			\
 			
@@ -59,35 +69,31 @@ New strands of literature arose proposing alternative shocks
 \
 
 
-\textit{The shocks that produced the recession were primarily associated with financial disruptions and heightened uncertainty}
-
-\hfill  Stock and Watson (2012) 
-%Stock and Watson (2012) comprehensive empirical anatomy of the Great recession
-%The shocks that produced the recession were primarily associated with financial disruptions and heightened uncertainty		
 
 
 	}
 
 	\frame{\frametitle{Theoretical Definitions}	
 		
-		\
-		
 %Important to define because both shocks are residuals from endogenouse proxy variables that depends on other structural shocks	
-\textbf{Financial Shocks.} Unanticipated innovations to financial conditions orthogonal to any other known economic disturbance.
+\textbf{Financial Shocks.} Unanticipated innovations to financial conditions orthogonal to other economic disturbances.
 $$
 F_t = g(s_t^Y,s_t^U) + s_t^F
 $$
+\textit{E.g. new banking regulation, banks' balance sheet deterioration, changes in lenders' risk management, \dots}
 %A financial shock is an unexpected deterioration of the credit conditions - in general proxied by the credit spread - which cannot be explained by other economic forces as productivity or policies. How can we think about s^F? Following Gilchrist (2012) AER, as a change in the risk-bearing capacity of the lending sector which is not trigger by other shocks. So s^F is a measure of our ignorance of the capital market, but it is an imortant one because it represents independent changes in the credit conditions. 
+
+\
 
 \
 
 
 
-
-\textbf{Uncertainty Shocks.} Innovations to the forecast error variance of aggregate variables orthogonal to any other known economic disturbance.
+\textbf{Uncertainty Shocks.} Innovations to the forecast error variance of aggregate variables orthogonal to other economic disturbances.
 $$
 U_t = h(s_t^Y,s_t^F) + s_t^U
 $$
+\textit{E.g. political tension, terrorist attack, sectoral growth opportunities, \dots}
 %when agents observe large 1st-order shocks they may also use this information to update the distribution of future shocks implying a jump in uncertainty. However, this jump is endogenous to a large realized shock. How can we think about s^U? According to Nimark (2014) - AER and Forni, Gambetti, and Sala (2017) - WP, I interpret s^U as a signal regarding future states of the economy which implies changes in the variance of the distribution of future shocks.
 
 	
@@ -157,8 +163,7 @@ Within a SVAR framework, this correlation significantly complicates identificati
 		
 		\	
 		
-		\item I provide a \textbf{new econometric tool} to sequentially identify two structural shocks when an internal instrument is available.
-		\begin{itemize}
+		\item I provide a \textbf{new econometric tool} to simultaneously identify two structural shocks when an internal instrument is available.\begin{itemize}
 			\item[$\Rightarrow$] Generalized Penalty Function Approach  
 		\end{itemize}
 		
@@ -182,7 +187,9 @@ Within a SVAR framework, this correlation significantly complicates identificati
 
 \frame{\frametitle{Corporate Cash Holdings}
 	
-\textbf{Cash and Cash Equivalents} refer to assets a business hold as ready cash
+	\
+	
+\textbf{Cash and Cash Equivalents} refer to assets a business holds as ready cash
 \begin{itemize}
 	\item Coffer as petty cash
 	\item Bank account
@@ -497,7 +504,7 @@ I suggest a \textbf{general approach} where $\delta$ is treated as an endogenous
 \includegraphics[scale=0.18]{fig_GPFA_intuition_figure_}
 \end{center}
 
-\textbf{Intuition.} Internal instrument intervention should be strong enough such that $\gamma_U \gamma_F' = 0$ endogenously holds.
+\textbf{Intuition.} Weight of the internal instrument should be large enough such that $\gamma_U \gamma_F' = 0$ endogenously holds.
 
 }
 
@@ -518,7 +525,7 @@ I suggest a \textbf{general approach} where $\delta$ is treated as an endogenous
 \frame{\frametitle{Uncertainty Shock}
 
 \begin{center}
-	\includegraphics[scale=0.27]{fig_Uncertainty_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_25_58}
+	\includegraphics[scale=0.27]{fig_Uncertainty_Shock_GPFA_Compustat_3lags_gamgamZero}
 \end{center}	
 
 	
@@ -527,7 +534,7 @@ I suggest a \textbf{general approach} where $\delta$ is treated as an endogenous
 \frame{\frametitle{Financial Shock}
 	
 	\begin{center}
-		\includegraphics[scale=0.27]{fig_Financial_Shock_GPFA_Compustat_3lags_03-Oct-2018_12_26_00}
+		\includegraphics[scale=0.27]{fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero}
 	\end{center}	
 		
 }
@@ -537,7 +544,7 @@ I suggest a \textbf{general approach} where $\delta$ is treated as an endogenous
 \frame{\frametitle{Variance Explained}
 	
 	\begin{center}
-		\includegraphics[scale=0.27]{fig_var_dec_vardec_GPFA_Compustat_3lags_03-Oct-2018_12_37_32}
+		\includegraphics[scale=0.27]{fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero}
 	\end{center}	
 	
 }
@@ -566,6 +573,9 @@ So far,
 
 
 \item An econometric tool to overcome known SVAR shortcomings
+\begin{itemize}
+	\item[$\Rightarrow$] Simulated data confirm the reliability of the procedure 
+\end{itemize}
 
 
 \item Empirical results confirm the relevance of both shocks
@@ -588,16 +598,20 @@ So far,
 
 \frame{\frametitle{Appendix A - Simulated Data}
 	
-	Simulate the model,
-	\begin{eqnarray*}
-	\begin{cases}
-	X_t = \rho_{XX} X_{t-1} + \rho_{XY} Y_{t-1}  + \rho_{XZ} Z_{t-1}  +  \alpha_{1X}s_t^1  +  \alpha_{2X}s_t^2 \\
-	Y_t = \rho_{YX} X_{t-1} + \rho_{YY} Y_{t-1}  + \rho_{YZ} Z_{t-1}  +  \alpha_{1Y}s_t^1  +  \alpha_{2Y}s_t^2 \\
-	Z_t = \rho_{ZX} X_{t-1} - \rho_{ZY} Y_{t-1}  + \rho_{ZZ} Z_{t-1}  +  \alpha_{1Z}s_t^1  -  \alpha_{2Z}s_t^2
-	\end{cases}
-	\end{eqnarray*}
+	Consider the following structural model,
 	
-	Objective is to estimate $s_t^1$ and $s_t^2$ under the assumption that we only know the sign of $\alpha_{ij}$, $i=\{1,2\}$, and $j = \{X, Y, Z\}$.
+	\begin{itemize}
+		\item $U_t = B_{UU} U_{t-1} + B_{UF} F_{t-1}  + B_{UC} C_{t-1}  +  \underbrace{A_{UU}s_t^U  +  A_{UF}s_t^F}_{\text{$\iota_t^U$}}$
+		\item $F_t = B_{FU} U_{t-1} + B_{FF} F_{t-1}  + B_{FC} C_{t-1}  +  \underbrace{A_{FU}s_t^U  +  A_{FF}s_t^F}_{\text{$\iota_t^F$}}$
+		\item $C_t = B_{CU} U_{t-1} - B_{CF} F_{t-1}  + B_{CC} C_{t-1}  +  \underbrace{A_{CU}s_t^U  -  A_{CF}s_t^F}_{\text{$\iota_t^C$}}$
+		\end{itemize}
+
+	
+	Objective is to estimate $s_t^U$ and $s_t^F$ under the assumption that we just know the sign of each element of $A$.
+	
+	\
+	
+	I apply the GPF approach - as shown previously - on simulated data.
 	
 }
 
@@ -622,7 +636,28 @@ So far,
 }
 
 
-
+\frame{\frametitle{Appendix B - Correlations with Other External Shocks}
+	
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{lrr} \hline \hline
+			                & \textbf{Uncertainty Shocks} & \textbf{Financial Shocks} \\ 
+			                \hline
+			\textit{External Shocks} &                    &                      \\ 
+			BZP Military News        & $-0.10$  $(0.24)$  &   $0.08$  $(0.31)$   \\ 
+			Ramey Military news      &  $0.07$  $(0.44)$  &   $0.02$  $(0.82)$   \\ 
+			LWY Exp. Tax             &  $0.03$  $(0.74)$  &   $0.15$  $(0.11)$   \\ 
+			RRMR Unexp. Tax          & $-0.13$  $(0.16)$  &   $0.05$  $(0.59)$   \\ 
+		    RRMR Exp. Tax            & $-0.08$  $(0.36)$  &   $0.03$  $(0.76)$   \\ 
+		    AdjTFP AR(1)             &  $0.08$  $(0.31)$  &  $-0.14$  $(0.11)$   \\ 
+		    RR Mon. Policy           & $-0.13$  $(0.18)$  &  $-0.04$  $(0.70)$   \\ 
+		    \hline \hline
+		\end{tabular}
+	\end{table}
+		
+	
+}
 
 
 
