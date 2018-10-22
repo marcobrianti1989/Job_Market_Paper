@@ -370,42 +370,57 @@ Financial shock: $\uparrow \alpha_0$ $ \ \ \ \ $ vs $ \ \ \ \ $ Uncertainty shoc
 
 \frame{\frametitle{Solution}
 	
-	Firm needs external finance: $\E_0 \Big[ g(y_t) \Big] > 1$ for $t=0,1$
+	Assuming that firm needs external finance in equilibrium, model implies: 
 \begin{itemize}
-	\item[$\Rightarrow$] $d_t = 0 \ \ $ for $ \ t=0,1$
+	\item $i_0 = y_0 + b_0 - c$,
+	\item $i_1 = y_1 + b_1 + c$,
 \end{itemize}
-which implies $i_0 = y_0 + b_0 - c$ and $i_1 = y_1 + b_1 + c$. Objective function is,
-\begin{eqnarray*}
-	\begin{aligned}
-	\max_{b_0,b_1,c} \ \ &g \big( i_0 \big) - b_0 - \frac{1}{2} \alpha_0 b_0^2 - y_0 + \E \bigg[  g \big( i_1 \big) - b_1 - \frac{1}{2} \alpha_1 b_1^2 - y_1   \bigg| F     \bigg]
-	 \end{aligned}
-	\end{eqnarray*}
-First Order Conditions
+and first order conditions are
 \begin{itemize}
-	\item[$b_0:$] $g'(y_0 + b_0^* - c^*) = 1 + \alpha_0 b_0^*$
+	\item[$b_0:$] $g'(y_0 + b_0^* - c^*) = \underbrace{1 + \alpha_0 b_0^*}_{\text{Marginal Cost of $i_0$}}$
 	
 	
-	\item[$b_1:$] $\E \Big[ g'(y_1 + b_1^* + c^*) \Big] = 1 + \alpha_1 b_1^*$
+	\
+	
+	\item[$b_1:$] $\E \Big[ g'(y_1 + b_1^* + c^*) \Big] = \underbrace{1 + \alpha_1 b_1^*}_{\text{Marginal Cost of $i_1$}}$
 	
 	
+	\
 	
-	\item[$c:$] $\E \Big[ g'(y_1 + b_1^* + c^*) \Big] = g'(y_0 + b_0^* - c^*)$
+	
+	\item[$c:$] $\underbrace{\E \Big[ g'(y_1 + b_1^* + c^*) \Big]}_{\text{Expected Marginal Return of $i_1$}} = \underbrace{g'(y_0 + b_0^* - c^*)}_{\text{Marginal Return of $i_0$}}$
 \end{itemize}
 
 }
 
+
+%$\E_0 \Big[ g(y_t) \Big] > 1$ for $t=0,1$
+%\begin{itemize}
+	%\item[$\Rightarrow$] $d_t = 0 \ \ $ for $ \ t=0,1$
+%\end{itemize}
+
+%Objective function is,
+%\begin{eqnarray*}
+	%\begin{aligned}
+	%	\max_{b_0,b_1,c} \ \ &g \big( i_0 \big) - b_0 - \frac{1}{2} \alpha_0 b_0^2 - y_0 + \E \bigg[  g \big( i_1 \big) - b_1 - \frac{1}{2} \alpha_1 b_1^2 - y_1   \bigg| F     \bigg]
+	%\end{aligned}
+%\end{eqnarray*}
+
 \frame{\frametitle{Comparative Statics}
 	
-	Given the first order conditions,
 \begin{itemize}
-	\item[$b_0:$] $g'(y_0 + b_0^* - c^*) = 1 + \alpha_0 b_0^*$
+	\item[$b_0:$] $g'(y_0 + b_0^* - c^*) = \underbrace{1 + \alpha_0 b_0^*}_{\text{Marginal Cost of $i_0$}}$
 	
 	
-	\item[$b_1:$] $\E \Big[ g'(y_1 + b_1^* + c^*) \Big] = 1 + \alpha_1 b_1^*$
+	\
+	
+	\item[$b_1:$] $\E \Big[ g'(y_1 + b_1^* + c^*) \Big] = \underbrace{1 + \alpha_1 b_1^*}_{\text{Marginal Cost of $i_1$}}$
 	
 	
+	\
 	
-	\item[$c:$] $\E \Big[ g'(y_1 + b_1^* + c^*) \Big] = g'(y_0 + b_0^* - c^*)$
+	
+	\item[$c:$] $\underbrace{\E \Big[ g'(y_1 + b_1^* + c^*) \Big]}_{\text{Expected Marginal Return of $i_1$}} = \underbrace{g'(y_0 + b_0^* - c^*)}_{\text{Marginal Return of $i_0$}}$
 \end{itemize}
 
 \
@@ -665,14 +680,14 @@ where $s_t^U \sim N(0, \sigma^2_U)$, $s_t^F \sim N(0, \sigma^2_F)$ and $s_t^U \p
 	
 	Objective is to estimate structural parameters 
 	\begin{itemize}
-		\item Using $X_t = [U_t, \ F_t, \ C_t]$,
+		\item using only $X_t = [U_t, \ F_t, \ C_t]$, and
 		\item only knowing that $A_{ji} \geq 0$ for $j,i = \{U, \ F, \ C \}$.
 	\end{itemize} 
 	$\Rightarrow$ apply GPFA to test reliability of the econometric tool
 }
 
 
-\frame{\frametitle{Appendix A - Result for T = 100}
+\frame{\frametitle{Appendix A - Small Sample Performance (T = 100)}
 	
 \begin{center}
 	\includegraphics[scale=0.27]{test_small}
@@ -683,7 +698,7 @@ where $s_t^U \sim N(0, \sigma^2_U)$, $s_t^F \sim N(0, \sigma^2_F)$ and $s_t^U \p
 
 
 
-\frame{\frametitle{Appendix A - Result for T = 100000}
+\frame{\frametitle{Appendix A - Large Sample Performance (T = 100000)}
 	
 \begin{center}
 	\includegraphics[scale=0.27]{test_large}
