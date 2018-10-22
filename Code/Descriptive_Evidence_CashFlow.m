@@ -136,10 +136,10 @@ set(gcf,'color','w');
 plot(Time,zscore(MacroUncertH3),'--','Linewidth',3)
 %plot(Time,zscore(RV),'--','Linewidth',3)
 %plot(Time,zscore(GZSpread),'-','Linewidth',1.5)
-plot(Time,zscore(EBP),'-','Linewidth',2.25)
+plot(Time,zscore(GZSpread),'-','Linewidth',2.25)
 %plot(Time,zscore(MoodySpreadAaa),'-','Linewidth',1.5)
 grid on
-LGD          = legend('U_t: Jurado et al. (2015) Uncertainty','F_t: Gilchrist and Zakrajsek (2012) Excess Bond Premium','Location','northwest');
+LGD          = legend('Ut - Jurado et al. (2015) - Uncertainty','Ft - Gilchrist and Zakrajsek (2012) - Credit Spread','Location','northwest');
 LGD.FontSize = 32;
 legend boxoff
 axis tight
@@ -149,7 +149,7 @@ set(gca,'yticklabel',{[]})
 xlabel('Quarters','fontsize',32)
 %ylabel('Standard Deviations','fontsize',32)
 
-export_fig('Financial_Uncertainty')
+%export_fig('Financial_Uncertainty')
 % ZZ = [MacroUncertH3 RV GZSpread EBP MoodySpreadAaa];
 % corr(ZZ);
 

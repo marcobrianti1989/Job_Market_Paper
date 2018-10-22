@@ -192,8 +192,8 @@ Within a SVAR framework, this correlation significantly complicates identificati
 \textbf{Cash and Cash Equivalents} refer to assets a business holds as ready cash
 \begin{itemize}
 	\item Coffer as petty cash
-	\item Bank account
-	\item Bank certificates of deposits
+	\item Bank accounts
+	\item Certificates of deposits
 \end{itemize}
 
 \
@@ -209,78 +209,56 @@ $$
 
 
 
-
 }
 
 
-\frame{\frametitle{Cash is a Substitute for External Finance}
+\frame{\frametitle{Cross-Sectional Evidence}
 	
-	
-
+	\textbf{Cash} and \textbf{Financial Frictions}
 	\begin{itemize}
-	\item[1.] Financially constrained firms use cash as an \textbf{internal source of investment funding}.
-	
-	\hfill Kaplan and Zingales, 1997 QJE
+		\item[$\Rightarrow$] Cash is a substitute for external finance 
+		\item[] \textit{Kaplan and Zingales (1997); Almeida, et al. (2004); Campello at al. (2010); Campello et al. (2011).}
+	\end{itemize}
+
+\
+
+\textbf{Cash} and \textbf{Uncertainty}
+	\begin{itemize}
+	\item[$\Rightarrow$] Cash is positively associated with uncertainty shocks 
+	\item[] \textit{Han and Qiu (2007); Baum et al. (2008); Bloom et al. (2018); Alfaro et al. (2018).}
 \end{itemize}
 
 
-		
-
-	\begin{itemize}
-	\item[2.] Financially constrained firms \textbf{store cash in good times} and \textbf{use it in bad ones}.
-	
-	\hfill Almeida, Campello, Weisbach, 2004 JF 	
-\end{itemize}
-	
-		
-
-	\begin{itemize}
-	\item[3.] After a negative credit supply shock firms \textbf{burn cash} to \textbf{avoid investment cuts} and \textbf{reduce financial costs}.
-	
-	\hfill Campello, Graham, Harvey, 2010 JFE
-\end{itemize}
-
-	
-
-	\begin{itemize}
-	\item[4.] At a country level, \textbf{cash-to-assets is positively correlated to credit-to-GDP}.
-	
-	\hfill Lins, Servaes, Tufano (2010) JFE
-\end{itemize}
-
-	
-
-		
-	
 }
-
-		\frame{\frametitle{Cash is Positively Correlated with Uncertainty}
-				\begin{itemize}
-				\item[1.] Financially constrained firm \textbf{holds more cash if cash flow is more volatile}.
-
-\hfill Han and Qiu (2007) JCF
-\end{itemize}
-
-					\begin{itemize}
-		\item[2.] Firms \textbf{increase their liquidity ratios when macroeconomic uncertainty increases}.
 		
-		\hfill Baum, Coglayan, Stephan, Talavera (2008) EM	
-	\end{itemize}		
-
-					\begin{itemize}
-	\item[3.] Using UK data, they show that \textbf{cash is positively associated to higher uncertainty}.
-	
-	\hfill Bloom, Mizen, Smietanka (2018) WP	
-\end{itemize}			
-	
 
 
-					\begin{itemize}
-	\item[4.] In response to an \textbf{uncertainty shock}, firms \textbf{increase cash reserves}.
-	
-	\hfill Alfaro, Bloom, Lin (2018) NBER WP	
-\end{itemize}	
-	
+\frame{\frametitle{Aggregate Evidence}
+
+Aggregate quarterly cash (CHEQ) and assets (ATQ) using \textbf{Compustat} from 1961 to 2018.
+
+\
+
+Remove seasonality using 7-term Henderson filter on aggregate cash and aggregate assets and obtain \textbf{Cash2Assets}.
+
+\
+
+
+	\begin{table}[h!]
+	\centering
+	\begin{tabular}{llcc} \hline \hline
+		                         & $\Delta$GDP         & U                &                   F    \\ 
+		\hline
+		\textit{Correlations}    &                     &                  &                                            \\ 
+		U                        &      $-0.48^{***}$                &                  &                    \\
+		F                        &  $-0.36^{***}$   &     $0.22^{***}$       &                             \\ 
+		C2A                      &     $-0.06  $               &       $0.43^{***}$      &            $-0.37^{***}$           \\ 
+		\hline \hline
+	\end{tabular}
+\end{table}
+
+
+
 }
 
 \frame{\frametitle{Roadmap}
@@ -312,7 +290,47 @@ $$
 		
 %}
 
-\frame{\frametitle{Three-Period Partial Equilibrium Model}
+\frame{\frametitle{Model - General Setup}
+
+\begin{itemize}
+
+\item \textbf{Three-period partial equilibrium} model
+
+\	
+
+\item Firm \textbf{maximizes} sum of \textbf{dividends} 
+\begin{itemize}
+\item Discount factor $\beta$ is one
+\end{itemize}
+
+\
+
+\item \textbf{Choice variables} are
+\begin{itemize}
+	\item \textbf{Investments} $i_0$ and $i_1$ in period 0 and 1
+	\item Amount to \textbf{borrow} $b_0$ and $b_1$ in period 0 and 1
+	\item \textbf{Cash} $c$ in period 0 to be carried in period 1
+\end{itemize}
+
+\
+
+
+\item Feature \textbf{financial frictions} in the form of risk premium
+
+\
+
+\item \textbf{Gross returns} $g(\cdot)$ happen in the last period for both investments
+
+	
+	\end{itemize}
+
+
+
+
+
+}
+
+\frame{\frametitle{Model - Analytical Setup}
 	
 	
 
@@ -337,7 +355,7 @@ $$
 	\begin{aligned}
 \max_{\{ b_t,i_t,c \}_{t=0,1}} \ \ &\E \Big[  d_0 + d_1 + d_2     \Big| F  \Big] \\
 \text{subject to} \ \ &r_0 = \frac{1}{2}\alpha_0 b_0 \ \ \text{and} \ \ r_1 = \frac{1}{2}\alpha_1 b_1 \\
-&d_t \geq 0, \ \ \ t = 0,1,2
+&d_t \geq 0, \ \ \ t = 0,1,2 \\
 \end{aligned}
 \end{eqnarray*}
 
@@ -437,7 +455,7 @@ First Order Conditions
 
 \frame{\frametitle{Empirical Analysis}
 	
-	\
+	
 
 Given the reduced-form system $X_t = B X_{t-1} + \iota_t$ where
 
@@ -449,16 +467,15 @@ GDP_t \\
 C_t \\
 I_t \\
 H_t \\
-C2A_t 
+C2A_t \\
+GDPDef_t \\
 \end{bmatrix}
 $$ 
 
 \
 
-\begin{itemize}
-	\item where $\iota_t' \iota_t = \Sigma_{\iota}$
-	\item dataset ranges from 1986q1 to 2015q4
-\end{itemize}
+Dataset ranges from 1978q1 to 2015q3.
+
 
 	
 }
@@ -471,7 +488,7 @@ $$
 	
 	\
 	
-	\textbf{Step 1 - Uncertainty Shock}
+	\textbf{Uncertainty Shock}
 	\begin{eqnarray*}
 		\begin{aligned}
 		\max_{\gamma_{U}} \ \ \ \ \ &  \ \underbrace{e_U A_0 \gamma_U}_{\text{Impact on U}} \ \ \  + \ \ \ \textcolor{red}{\delta} \underbrace{e_{C} A_0 \gamma_U}_{\text{Impact on Cash}} \\
@@ -483,7 +500,7 @@ $$
 
 
 
-	\textbf{Step 2 - Financial Shock}
+	\textbf{Financial Shock}
 	\begin{eqnarray*}
 		\begin{aligned}
 		\max_{\gamma_{F}} \ \ \ \ \ & \  \underbrace{e_F A_0 \gamma_F}_{\text{Impact on F}} \ \ \  - \ \ \  \textcolor{red}{\delta} \underbrace{e_{C} A_0 \gamma_F}_{\text{Impact on Cash}} \\
@@ -565,54 +582,93 @@ I suggest a \textbf{general approach} where $\delta$ is treated as an endogenous
 
 \frame{\frametitle{Conclusions}
 	
-So far,
 	
+
+\	
+
+
 \begin{itemize}
 	
-\item Cash as an internal instrument to simultaneously identify financial and uncertainty shocks
+	
 
+\item \textbf{Cash reserves} as an internal instrument to simultaneously identify financial and uncertainty shocks.
 
-\item An econometric tool to overcome known SVAR shortcomings
+\
+
+\item An \textbf{econometric tool} to overcome known SVAR shortcomings
 \begin{itemize}
-	\item[$\Rightarrow$] Simulated data confirm the reliability of the procedure 
+	\item[$\Rightarrow$] Tests using simulated data confirm the reliability of the procedure. See \textbf{Appendix A}.
 \end{itemize}
 
+\
 
-\item Empirical results confirm the relevance of both shocks
 
-
-\item Financial shocks have larger effects in the short run while uncertainty shocks in the medium run
-
-\end{itemize}
-
-	Nest Steps,
+\item Empirical results confirm the \textbf{relevance} and \textbf{exogeneity} of both shocks.
 \begin{itemize}
-	
-	\item Firm-level evidence on the differential response of cash
-	
-	\item General equilibrium model
-	
+	\item[$\Rightarrow$] Correlations with external shocks is available in \textbf{Appendix B}.
 \end{itemize}
+
+\
+
+
+\item \textbf{Financial shocks} have larger effects in the \textbf{short run} while \textbf{uncertainty shocks} have a more \textbf{persistent} effect.
+
+\end{itemize}
+
 
 }
 
-\frame{\frametitle{Appendix A - Simulated Data}
+\frame{\frametitle{Next Steps}
+	
+	\begin{enumerate}
+
+\item Empirical evidence in favor of my identification assumption
+
+\begin{itemize}
+	\item Using \textbf{Quarterly Financial Report} data to show that my results are mostly driven by small firms 
+	\item Merging \textbf{Compustat} and \textbf{TRACE} to show firm-level evidence of the differential response of cash
+	$$
+	\frac{Cash_{it}}{Assets_{it}} = \underbrace{\beta^U}_{(+)} U_{it} + \underbrace{\beta^F}_{(-)} F_{it} + \beta^X X_{it} + \delta_i + \lambda_t + \varepsilon_{it}
+	$$
+\end{itemize}
+
+
+\
+
+
+\item Design and analyze a \textbf{dynamic GE model} 
+\begin{itemize}
+	
+	\item to show my identification assumption survives to GE effects
+	
+	\item to test whether GPFA can recover both shocks
+	
+\end{itemize}
+
+
+\end{enumerate}
+
+}
+
+\frame{\frametitle{Appendix A - Simulated Data and Generalized PFA}
 	
 	Consider the following structural model,
 	
 	\begin{itemize}
-		\item $U_t = B_{UU} U_{t-1} + B_{UF} F_{t-1}  + B_{UC} C_{t-1}  +  \underbrace{A_{UU}s_t^U  +  A_{UF}s_t^F}_{\text{$\iota_t^U$}}$
-		\item $F_t = B_{FU} U_{t-1} + B_{FF} F_{t-1}  + B_{FC} C_{t-1}  +  \underbrace{A_{FU}s_t^U  +  A_{FF}s_t^F}_{\text{$\iota_t^F$}}$
-		\item $C_t = B_{CU} U_{t-1} - B_{CF} F_{t-1}  + B_{CC} C_{t-1}  +  \underbrace{A_{CU}s_t^U  -  A_{CF}s_t^F}_{\text{$\iota_t^C$}}$
+		\item $U_t = B_{UU} U_{t-1} + B_{UF} F_{t-1}  + B_{UC} C_{t-1}  +  A_{UU}s_t^U  +  A_{UF}s_t^F$
+		\item $F_t = B_{FU} U_{t-1} + B_{FF} F_{t-1}  + B_{FC} C_{t-1}  +  A_{FU}s_t^U  +  A_{FF}s_t^F$
+		\item $C_t = B_{CU} U_{t-1} - B_{CF} F_{t-1}  + B_{CC} C_{t-1}  +  A_{CU}s_t^U  -  A_{CF}s_t^F$
 		\end{itemize}
+where $s_t^U \sim N(0, \sigma^2_U)$, $s_t^F \sim N(0, \sigma^2_F)$ and $s_t^U \perp s_t^F$.
 
+\
 	
-	Objective is to estimate $s_t^U$ and $s_t^F$ under the assumption that we just know the sign of each element of $A$.
-	
-	\
-	
-	I apply the GPF approach - as shown previously - on simulated data.
-	
+	Objective is to estimate structural parameters 
+	\begin{itemize}
+		\item Using $X_t = [U_t, \ F_t, \ C_t]$,
+		\item only knowing that $A_{ji} \geq 0$ for $j,i = \{U, \ F, \ C \}$.
+	\end{itemize} 
+	$\Rightarrow$ apply GPFA to test reliability of the econometric tool
 }
 
 

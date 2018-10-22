@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  20 OCT 2018 18:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.21)  22 OCT 2018 17:50
 entering extended mode
 **./DWPresentation_Fall2018_Brianti.tex
 (DWPresentation_Fall2018_Brianti.tex
@@ -1173,14 +1173,14 @@ Overfull \vbox (8.63705pt too high) detected at line 100
 
 [3
 
-] <Financial_Uncertainty.png, id=40, 1123.94907pt x 660.96938pt>
+] <Financial_Uncertainty.png, id=40, 1124.70187pt x 660.21657pt>
 File: Financial_Uncertainty.png Graphic file (type png)
 
 <use Financial_Uncertainty.png>
 Package pdftex.def Info: Financial_Uncertainty.png used on input line 114.
-(pdftex.def)             Requested size: 280.98657pt x 165.24193pt.
+(pdftex.def)             Requested size: 281.17477pt x 165.05373pt.
 
-Overfull \vbox (2.87561pt too high) detected at line 114
+Overfull \vbox (2.68741pt too high) detected at line 114
  []
 
 [4
@@ -1214,171 +1214,160 @@ LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <14.4> not available
  [7
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+lmss on input line 213
+LaTeX Font Info:    Try loading font information for OMS+lmss on input line 212
 .
-LaTeX Font Info:    No file OMSlmss.fd. on input line 213.
+LaTeX Font Info:    No file OMSlmss.fd. on input line 212.
 
 
 LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 213.
+(Font)              for symbol `textbullet' on input line 212.
 
 
-Overfull \vbox (0.76888pt too high) detected at line 213
+Overfull \vbox (0.76888pt too high) detected at line 212
  []
 
 [8
 
-]
-Overfull \vbox (9.2454pt too high) detected at line 255
- []
+] [9
 
-[9
-
-]
-Overfull \vbox (9.2454pt too high) detected at line 284
- []
-
-[10
+] [10
 
 ] [11
 
 ] [12
 
+] [13
+
 ]
-Overfull \hbox (27.32211pt too wide) in alignment at lines 377--377
+Overfull \hbox (27.32211pt too wide) in alignment at lines 395--395
  [][][] []
  []
 
-[13
-
-] [14
+[14
 
 ] [15
 
-]
-Overfull \vbox (4.61195pt too high) detected at line 464
- []
+] [16
 
-[16
+] [17
 
 ]
-Overfull \hbox (32.07726pt too wide) in alignment at lines 494--494
+Overfull \hbox (32.07726pt too wide) in alignment at lines 511--511
  [][][] []
- []
-
-
-Overfull \vbox (0.82584pt too high) detected at line 494
- []
-
-[17
-
-] <fig_GPFA_intuition_figure_.png, id=121, 1227.08438pt x 682.04813pt>
-File: fig_GPFA_intuition_figure_.png Graphic file (type png)
-
-<use fig_GPFA_intuition_figure_.png>
-Package pdftex.def Info: fig_GPFA_intuition_figure_.png used on input line 509.
-
-(pdftex.def)             Requested size: 220.86566pt x 122.76337pt.
-
-Overfull \vbox (19.65532pt too high) detected at line 509
  []
 
 [18
 
- <./fig_GPFA_intuition_figure_.png (PNG copy)>] [19
+] <fig_GPFA_intuition_figure_.png, id=126, 1227.08438pt x 682.04813pt>
+File: fig_GPFA_intuition_figure_.png Graphic file (type png)
+
+<use fig_GPFA_intuition_figure_.png>
+Package pdftex.def Info: fig_GPFA_intuition_figure_.png used on input line 526.
+
+(pdftex.def)             Requested size: 220.86566pt x 122.76337pt.
+
+Overfull \vbox (19.65532pt too high) detected at line 526
+ []
+
+[19
+
+ <./fig_GPFA_intuition_figure_.png (PNG copy)>] [20
 
 ]
-<fig_Uncertainty_Shock_GPFA_Compustat_3lags_gamgamZero.png, id=133, 1166.85938p
+<fig_Uncertainty_Shock_GPFA_Compustat_3lags_gamgamZero.png, id=138, 1166.85938p
 t x 666.99188pt>
 File: fig_Uncertainty_Shock_GPFA_Compustat_3lags_gamgamZero.png Graphic file (t
 ype png)
 
 <use fig_Uncertainty_Shock_GPFA_Compustat_3lags_gamgamZero.png>
 Package pdftex.def Info: fig_Uncertainty_Shock_GPFA_Compustat_3lags_gamgamZero.
-png used on input line 532.
+png used on input line 549.
 (pdftex.def)             Requested size: 315.05624pt x 180.09021pt.
 
-Overfull \hbox (7.76637pt too wide) in paragraph at lines 532--532
- [] 
- []
-
-[20
-
- <./fig_Uncertainty_Shock_GPFA_Compustat_3lags_gamgamZero.png (PNG copy)>]
-<fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero.png, id=139, 1166.85938pt 
-x 666.99188pt>
-File: fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero.png Graphic file (typ
-e png)
- <use fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero.png>
-Package pdftex.def Info: fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero.pn
-g used on input line 540.
-(pdftex.def)             Requested size: 315.05624pt x 180.09021pt.
-
-Overfull \hbox (7.76637pt too wide) in paragraph at lines 540--540
+Overfull \hbox (7.76637pt too wide) in paragraph at lines 549--549
  [] 
  []
 
 [21
 
- <./fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero.png (PNG copy)>]
-<fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero.png, id=145, 1177.39874pt x
- 683.55376pt>
-File: fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero.png Graphic file (type
- png)
- <use fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero.png>
-Package pdftex.def Info: fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero.png
- used on input line 550.
-(pdftex.def)             Requested size: 317.9019pt x 184.56198pt.
+ <./fig_Uncertainty_Shock_GPFA_Compustat_3lags_gamgamZero.png (PNG copy)>]
+<fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero.png, id=144, 1166.85938pt 
+x 666.99188pt>
+File: fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero.png Graphic file (typ
+e png)
+ <use fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero.png>
+Package pdftex.def Info: fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero.pn
+g used on input line 557.
+(pdftex.def)             Requested size: 315.05624pt x 180.09021pt.
 
-Overfull \hbox (10.61203pt too wide) in paragraph at lines 550--550
+Overfull \hbox (7.76637pt too wide) in paragraph at lines 557--557
  [] 
  []
 
 [22
 
- <./fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero.png (PNG copy)>]
+ <./fig_Financial_Shock_GPFA_Compustat_3lags_gamgamZero.png (PNG copy)>]
+<fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero.png, id=150, 1177.39874pt x
+ 683.55376pt>
+File: fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero.png Graphic file (type
+ png)
+ <use fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero.png>
+Package pdftex.def Info: fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero.png
+ used on input line 567.
+(pdftex.def)             Requested size: 317.9019pt x 184.56198pt.
+
+Overfull \hbox (10.61203pt too wide) in paragraph at lines 567--567
+ [] 
+ []
+
 [23
 
-] [24
+ <./fig_var_dec_vardec_GPFA_Compustat_3lags_gamgamZero.png (PNG copy)>]
+[24
 
 ]
-Overfull \vbox (1.01631pt too high) detected at line 616
+Overfull \vbox (16.72684pt too high) detected at line 619
  []
 
 [25
 
-] <test_small.png, id=167, 1158.57843pt x 666.99188pt>
+] [26
+
+] [27
+
+] <test_small.png, id=178, 1158.57843pt x 666.99188pt>
 File: test_small.png Graphic file (type png)
- <use test_small.png>
-Package pdftex.def Info: test_small.png used on input line 626.
+
+<use test_small.png>
+Package pdftex.def Info: test_small.png used on input line 682.
 (pdftex.def)             Requested size: 312.82036pt x 180.09021pt.
 
-Overfull \hbox (5.53049pt too wide) in paragraph at lines 626--626
- [] 
- []
-
-[26
-
- <./test_small.png (PNG copy)>]
-<test_large.png, id=173, 1154.06157pt x 666.99188pt>
-File: test_large.png Graphic file (type png)
- <use test_large.png>
-Package pdftex.def Info: test_large.png used on input line 636.
-(pdftex.def)             Requested size: 311.60078pt x 180.09021pt.
-
-Overfull \hbox (4.31091pt too wide) in paragraph at lines 636--636
- [] 
- []
-
-[27
-
- <./test_large.png (PNG copy)>]
-Overfull \hbox (4.75812pt too wide) in paragraph at lines 660--660
+Overfull \hbox (5.53049pt too wide) in paragraph at lines 682--682
  [] 
  []
 
 [28
+
+ <./test_small.png (PNG copy)>]
+<test_large.png, id=184, 1154.06157pt x 666.99188pt>
+File: test_large.png Graphic file (type png)
+ <use test_large.png>
+Package pdftex.def Info: test_large.png used on input line 692.
+(pdftex.def)             Requested size: 311.60078pt x 180.09021pt.
+
+Overfull \hbox (4.31091pt too wide) in paragraph at lines 692--692
+ [] 
+ []
+
+[29
+
+ <./test_large.png (PNG copy)>]
+Overfull \hbox (4.75812pt too wide) in paragraph at lines 716--716
+ [] 
+ []
+
+[30
 
 ]
 \tf@nav=\write6
@@ -1390,11 +1379,11 @@ Overfull \hbox (4.75812pt too wide) in paragraph at lines 660--660
 \tf@snm=\write8
 \openout8 = `DWPresentation_Fall2018_Brianti.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 674.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 674.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 730.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 730.
  (DWPresentation_Fall2018_Brianti.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 674.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 674.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 730.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 730.
 Package rerunfilecheck Info: File `DWPresentation_Fall2018_Brianti.out' has not
  changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -1404,16 +1393,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 21388 strings out of 493323
- 426559 string characters out of 3139072
- 490647 words of memory out of 3000000
- 24322 multiletter control sequences out of 15000+200000
- 68187 words of font info for 74 fonts, out of 3000000 for 9000
+ 21398 strings out of 493323
+ 426660 string characters out of 3139072
+ 489647 words of memory out of 3000000
+ 24328 multiletter control sequences out of 15000+200000
+ 70902 words of font info for 75 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,21n,89p,1824b,789s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Program Fil
-es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fon
-ts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/l
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Fil
+es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Program Files/MiKTeX 2.9/fon
+ts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/l
 m-rm.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 ><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX 2.9/font
@@ -1425,12 +1414,12 @@ ublic/lm/lmssbo10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx
 10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Progr
 am Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso8.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symb
-ols/msbm10.pfb>
-Output written on DWPresentation_Fall2018_Brianti.pdf (28 pages, 817234 bytes).
+blic/lm/lmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on DWPresentation_Fall2018_Brianti.pdf (30 pages, 827144 bytes).
 
 PDF statistics:
- 249 PDF objects out of 1000 (max. 8388607)
- 58 named destinations out of 1000 (max. 500000)
+ 264 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 500000)
  90 words of extra memory for PDF output out of 10000 (max. 10000000)
 

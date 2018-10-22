@@ -7,3 +7,4 @@
 \contentsline {section}{\numberline {6}Ajello (2016) - AER}{7}
 \contentsline {section}{\numberline {7}Campello, Giambona, Graham, and Harvey (2011) - The Review of Financial Studies}{8}
 \contentsline {section}{\numberline {8}Lins, Servaes, and Tufano (2010) - Journal of Financial Economics}{9}
+\contentsline {section}{\numberline {9}Gertler and Gilchrist (1994) - QJE}{10}
