@@ -320,7 +320,9 @@ Remove seasonality using 7-term Henderson filter on aggregate cash and aggregate
 \
 
 \item \textbf{Gross returns} $g(\cdot)$ happen in the last period for both investments
-
+\begin{itemize}
+	\item where $g'(\cdot) > 0$ and $g''(\cdot) < 0$.
+\end{itemize}
 	
 	\end{itemize}
 
@@ -472,7 +474,7 @@ and first order conditions are
 	
 	
 
-Given the reduced-form system $X_t = B X_{t-1} + \iota_t$ where
+Given the reduced-form system $X_t = B(L) X_{t-1} + \iota_t$ where
 
 $$
 X_t = \begin{bmatrix}
@@ -495,50 +497,112 @@ Dataset ranges from 1978q1 to 2015q3.
 	
 }
 
+\frame{\frametitle{Objective of the Empirical Strategy}
+
+Given the reduced-form system $X_t = B(L) X_{t-1} + \iota_t$, 
+
+$\Rightarrow$ find a rotation of $\Sigma_{\iota} = \iota_t' \iota_t$ such that
+
+\begin{enumerate}
+	\item it allows $F_t$ and $U_t$ to respond to both shocks on \textbf{impact}
+	\item it respects \textbf{sign-restriction} assumptions on cash
+	\item it is \textbf{unique}
+	\item it delivers shocks \textbf{orthogonal} to each other
+	\item it is unaffected by the \textbf{order} of the estimation
+\end{enumerate}
+
+
+}
 
 
 
 
-\frame{\frametitle{Sequential Penalty Function Approach}
+
+\frame{\frametitle{Sequential Penalty Function Approach ($\delta \geq 0$)} 
 	
 	\
 	
-	\textbf{Uncertainty Shock}
+	\textbf{1. Uncertainty Shock}
 	\begin{eqnarray*}
 		\begin{aligned}
 		\max_{\gamma_{U}} \ \ \ \ \ &  \ \underbrace{e_U A_0 \gamma_U}_{\text{Impact on U}} \ \ \  + \ \ \ \textcolor{red}{\delta} \underbrace{e_{C} A_0 \gamma_U}_{\text{Impact on Cash}} \\
-		\text{subject to} \ \ \ \ \  & \ \delta \geq 0 \ \ \ \ \ \ \text{and} \ \ \ \ \ \  \underbrace{\gamma_U \gamma_U' = 1}_{\text{Normalization}}
 		\end{aligned}
 	\end{eqnarray*}
+
+\textbf{Intuition}. $\gamma_{U}$ increases both uncertainty and cash on impact.
 
 \
 
-
-
-	\textbf{Financial Shock}
+	\textbf{2. Financial Shock}
 	\begin{eqnarray*}
 		\begin{aligned}
-		\max_{\gamma_{F}} \ \ \ \ \ & \  \underbrace{e_F A_0 \gamma_F}_{\text{Impact on F}} \ \ \  - \ \ \  \textcolor{red}{\delta} \underbrace{e_{C} A_0 \gamma_F}_{\text{Impact on Cash}} \\
-		\text{subject to} \ \ \ \ \ \ & \ \delta \geq 0, \ \ \ \ \ \ \ \underbrace{\gamma_F \gamma_F' = 1}_{\text{Normalization}}, \ \ \ \ \ \ \text{and} \underbrace{\textcolor{red}{\gamma_U \gamma_F' = 0}}_{\text{Orthogonality with U shock}}
+		\max_{\gamma_{F}} \ \ \ \ \ & \  \underbrace{e_F A_0 \gamma_F}_{\text{Impact on F}} \ \ \  - \ \ \  \textcolor{red}{\delta} \underbrace{e_{C} A_0 \gamma_F}_{\text{Impact on Cash}} \ \ s.t. \ \ \underbrace{\textcolor{red}{\gamma_U \gamma_F' = 0}}_{\text{Orthogonality with U shock}} \\
 		\end{aligned}
 	\end{eqnarray*}
+
+\textbf{Intuition}. $\gamma_{F}$ increases uncertainty and decreases cash on impact.
 	
 }
 
-\frame{\frametitle{A Novel Approach}
+\frame{\frametitle{Sequential Penalty Function Approach ($\delta \geq 0$)} 
+	
+		\
+	
+	\textbf{1. Financial Shock}
+	\begin{eqnarray*}
+		\begin{aligned}
+			\max_{\gamma_{F}} \ \ \ \ \ & \  \underbrace{e_F A_0 \gamma_F}_{\text{Impact on F}} \ \ \  - \ \ \  \textcolor{red}{\delta} \underbrace{e_{C} A_0 \gamma_F}_{\text{Impact on Cash}}  \\
+		\end{aligned}
+	\end{eqnarray*}
+	
+	\textbf{Intuition}. $\gamma_{F}$ increases uncertainty and decreases cash on impact.
+	
+	\
+	
+	\textbf{2. Uncertainty Shock}
+	\begin{eqnarray*}
+		\begin{aligned}
+			\max_{\gamma_{U}} \ \ \ \ \ &  \ \underbrace{e_U A_0 \gamma_U}_{\text{Impact on U}} \ \ \  + \ \ \ \textcolor{red}{\delta} \underbrace{e_{C} A_0 \gamma_U}_{\text{Impact on Cash}} \ \ s.t. \ \ \underbrace{\textcolor{red}{\gamma_U \gamma_F' = 0}}_{\text{Orthogonality with F shock}} \\
+		\end{aligned}
+	\end{eqnarray*}
+	
+	\textbf{Intuition}. $\gamma_{U}$ increases both uncertainty and cash on impact.
+	
+}
 
-I suggest a \textbf{general approach} where $\delta$ is treated as an endogenous parameter chosen by the data.
-\begin{itemize}
-\item[$\Rightarrow$] Given the problem above, set $\delta$ such that $\gamma_U \gamma'_F = 0$
-\end{itemize}
+\frame{\frametitle{Generalized Penalty Function Approach} 
 
-\begin{center}
-\includegraphics[scale=0.18]{fig_GPFA_intuition_figure_}
-\end{center}
+	\
+	
+	\textbf{1. Financial Shock}
+	\begin{eqnarray*}
+		\begin{aligned}
+			\max_{\gamma_{F}} \ \ \ \ \ & \  \underbrace{e_F A_0 \gamma_F}_{\text{Impact on F}} \ \ \  - \ \ \  \textcolor{red}{\delta^*} \underbrace{e_{C} A_0 \gamma_F}_{\text{Impact on Cash}}  \\
+		\end{aligned}
+	\end{eqnarray*}
+	
+	
+	\textbf{2. Uncertainty Shock}
+	\begin{eqnarray*}
+		\begin{aligned}
+			\max_{\gamma_{U}} \ \ \ \ \ &  \ \underbrace{e_U A_0 \gamma_U}_{\text{Impact on U}} \ \ \  + \ \ \ \textcolor{red}{\delta^*} \underbrace{e_{C} A_0 \gamma_U}_{\text{Impact on Cash}}  \\
+		\end{aligned}
+	\end{eqnarray*}
 
-\textbf{Intuition.} Weight of the internal instrument should be large enough such that $\gamma_U \gamma_F' = 0$ endogenously holds.
+where $\textcolor{red}{\delta^*}$ is chosen such that $\textcolor{red}{\gamma_U \gamma_F' = 0}$.
+
+\	 
+
+\textbf{Economic Intuition.} Weight of sign restrictions should be large enough such that the two shocks are separated without any external constraint.
 
 }
+
+
+%	\text{subject to} \ \ \ \ \  & \ \delta \geq 0 \ \ \ \ \ \ \text{and} \ \ \ \ \ \  \underbrace{\gamma_U \gamma_U' = 1}_{\text{Normalization}}
+
+%		\text{subject to} \ \ \ \ \ \ & \ \delta \geq 0, \ \ \ \ \ \ \ \underbrace{\gamma_F \gamma_F' = 1}_{\text{Normalization}}, \ \ \ \ \ \ \text{and} 
+
+
 
 \frame{\frametitle{Roadmap}
 	\Large{
@@ -599,7 +663,7 @@ I suggest a \textbf{general approach} where $\delta$ is treated as an endogenous
 	
 	
 
-\	
+	
 
 
 \begin{itemize}

@@ -1,17 +1,23 @@
 clear
 close all
 
-rhox  = 0.7;
-rhoy  = 0.6;
-rho   = 0.2;
-rhoz  = 0.2;
-sigU = 1;
-sigF = 2;
-sigC = 0.5;
 % x  = rho*x(-1) + rh0*y(-1) + rho*z(-2) + epsU + epsF;
 % y  = rho*x(-1) + rh0*y(-1) + rho*z(-2) + epsU + epsF;
 % z  = rho*x(-1) + rh0*y(-1) + rho*z(-2) + epsU - epsF;
-T    = 100000;
+
+% Parameterization
+rhox  = 0.8;
+rhoy  = 0.6;
+rho   = 0.2;
+rhoz  = 0.4;
+sigU  = 10;
+sigF  = 1.5;
+sigC  = 0.5;
+
+% Number of Observations
+T     = 100000;
+
+% Predetermined matrices
 U = zeros(T,1);
 F = zeros(T,1);
 C = zeros(T,1);
@@ -19,9 +25,10 @@ shocksU = sigU*randn(T,1);
 shocksF = sigF*randn(T,1);
 shocksC = sigC*randn(T,1);
 
+% Structural Economy
 for i = 2:T
       U(i) = rhox*U(i-1) + rho*F(i-1) + 2*shocksU(i) + shocksF(i);
-      F(i) = rho*U(i-1) + rhoy*F(i-1) + shocksU(i) + 2*shocksF(i);
+      F(i) = rho*U(i-1) + rhoy*F(i-1) + shocksU(i) + 2*shocksF(i) + shocksC(i);
       C(i) = rho*U(i-1) - rho*F(i-1)  + rhoz*C(i-1) ...
             + shocksU(i) - shocksF(i) + shocksC(i);
 end
@@ -41,18 +48,26 @@ nlags           = 1;
 [A,B,res,sigma] = sr_var(system, nlags);
 
 % Generalized Penalty Function Approach
-objgam = 1;
-delta = 0.983914109;
-while abs(objgam) >= 0.000000001;%10^(-8)
-      warning off
-      SRhorizon       = 1;
-      SRhorizonIV     = 4;
-      [impact, gamma] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,EBPposition,...
-            Uposition,IVposition,-delta);
-      gamF   = gamma(:,1);
-      gamU   = gamma(:,2);
-      objgam = gamF'*gamU
-      delta  = delta + 0.0000000001
+objgam     = 1;
+delta      = 0;
+threshold  = 0.1;
+add        = 0.01;
+while objgam >= 10^(-16)
+      while objgam >= threshold
+            warning off
+            SRhorizon       = 1;
+            SRhorizonIV     = 4;
+            [impact, gamma] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,EBPposition,...
+                  Uposition,IVposition,-delta);
+            %       [impact, gamma] = identification_GPFA_2delta(A,B,SRhorizon,SRhorizonIV,...
+            %             EBPposition,Uposition,IVposition,delta1,delta);
+            gamF   = gamma(:,1);
+            gamU   = gamma(:,2);
+            objgam = gamF'*gamU
+            delta  = delta + add
+      end
+      threshold = threshold/10;
+      add = add/10;
 end
 delta = - delta; % Negative because the first variable is EBP and cash respons negatively on impact
 
@@ -130,7 +145,7 @@ theoryIRF(1,:,:) = xtheory;
 theoryIRF(2,:,:) = ytheory;
 theoryIRF(3,:,:) = ztheory;
 
-print_figs = 'yes';
+print_figs = 'no';
 plot_IRFs_Empirical_Theoretical_2CIs(IRFs,ub1,lb1,ub2,lb2,theoryIRF,H,which_shocks,shocknames,...
       system_names,which_ID,print_figs,use_current_time,base_path)
 print_figs = 'no';

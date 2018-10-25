@@ -1,0 +1,110 @@
+\documentclass[14pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[letterpaper,top=3cm,bottom=3cm,left=3cm,right=3cm,bindingoffset=0mm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{natbib}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{thmtools,thm-restate}
+\usepackage{hyperref}
+%\usepackage{extsizes}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\declaretheorem{proposition}
+\linespread{1.2}
+\raggedbottom
+\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+
+\begin{document}
+
+\section*{Structural Form}
+
+Assume an economy with two variables: $X_1$ and $X_2$; and two structural shocks: $s_1$ and $s_2$. Law of motions of $X_1$ and $X_2$ has the following process:
+$$
+X_t = B(L)X_{t-1} + As_t
+$$
+which is
+$$
+\begin{cases}
+X_{1,t} = B_{1,1}(L)X_{1,t-1} + B_{1,2}(L)X_{2,t-1} + A_{1,1}s_{1,t} + A_{1,2}s_{2,t} \\
+X_{2,t} = B_{2,1}(L)X_{1,t-1} + B_{2,2}(L)X_{2,t-1} + A_{2,1}s_{1,t} - A_{2,2}s_{2,t}
+\end{cases}
+$$
+I assume to know exactly the values of matrix $B(L)$ and to only know signs of each element of matrix $A$. Without loss of generality I will assume that each element of $A$ is strictly positive. Objective is to recover from the reduced-form VAR,
+$$
+\begin{cases}
+X_{1,t} = B_{1,1}(L)X_{1,t-1} + B_{1,2}(L)X_{2,t-1} + i_{1,t} \\
+X_{2,t} = B_{2,1}(L)X_{1,t-1} + B_{2,2}(L)X_{2,t-1} + i_{2,t}
+\end{cases}
+$$
+structural matrix $A$. In particular, I want to be able to solve the system
+$$
+As_t = i_t
+$$
+which is
+$$
+\begin{cases}
+A_{1,1}s_{1,t} + A_{1,2}s_{2,t} = i_{1,t} \\
+A_{2,1}s_{1,t} - A_{2,2}s_{2,t} = i_{2,t}
+\end{cases}
+$$
+Since by assumption, $s_t's_t = I_2$, we have that $A'A = i'_t i_t$ which is
+$$
+\begin{pmatrix}
+A_{1,1} & A_{2,1} \\
+A_{1,2} & A_{2,2}
+\end{pmatrix} \begin{pmatrix}
+A_{1,1} & A_{1,2} \\
+A_{2,1} & A_{2,2}
+\end{pmatrix} = \begin{pmatrix}
+\sigma^2_{1,1} & \sigma^2_{1,2} \\
+\sigma^2_{1,2} & \sigma^2_{2,2}
+\end{pmatrix}
+$$
+which is
+$$
+\begin{pmatrix}
+A_{1,1}^2 + A_{2,1}^2 & A_{1,1} A_{1,2} + A_{2,1} A_{2,2}  \\
+A_{1,1} A_{1,2} + A_{2,1} A_{2,2}  & A_{1,2}^2 + A_{2,2}^2
+\end{pmatrix} = \begin{pmatrix}
+\sigma^2_{1,1} & \sigma^2_{1,2} \\
+\sigma^2_{2,1} & \sigma^2_{2,2}
+\end{pmatrix}
+$$
+which boils down to the following system,
+$$
+\begin{cases}
+A_{1,1}^2 + A_{2,1}^2 = \sigma^2_{1,1} \\
+A_{1,1} A_{1,2} + A_{2,1} A_{2,2} = \sigma^2_{1,2} \\
+A_{1,2}^2 + A_{2,2}^2 = \sigma^2_{2,2} \\
+\end{cases}
+$$
+
+
+
+
+
+
+\end{document}
