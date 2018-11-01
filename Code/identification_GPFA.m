@@ -1,5 +1,5 @@
-function [impact, gam] = identification_GPFA(A,B,SRhorizon,SRhorizonIV,EBPposition,...
-      Uposition,IVposition,delta)
+function [impact, gam] = identification_GPFA(A,B,SRhorizon,...
+      SRhorizonIV,EBPposition,Uposition,IVposition,delta)
 
 % A chol impact matrix (nvar,nvar)
 % Reduce-form regressors coefficient (1+nvar*nlags,nvar)
@@ -16,8 +16,8 @@ nlags                 = nvarlags/nvar;
 
 % Defining initial values
 D              = eye(nvar);
-gamF_zero   = D(:,1); %financial shock impact vector (initial value)
-gamU_zero   = D(:,2); %uncertainty shock impact vector (initial value)
+gamF_zero      = D(:,1); %financial shock impact vector (initial value)
+gamU_zero      = D(:,2); %uncertainty shock impact vector (initial value)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % First Step - Identifying gamF - Financial Shock

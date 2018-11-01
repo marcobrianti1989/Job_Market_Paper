@@ -73,12 +73,12 @@ $$
 Since by assumption, $s_t's_t = I_2$, we have that $A'A = i'_t i_t$ which is
 $$
 \begin{pmatrix}
-A_{1,1} & A_{2,1} \\
-A_{1,2} & A_{2,2}
-\end{pmatrix} \begin{pmatrix}
 A_{1,1} & A_{1,2} \\
 A_{2,1} & A_{2,2}
-\end{pmatrix} = \begin{pmatrix}
+\end{pmatrix} \begin{pmatrix}
+A_{1,1} & A_{2,1} \\
+A_{1,2} & A_{2,2}
+\end{pmatrix}  = \begin{pmatrix}
 \sigma^2_{1,1} & \sigma^2_{1,2} \\
 \sigma^2_{1,2} & \sigma^2_{2,2}
 \end{pmatrix}
@@ -86,8 +86,8 @@ $$
 which is
 $$
 \begin{pmatrix}
-A_{1,1}^2 + A_{2,1}^2 & A_{1,1} A_{1,2} + A_{2,1} A_{2,2}  \\
-A_{1,1} A_{1,2} + A_{2,1} A_{2,2}  & A_{1,2}^2 + A_{2,2}^2
+A_{1,1}^2 + A_{1,2}^2 & A_{1,1} A_{2,1} + A_{1,2} A_{2,2}  \\
+A_{1,1} A_{2,1} + A_{1,2} A_{2,2}  & A_{2,1}^2 + A_{2,2}^2
 \end{pmatrix} = \begin{pmatrix}
 \sigma^2_{1,1} & \sigma^2_{1,2} \\
 \sigma^2_{2,1} & \sigma^2_{2,2}
@@ -96,11 +96,41 @@ $$
 which boils down to the following system,
 $$
 \begin{cases}
-A_{1,1}^2 + A_{2,1}^2 = \sigma^2_{1,1} \\
-A_{1,1} A_{1,2} + A_{2,1} A_{2,2} = \sigma^2_{1,2} \\
-A_{1,2}^2 + A_{2,2}^2 = \sigma^2_{2,2} \\
+A_{1,1}^2 + A_{1,2}^2 = \sigma^2_{1,1} \\
+A_{1,1} A_{2,1} + A_{1,2} A_{2,2} = \sigma^2_{1,2} \\
+A_{2,1}^2 + A_{2,2}^2 = \sigma^2_{2,2} \\
 \end{cases}
 $$
+Assume you solve the system by using a standard Cholesky identification where $A_{1,2} = 0$,
+$$
+chol(A) = \begin{pmatrix}
+\sigma_{1,1} & 0 \\
+\frac{\sigma_{1,2}^2}{\sigma_{1,1}} & \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} \\
+\end{pmatrix} = \begin{pmatrix}
+c_{1,1} & 0 \\
+c_{2,1} & c_{2,2} \\
+\end{pmatrix}
+$$
+Now, define an orthogonal matrix $D$ which will be used to identify the structural shocks,
+$$
+D = \begin{pmatrix}
+\Gamma_{1} & \Gamma_{2} \\
+\end{pmatrix} = \begin{pmatrix}
+\gamma_{1,1} & \gamma_{1,2} \\
+\gamma_{2,1} & \gamma_{2,2} \\
+\end{pmatrix} 
+$$ 
+where $D'D = I$ which implies $\Gamma_1'\Gamma_1 = 1$, $\Gamma_2'\Gamma_2 = 1$, and $\Gamma_1'\Gamma_2 = 0$. Moreover, impact matrix is now,
+$$
+\begin{pmatrix}
+A_{1,1} & A_{1,2} \\
+A_{2,1} & A_{2,2}
+\end{pmatrix} = \begin{pmatrix}
+c_{1,1} \gamma_{1,1} & c_{1,1} \gamma_{1,2} \\
+c_{2,1} \gamma_{1,1} + c_{2,1} \gamma_{2,1} & c_{2,1} \gamma_{1,2} + c_{2,1} \gamma_{2,2}
+\end{pmatrix}
+$$
+
 
 
 
