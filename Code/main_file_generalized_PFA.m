@@ -84,7 +84,7 @@ EBPposition = find(strcmp('EBP', system_names));
 IVposition  = find(strcmp('Cash2Assets', system_names));
 GDPposition = find(strcmp('GDP', system_names));
 Cposition   = find(strcmp('Consumption', system_names));
-asd
+
 % Tests for lags
 max_lags     = 4;
 [AIC,BIC,HQ] = aic_bic_hq(system,max_lags);

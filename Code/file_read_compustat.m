@@ -34,24 +34,23 @@ j    = 1;
 for iy = 1:length(year)
       for iq = 1:length(qrt)
             index = find(strcmp(Quarters, [num2str(year(iy)) 'Q' num2str(qrt(iq))]));
-            % Cash
-            subCash                              = Cash(index);
-            subCash(isnan(subCash))              = [];            
-            sumCash                              = sum(subCash);
-            AggCash(j)                           = sumCash;
-            % Total Assets          
-            subAssets                            = Assets(index);
-            subAssets(isnan(subAssets))          = [];            
+            for ii = 1:length(index)
+                  subCashSTInv(ii)                         = CashSTInv(index(ii));
+                  subAssets(ii)                            = Assets(index(ii));
+                  subEquity(ii)                            = Equity(index(ii));
+                  if isnan(subCashSTInv(ii)) == 1 || isnan(subAssets(ii)) == 1 || isnan(subEquity(ii)) == 1 
+                        subCashSTInv(ii)           = [];
+                        subAssets(ii)              = [];
+                        subEquity(ii)              = [];
+                  end
+            end
+            % Total Assets            
             sumAssets                            = sum(subAssets);            
             AggAssets(j)                         = sumAssets;
             % Total Equity
-            subEquity                            = Equity(index);
-            subEquity(isnan(subEquity))          = [];
             sumEquity                            = sum(subEquity);            
             AggEquity(j)                         = sumEquity;     
             % Cash + Short-Term Investment
-            subCashSTInv                         = CashSTInv(index);
-            subCashSTInv(isnan(subCashSTInv))    = [];
             sumCashSTInv                         = sum(subCashSTInv);
             AggCashSTInv(j)                      = sumCashSTInv;
             % Counter
@@ -60,7 +59,6 @@ for iy = 1:length(year)
 end
 
 % Remove last two quarters since there are no data on that. 
-AggCash             = AggCash(2:end-2);
 AggCashSTInv        = AggCashSTInv(2:end-2);
 AggEquity           = AggEquity(2:end-2);
 AggAssets           = AggAssets(2:end-2);
@@ -68,14 +66,17 @@ time                = time(2:end); %this is just to show that now time is aligne
 
 % Remove trend using the seven term henderson filter
 [AggCashSTInvDt, ~] = seven_term_henderson_filter(AggCashSTInv);
-[AggCashDt, ~]      = seven_term_henderson_filter(AggCash);
 [AggEquityDt, ~]    = seven_term_henderson_filter(AggEquity);
 [AggAssetsDt, ~]    = seven_term_henderson_filter(AggAssets);
 
-Cash2Assets    = AggCashSTInvDt./AggAssetsDt;
-Cash2Equity    = AggCashSTInvDt./AggEquityDt;
-AggEquityDt    = AggEquityDt';
+Cash2Assets    = (AggCashSTInvDt./AggAssetsDt)';
+Cash2Equity    = (AggCashSTInvDt./AggEquityDt)';
+AggEquityDt    = AggEquityDt;
 avgCash2Equity = mean(Cash2Equity(24:end));
+avgCash2Assets = mean(Cash2Assets(24:end));
 
-plot(time(38:end-3),AggCashSTInvDt(38:end-3))
+plot(time(1:end-3),Cash2Assets(1:end-3))
+hold on
+plot(time(1:end-3),Cash2Equity(1:end-3))
+
 
