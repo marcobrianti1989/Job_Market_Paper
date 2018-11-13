@@ -1,7 +1,25 @@
 clear
 close all
 
+yplus = linspace(0,1,100);
+xplus = -( 1 - yplus.^2 ).^(0.5);
+resplus = xplus.*yplus + ( (1-xplus.^2).*(1-yplus.^2) ).^(0.5);
 
+yminus = linspace(-1,0,100);
+xminus = ( 1 - yminus.^2 ).^(0.5);
+resminus = xminus.*yminus + ( (1-xminus.^2).*(1-yminus.^2) ).^(0.5);
+
+sum(resplus.^2 + resminus.^2)
+
+
+
+
+
+
+
+asd
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 y0              = 0.01;
 y1              = 0.01;
 c               = 0;

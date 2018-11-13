@@ -12,11 +12,11 @@ rho3    = 0.1;
 rho4    = 0.9;
 sigU    = 1;
 sigF    = 1;
-alp     = 2;
+alp     = 5;
 A11     = 1;
-A21     = 3;
-A12     = alp*A11;
-A22     = alp*A21;
+A21     = 1;
+A12     = 0.1;%alp*A11;
+A22     = 0.1; %alp*A21;
 % Number of Observations
 T       = 100000;
 
@@ -44,13 +44,22 @@ IVposition  = find(strcmp('C', system_names));
 % Cholesky decomposition
 nlags           = 1;
 [A,B,res,sigma] = sr_var(system, nlags);
+corr_res        = corr(res);
 
+
+fprintf(1, '\n');  
+fprintf(1, '\n');  
+fprintf(1, '\n');  
+disp(sprintf('Covariance of residuals is          : %f',sigma(1,2)));
+fprintf(1, '\n'); 
+disp(sprintf('Correlation matrix of residuals is  : %f',corr_res(1,2)));
 % Generalized Penalty Function Approach
 objgam     = 1;
 delta      = 0;
-threshold  = 0.1;
-add        = 0.001;
-while objgam >= 10^(-4)
+threshold  = -1;
+add        = 0.01;
+j = 1;
+while objgam >= -1 %10^(-4)
       while objgam >= threshold
             warning off
             SRhorizon       = 1;
@@ -60,12 +69,34 @@ while objgam >= 10^(-4)
                   Uposition,IVposition,-delta);
             gamF   = gamma(:,1);
             gamU   = gamma(:,2);
-            objgam = gamF'*gamU;
+            gamU(1);
+            gamU1(j)  = gamU(1);
+            gamU2(j)  = gamU(2);
+            gamF1(j)  = gamF(1);
+            gamF2(j)  = gamF(2);
+            gamF'*gamU
+            objgam(j) = gamF'*gamU;
             delta  = delta + add;
+            j = j + 1;
+            %pause(0.005)
       end
       threshold = threshold/10;
       add       = add/10;
 end
+figure
+subplot(2,2,1)
+plot(gamU1)
+subplot(2,2,2)
+plot(gamF1)
+subplot(2,2,3)
+plot(gamU2)
+subplot(2,2,4)
+plot(gamF2)
+
+figure
+plot(objgam)
+
+
 fprintf(1, '\n');  
 fprintf(1, '\n');  
 fprintf(1, '\n');  

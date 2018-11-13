@@ -3,7 +3,7 @@
 % Packages
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage[letterpaper,top=3cm,bottom=3cm,left=3cm,right=3cm,bindingoffset=0mm]{geometry}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=2cm,right=2cm,bindingoffset=0mm]{geometry}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{tikz}
@@ -38,40 +38,42 @@
 
 
 \begin{document}
+	
+	\large{
 
 \section*{Structural Form}
 
 Assume an economy with two variables: $X_1$ and $X_2$; and two structural shocks: $s_1$ and $s_2$. Law of motions of $X_1$ and $X_2$ has the following process:
-$$
+\begin{eqnarray}
 X_t = B(L)X_{t-1} + As_t
-$$
+\end{eqnarray}
 which is
-$$
+\begin{eqnarray}
 \begin{cases}
 X_{1,t} = B_{1,1}(L)X_{1,t-1} + B_{1,2}(L)X_{2,t-1} + A_{1,1}s_{1,t} + A_{1,2}s_{2,t} \\
 X_{2,t} = B_{2,1}(L)X_{1,t-1} + B_{2,2}(L)X_{2,t-1} + A_{2,1}s_{1,t} - A_{2,2}s_{2,t}
 \end{cases}
-$$
+\end{eqnarray}
 I assume to know exactly the values of matrix $B(L)$ and to only know signs of each element of matrix $A$. Without loss of generality I will assume that each element of $A$ is strictly positive. Objective is to recover from the reduced-form VAR,
-$$
+\begin{eqnarray}
 \begin{cases}
 X_{1,t} = B_{1,1}(L)X_{1,t-1} + B_{1,2}(L)X_{2,t-1} + i_{1,t} \\
 X_{2,t} = B_{2,1}(L)X_{1,t-1} + B_{2,2}(L)X_{2,t-1} + i_{2,t}
 \end{cases}
-$$
+\end{eqnarray}
 structural matrix $A$. In particular, I want to be able to solve the system
-$$
+\begin{eqnarray}
 As_t = i_t
-$$
+\end{eqnarray}
 which is
-$$
+\begin{eqnarray}
 \begin{cases}
 A_{1,1}s_{1,t} + A_{1,2}s_{2,t} = i_{1,t} \\
 A_{2,1}s_{1,t} - A_{2,2}s_{2,t} = i_{2,t}
 \end{cases}
-$$
+\end{eqnarray}
 Since by assumption, $s_t's_t = I_2$, we have that $A'A = i'_t i_t$ which is
-$$
+\begin{eqnarray}
 \begin{pmatrix}
 A_{1,1} & A_{1,2} \\
 A_{2,1} & A_{2,2}
@@ -82,9 +84,9 @@ A_{1,2} & A_{2,2}
 \sigma^2_{1,1} & \sigma^2_{1,2} \\
 \sigma^2_{1,2} & \sigma^2_{2,2}
 \end{pmatrix}
-$$
+\end{eqnarray}
 which is
-$$
+\begin{eqnarray}
 \begin{pmatrix}
 A_{1,1}^2 + A_{1,2}^2 & A_{1,1} A_{2,1} + A_{1,2} A_{2,2}  \\
 A_{1,1} A_{2,1} + A_{1,2} A_{2,2}  & A_{2,1}^2 + A_{2,2}^2
@@ -92,17 +94,17 @@ A_{1,1} A_{2,1} + A_{1,2} A_{2,2}  & A_{2,1}^2 + A_{2,2}^2
 \sigma^2_{1,1} & \sigma^2_{1,2} \\
 \sigma^2_{2,1} & \sigma^2_{2,2}
 \end{pmatrix}
-$$
+\end{eqnarray}
 which boils down to the following system,
-$$
+\begin{eqnarray}
 \begin{cases}
 A_{1,1}^2 + A_{1,2}^2 = \sigma^2_{1,1} \\
 A_{1,1} A_{2,1} + A_{1,2} A_{2,2} = \sigma^2_{1,2} \\
 A_{2,1}^2 + A_{2,2}^2 = \sigma^2_{2,2} \\
 \end{cases}
-$$
+\end{eqnarray}
 Assume you solve the system by using a standard Cholesky identification where $A_{1,2} = 0$,
-$$
+\begin{eqnarray}
 chol(A) = \begin{pmatrix}
 \sigma_{1,1} & 0 \\
 \frac{\sigma_{1,2}^2}{\sigma_{1,1}} & \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} \\
@@ -110,31 +112,93 @@ chol(A) = \begin{pmatrix}
 c_{1,1} & 0 \\
 c_{2,1} & c_{2,2} \\
 \end{pmatrix}
-$$
+\end{eqnarray}
 Now, define an orthogonal matrix $D$ which will be used to identify the structural shocks,
-$$
+\begin{eqnarray}
 D = \begin{pmatrix}
 \Gamma_{1} & \Gamma_{2} \\
 \end{pmatrix} = \begin{pmatrix}
 \gamma_{1,1} & \gamma_{1,2} \\
 \gamma_{2,1} & \gamma_{2,2} \\
 \end{pmatrix} 
-$$ 
-where $D'D = I$ which implies $\Gamma_1'\Gamma_1 = 1$, $\Gamma_2'\Gamma_2 = 1$, and $\Gamma_1'\Gamma_2 = 0$. Moreover, impact matrix is now,
-$$
+\end{eqnarray}
+where $D'D = I$. Moreover, impact matrix is now,
+\begin{eqnarray}
 \begin{pmatrix}
 A_{1,1} & A_{1,2} \\
 A_{2,1} & A_{2,2}
 \end{pmatrix} = \begin{pmatrix}
 c_{1,1} \gamma_{1,1} & c_{1,1} \gamma_{1,2} \\
-c_{2,1} \gamma_{1,1} + c_{2,1} \gamma_{2,1} & c_{2,1} \gamma_{1,2} + c_{2,1} \gamma_{2,2}
+c_{2,1} \gamma_{1,1} + c_{2,2} \gamma_{2,1} & c_{2,1} \gamma_{1,2} + c_{2,2} \gamma_{2,2}
 \end{pmatrix}
+\end{eqnarray}
+which is
+\begin{eqnarray}
+\begin{pmatrix}
+A_{1,1} & A_{1,2} \\
+A_{2,1} & A_{2,2}
+\end{pmatrix} = \begin{pmatrix}
+\sigma_{1,1} \gamma_{1,1} & \sigma_{1,1} \gamma_{1,2} \\
+\frac{\sigma_{1,2}^2}{\sigma_{1,1}} \gamma_{1,1} + \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} \gamma_{2,1} & \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \gamma_{1,2} + \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} \gamma_{2,2}
+\end{pmatrix}
+\end{eqnarray}
+%which is
+%$$
+%\begin{pmatrix}
+%A_{1,1} & A_{1,2} \\
+%A_{2,1} & A_{2,2}
+%\end{pmatrix} = \begin{pmatrix}
+%\sigma_{1,1} \gamma_{1,1} & \sigma_{1,1} \gamma_{1,2} \\
+%\frac{\sigma_{1,2}^2}{\sigma_{1,1}} \gamma_{1,1} + \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} \sqrt{1 - \gamma_{1,1}^2} & \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \gamma_{1,2} - \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} \sqrt{1 - \gamma_{1,2}^2}
+%\end{pmatrix}
+%$$
+Identification of $s_{1,t}$ is
+\begin{eqnarray}\label{eq:problem_Gam1}
+\begin{aligned}
+\max_{\gamma_{1,1},\gamma_{2,1}} \ \ & \ \sigma_{1,1} \gamma_{1,1} + \delta \Bigg[ \frac{\sigma_{1,2}^2}{\sigma_{1,1}}  \gamma_{1,1} + \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} \gamma_{2,1}   \Bigg] \\
+\text{s.t.} \ \ & \ 1 \geq \gamma_{1,1}^2 + \gamma_{2,1}^2
+\end{aligned}
+\end{eqnarray}
+Resetting the problem with Lagrangian function is
+\begin{eqnarray}\label{eq:lagrangian}
+\begin{aligned}
+\max_{\gamma_{1,1},\gamma_{2,1}} L(\gamma_{1,1},\gamma_{2,1},\lambda) \ &= \  \sigma_{1,1} \gamma_{1,1} + \delta \Bigg[ \frac{\sigma_{1,2}^2}{\sigma_{1,1}}  \gamma_{1,1} + \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} \gamma_{2,1}   \Bigg] \\
+\ &+ \ \lambda \big(1 - \gamma_{1,1}^2 - \gamma_{2,1}^2 \big)
+\end{aligned}
+\end{eqnarray}
+First order conditions are
+\begin{eqnarray}\label{eq:foc_gam11}
+\frac{\partial L(\gamma_{1,1},\gamma_{2,1},\lambda) }{\partial \gamma_{1,1}} = \sigma_{1,1} + \delta\frac{\sigma_{1,2}^2}{\sigma_{1,1}} - 2 \lambda \big( \gamma_{1,1}^* \big)^2 = 0 \ \ \Rightarrow \ \ \gamma_{1,1}^* = \frac{1}{2 \lambda} \bigg[ \sigma_{1,1} +  \delta\frac{\sigma_{1,2}^2}{\sigma_{1,1}}  \bigg]
+\end{eqnarray}
+\begin{eqnarray}\label{eq:foc_gam21}
+\frac{\partial L(\gamma_{1,1},\gamma_{2,1},\lambda) }{\partial \gamma_{2,1}} = \delta \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} - 2 \lambda \big( \gamma_{2,1}^* \big)^2 = 0 \ \ \Rightarrow \ \ \gamma_{2,1}^* =  \frac{1}{2 \lambda} \delta \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2}
+\end{eqnarray}
+\begin{eqnarray}\label{eq:complslackness}
+\lambda \frac{\partial L(\gamma_{1,1},\gamma_{2,1},\lambda) }{\partial \lambda} = \lambda\big[ 1 - \big( \gamma_{1,1}^* \big)^2 - \big( \gamma_{2,1}^* \big)^2 \big] = 0
+\end{eqnarray}
+where $\lambda \geq 0$.
+
+\
+
+\begin{itemize}
+\item Equation \ref{eq:foc_gam11} implies that
+\begin{enumerate}
+	\item $\gamma_{1,1}^* \geq 0$ for all $\delta \geq 0$ if $\sigma_{1,2}^2 \geq 0$.
+	\item It exists $\bar{\delta}$ such that $\gamma_{1,1}^* \geq 0$ for all $0 \leq \delta \leq \bar{\delta}$ if $\sigma_{1,2}^2 \leq 0$.
+\end{enumerate} 
+
+\item Equation \ref{eq:foc_gam21} implies $\gamma_{2,1}^* \geq 0$ for all $\delta \geq 0$.
+
+\item Dividing \ref{eq:foc_gam11} over \ref{eq:foc_gam21} yields
 $$
-
-
-
-
-
+\frac{\gamma_{1,1}^*}{\gamma_{2,1}^*} = \frac{\sigma_{1,1} + \delta \frac{\sigma_{1,2}^2}{\sigma_{1,1}}}{\delta \sqrt{\sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2}} 
+$$
+Taking first derivative with respect to $\delta$ implies
+$$
+\frac{\partial \frac{\gamma_{1,1}^*}{\gamma_{2,1}^*}}{\partial \delta} = \frac{\frac{\sigma_{1,2}^2}{\sigma_{1,1}} \delta  \sqrt{\sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2}    - \Big( \sigma_{1,1} + \delta \frac{\sigma_{1,2}^2}{\sigma_{1,1}}  \Big)  \sqrt{\sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2}  }{\delta^2 \Big(   \sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2  \Big)}
+$$ 
+\end{itemize}
+}
 
 
 \end{document}

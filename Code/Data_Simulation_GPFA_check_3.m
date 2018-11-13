@@ -30,21 +30,12 @@ shocksU = sigU*randn(T,1);
 shocksF = sigF*randn(T,1);
 shocksC = sigC*randn(T,1);
 
-% Structural Economy
-% for i = 2:T
-%       U(i) = rhox*U(i-1) + rho*F(i-1) + 2*shocksU(i) + shocksF(i);
-%       F(i) = rho*U(i-1) + rhoy*F(i-1) + shocksU(i) + 2*shocksF(i) + shocksC(i);
-%       C(i) = rho*U(i-1) - rho*F(i-1)  + rhoz*C(i-1) ...
-%             + shocksU(i) - shocksF(i) + shocksC(i);
-% end
-
 for i = 2:T
       U(i) = rhox*U(i-1) + rhoz*C(i-1)   + A11*shocksU(i)  + A21*shocksF(i);  
       C(i) = rho*U(i-1)  + rhozz*C(i-1)  + A21*shocksU(i)  - A22*shocksF(i);
 end
 
 % Define the system1
-%system_names  = {'U','F','C'};
 system_names  = {'U','C'};
 
 for i = 1:length(system_names)
