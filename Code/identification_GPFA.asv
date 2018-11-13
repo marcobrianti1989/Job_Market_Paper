@@ -25,7 +25,7 @@ gamU_zero      = D(:,2); %uncertainty shock impact vector (initial value)
 
 % Setting the objective function of Step1 - delta should be negative
 if delta > 0
-      delta = - delta;
+      warning('Delta is positive when estimating a financial shock.')
 end
 objF = @(gamF) objective_PFA(EBPposition,IVposition,SRhorizon,...
       SRhorizonIV,B,A,gamF,delta); 
@@ -56,10 +56,8 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Setting the objective function of Step2
-if delta < 0
-      delta = - delta;
-end
-objU = @(gamU) objective_PFA(Uposition,IVposition,SRhorizon,SRhorizonIV,B,A,gamU,delta);
+delta2 = - delta; % Be careful on the sign of delta!
+objU = @(gamU) objective_PFA(Uposition,IVposition,SRhorizon,SRhorizonIV,B,A,gamU,delta2);
 
 %Optimization Parameters
 options  = optimset('fmincon');
@@ -70,7 +68,7 @@ gamU_opt = fmincon(objU, gamU_zero,[],[],[],[],[],[],...
       @(gamU) constraint_orthogonality([gamU]),options);
 %fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 
-if (gamU_opt'*gamU_opt - 1)^2 > 10^(-10) %|| sum(sum(([gamF_opt gamU_opt]'*[gamF_opt gamU_opt] - eye(2)).^2)) > 10^(-10)
+if (gamU_opt'*gamU_opt - 1)^2 > 10^(-10) || sum(sum(([gamF_opt gamU_opt]'*[gamF_opt gamU_opt] - eye(2)).^2)) > 10^(-10)
       warning('The problem is not consistent with the constraints.')
 end
 

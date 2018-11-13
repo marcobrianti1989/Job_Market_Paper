@@ -13,8 +13,7 @@ rho4    = 0.9;
 sigU    = 1;
 sigF    = 1;
 alp     = 5;
-for ii_simul = 1:1000
-      disp(['Simulation number ', num2str(ii_simul)])
+for ii_simul = 1:10
       A11     = rand(1,1);
       A21     = rand(1,1);
       A12     = rand(1,1);
@@ -59,7 +58,7 @@ for ii_simul = 1:1000
       objgam     = 1;
       delta      = 0.05;
       threshold  = 0.1;
-      add        = 0.01;
+      add        = 0.05;
       j = 1;
       while objgam >= 10^(-4)
             while objgam >= threshold
@@ -71,7 +70,7 @@ for ii_simul = 1:1000
                         Uposition,IVposition,delta);
                   gamF   = gamma(:,1);
                   gamU   = gamma(:,2);
-                  objgam = gamF'*gamU;
+                  objgam = gamF'*gamU
                   delta  = delta + add;
             end
             threshold = threshold/10;
@@ -107,10 +106,9 @@ for ii_simul = 1:1000
       sigma_store(:,:,ii_simul)  = sigma;
       objgam_store(ii_simul)     = objgam;
       delta_store(ii_simul)      = delta;
-      corrF_store(:,ii_simul)    = corrF;
-      corrU_store(:,ii_simul)    = corrU; 
-      sF_store(:,ii_simul)       = shocksF(2:end);
-      sU_store(:,ii_simul)       = shocksU(2:end);
+      corrF_store(ii_simul)      = corrF;
+      corrU_store(ii_simul)      = corrU; 
+      sF_store(ii_simul)         =  
       
 end
 

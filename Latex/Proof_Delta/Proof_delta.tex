@@ -198,6 +198,125 @@ $$
 \frac{\partial \frac{\gamma_{1,1}^*}{\gamma_{2,1}^*}}{\partial \delta} = \frac{\frac{\sigma_{1,2}^2}{\sigma_{1,1}} \delta  \sqrt{\sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2}    - \Big( \sigma_{1,1} + \delta \frac{\sigma_{1,2}^2}{\sigma_{1,1}}  \Big)  \sqrt{\sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2}  }{\delta^2 \Big(   \sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2  \Big)}
 $$ 
 \end{itemize}
+which is
+$$
+\frac{\partial \frac{\gamma_{1,1}^*}{\gamma_{2,1}^*}}{\partial \delta} = - \frac{ \sigma_{1,1}  \sqrt{\sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2}  }{\delta^2 \Big(   \sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2  \Big)} < 0.
+$$ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\
+
+\
+
+\
+
+Identification of $s_{2,t}$ is
+\begin{eqnarray}\label{eq:problem_Gam2}
+\begin{aligned}
+\max_{\gamma_{1,2},\gamma_{2,2}} \ \ & \ \sigma_{1,1} \gamma_{1,2} - \delta \Bigg[ \frac{\sigma_{1,2}^2}{\sigma_{1,1}}  \gamma_{1,2} + \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} \gamma_{2,2}   \Bigg] \\
+\text{s.t.} \ \ & \ 1 \geq \gamma_{1,2}^2 + \gamma_{2,2}^2
+\end{aligned}
+\end{eqnarray}
+Resetting the problem with Lagrangian function is
+\begin{eqnarray}\label{eq:lagrangian2}
+\begin{aligned}
+\max_{\gamma_{1,2},\gamma_{2,2}} L(\gamma_{1,2},\gamma_{2,2},\lambda) \ &= \  \sigma_{1,1} \gamma_{1,2} - \delta \Bigg[ \frac{\sigma_{1,2}^2}{\sigma_{1,1}}  \gamma_{1,2} + \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} \gamma_{2,2}   \Bigg] \\
+\ &+ \ \lambda \big(1 - \gamma_{1,2}^2 - \gamma_{2,2}^2 \big)
+\end{aligned}
+\end{eqnarray}
+First order conditions are
+\begin{eqnarray}\label{eq:foc_gam12}
+\frac{\partial L(\gamma_{1,2},\gamma_{2,2},\lambda) }{\partial \gamma_{1,2}} = \sigma_{1,1} - \delta\frac{\sigma_{1,2}^2}{\sigma_{1,1}} - 2 \lambda \big( \gamma_{1,2}^* \big)^2 = 0 \ \ \Rightarrow \ \ \gamma_{1,2}^* = \frac{1}{2 \lambda} \bigg[ \sigma_{1,1} -  \delta\frac{\sigma_{1,2}^2}{\sigma_{1,1}}  \bigg]
+\end{eqnarray}
+\begin{eqnarray}\label{eq:foc_gam22}
+\frac{\partial L(\gamma_{1,2},\gamma_{2,2},\lambda) }{\partial \gamma_{2,2}} =  - \delta \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2} - 2 \lambda \big( \gamma_{2,2}^* \big)^2 = 0 \ \ \Rightarrow \ \ \gamma_{2,2}^* = -  \frac{1}{2 \lambda} \delta \sqrt{\sigma_{2,2}^2 - \Big( \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \Big)^2}
+\end{eqnarray}
+\begin{eqnarray}\label{eq:complslackness2}
+\lambda \frac{\partial L(\gamma_{1,2},\gamma_{2,2},\lambda) }{\partial \lambda} = \lambda\big[ 1 - \big( \gamma_{1,2}^* \big)^2 - \big( \gamma_{2,2}^* \big)^2 \big] = 0
+\end{eqnarray}
+where $\lambda \geq 0$.
+
+\
+
+\begin{itemize}
+	\item Equation \ref{eq:foc_gam12} implies that
+	\begin{enumerate}
+		\item $\gamma_{1,2}^* \geq 0$ for all $\delta \geq 0$ if $\sigma_{1,2}^2 \leq 0$.
+		\item It exists $\bar{\delta}$ such that $\gamma_{1,2}^* \geq 0$ for all $0 \leq \delta \leq \bar{\delta}$ if $\sigma_{1,2}^2 \geq 0$.
+	\end{enumerate} 
+	
+	\item Equation \ref{eq:foc_gam22} implies $\gamma_{2,2}^* \leq 0$ for all $\delta \geq 0$.
+	
+	\item Dividing \ref{eq:foc_gam12} over \ref{eq:foc_gam22} yields
+	$$
+	\frac{\gamma_{1,2}^*}{\gamma_{2,2}^*} = - \frac{\sigma_{1,1} - \delta \frac{\sigma_{1,2}^2}{\sigma_{1,1}}}{\delta \sqrt{\sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2}} 
+	$$
+	Taking first derivative with respect to $\delta$ implies
+	$$
+	\frac{\partial \frac{\gamma_{1,2}^*}{\gamma_{2,2}^*}}{\partial \delta} = - \frac{- \frac{\sigma_{1,2}^2}{\sigma_{1,1}} \delta  \sqrt{\sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2}    - \Big( \sigma_{1,1} - \delta \frac{\sigma_{1,2}^2}{\sigma_{1,1}}  \Big)  \sqrt{\sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2}  }{\delta^2 \Big(   \sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2  \Big)}
+	$$ 
+\end{itemize}
+which is
+$$
+\frac{\partial \frac{\gamma_{1,2}^*}{\gamma_{2,2}^*}}{\partial \delta} = \frac{ \sigma_{1,1}  \sqrt{\sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2}  }{\delta^2 \Big(   \sigma_{2,2} - \Big(\frac{\sigma_{1,1}^2}{\sigma_11}\Big)^2  \Big)} > 0
+$$ 
+
+
+\begin{prop}
+	It exists a unique $\delta^*$ such that $\gamma_{1,1}^*\gamma_{1,2}^* + \gamma_{2,1}^*\gamma_{2,2}^* = 0$.
+\end{prop}
+\begin{proof}
+	There exist two possible cases to focus on: 1. $\delta \leq \bar{\delta}$ and 2. $\delta > \bar{\delta}$. I am going to show that Case 1. has a unique solution and Case 2. has no solutions. Moreover, since the problem is symmetric over $\Gamma_1$ and $\Gamma_2$ is irrelevant whether I focus on $\sigma_{1,2} \geq 0$ or $\sigma_{1,2} \leq 0$. Proof would hold symmetrically in either cases. For simplicity I am going to assume $\sigma_{1,2} \geq 0$.
+	\begin{enumerate}
+		\item When $\delta \leq \bar{\delta}$, at least a solution always exists since for $\delta = 0$,
+		$$
+		\gamma_{1,1}^*\gamma_{1,2}^* + \gamma_{2,1}^*\gamma_{2,2}^* > 0
+		$$ 
+		since $\gamma_{1,1}^* = \gamma_{1,2}^* = 1$, and $\gamma_{2,1}^* = \gamma_{2,2}^* = 0$. Moreover, for $\delta = \bar{\delta}$,
+				$$
+		\gamma_{1,1}^*\gamma_{1,2}^* + \gamma_{2,1}^*\gamma_{2,2}^* < 0
+		$$
+		since $\gamma_{1,2} = 0$, $\gamma_{2,1}^* > 0$, and $\gamma_{2,2}^* > 0$.\footnote{I am implicitly using the result that $\gamma_{1,1}^*\gamma_{1,2}^* + \gamma_{2,1}^*\gamma_{2,2}^*$ is a continuous function of $\delta$.}
+		
+		Thus, in order to show that solution is unique, I need to prove that $\gamma_{1,1}^*\gamma_{1,2}^* + \gamma_{2,1}^*\gamma_{2,2}^*$ is monotonically decreasing in $\delta$.   
+		
+		Since both $\gamma_{1,1}^*$ and $\gamma_{2,1}^*$ are positive, and since $\frac{\gamma_{1,1}^*}{\gamma_{2,1}^*}$ is decreasing in $\delta$ then it must be the case that $\gamma_{1,1}^*$ is decreasing in $\delta$ and $\gamma_{2,1}^*$ is increasing in $\delta$.
+		
+	    Since $\gamma_{1,2}^*$ is positive and $\gamma_{2,2}^*$ is negative, and since $\frac{\gamma_{1,2}^*}{\gamma_{2,2}^*}$ is increasing in $\delta$ then it must be the case that $\gamma_{1,2}^*$ is decreasing in $\delta$ and $|\gamma_{2,2}^*|$ is increasing in $\delta$.
+	    
+	    As a result, we have $( \downarrow \gamma_{1,1}^* ) ( \downarrow \gamma_{1,2}^*) - ( \uparrow \gamma_{2,1}^*) ( \uparrow|\gamma_{2,2}^*|)$ which implies that when $\delta \leq \bar{\delta}$, then $\gamma_{1,1}^*\gamma_{1,2}^* + \gamma_{2,1}^*\gamma_{2,2}^*$ is monotonically decreasing in $\delta$ which implies that solution in this area is unique.
+	    
+	    \item When $\delta > \bar{\delta}$, $\gamma_{1,1}^*\gamma_{1,2}^* + \gamma_{2,1}^*\gamma_{2,2}^*$ is never equal to zero. This happens because when $\delta > \bar{\delta}$, $\gamma_{1,1} > 0$, $\gamma_{2,1} > 0$, $\gamma_{1,2} < 0$, and $\gamma_{2,2} < 0$. As a result,
+	    $$
+	    \gamma_{1,1}^* \gamma_{1,2}^* + \gamma_{2,1}^* \gamma_{2,2}^* < 0 \ \ \forall \ \delta > \bar{\delta}.
+	    $$ 
+	    As a result, solution cannot be reached when $\delta > \bar{\delta}$.
+	\end{enumerate}
+
+This complete the proof. It always exists a unique $\delta^*$ such that $\gamma_{1,1}^*\gamma_{1,2}^* + \gamma_{2,1}^*\gamma_{2,2}^* = 0$ for $\delta \geq 0$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
